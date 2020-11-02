@@ -1,0 +1,172 @@
+.html{
+    width: 100%;
+    height:100%;
+    font-family: Calibri;
+}
+body{
+    margin: 0;
+    border-top: 1px solid #aaaaaa;
+}
+.header-container{
+    width: 100%;
+    height:140px;
+    font-family: Calibri;
+    box-shadow: 5px 5px 5px #aaaaaa;
+}
+.menu{
+    width:100%;
+    height: 120px;
+    background-color: white;
+    position: relative; 
+}
+.top{
+    width: 80%;
+    height: 50px;
+    margin: 0 auto;
+
+}
+.header-logo
+{
+    width:124.481px;
+    height:32.081px;
+    vertical-align: middle;
+    padding-right: 200px;
+}
+.tabletop{
+    width: 100%;
+  
+}
+.tabletop td{
+    padding-right: 10px;
+}
+
+.header-menu-button{
+    padding : 3px;
+    background: none;
+    border-style: none;
+    border-bottom: 1px solid  #7f007f;
+    border-radius: 0%;
+    color: #7f007f;
+    outline: none;
+}
+.sign-in
+{
+    border: 1px solid  #7f007f;
+    padding : 6px 30px 6px 30px;
+    background: none;
+    color: #7f007f;
+    outline: none;
+    border-radius: 3px;
+    font-size: smaller;
+    display: inline;
+}
+.bottom{
+    height:50px;
+    width:80%;
+    margin: 0 auto;
+}
+.search{
+    width: 20px;
+    float:right;
+    padding-right: 5px;
+}
+.tablebottom{
+    table-layout: fixed;
+    width: 100%;
+    height: 90px;
+}
+.tablebottom-opt td a img{
+    vertical-align: middle;
+}
+.tablebottom-opt td a{
+    text-decoration: none;
+    color: #7f007f;
+}
+input[type=text]{
+    width: 90%;
+    padding: 6px 6px;
+    margin: 5px 1px;
+    display: inline-block;
+    /* box-sizing: border-box; */
+    border-radius: 0px;
+    border-style: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+.cart-img{
+    width: 60%;
+}
+.icon{
+    width:30px;
+}
+
+ul {
+    list-style: none;
+}
+ul li{
+    display: inline-block;
+    margin-right: 50px;
+}
+.footer-container{
+    width: 80%;
+    margin: 0 auto;
+    height: 30px;
+    font-family: Calibri;
+}
+
+#content1
+{
+    background-color: aquamarine;
+    grid-area: content1;
+}
+#content2
+{
+    background-color: aquamarine;
+    grid-area: content2;
+}
+#content3
+{
+    background-color: aquamarine;
+    grid-area: content3;
+}
+
+#sidebar
+{
+    background-color: burlywood;
+    grid-area: sidebar;
+}
+main{
+    background-color: chartreuse;
+    grid-area: main;
+}
+nav{
+    background-color: cornflowerblue;
+    grid-area: nav;
+}
+.body-container
+{
+    width: 80%;
+    margin: 0 auto;
+    display: grid;
+    height: 100vh;
+    grid-template-columns: 0.6fr 1fr 1fr 1fr;
+    grid-template-rows: 0.2fr 1.5fr 1.2fr 0.8fr;
+    grid-template-areas: 
+    "nav nav nav nav"
+    "sidebar content1 content2 content3"
+    "sidebar content1 content2 content3"
+    "sidebar content1 content2 content3";
+    grid-gap: 3mm;
+}
+@media only screen and (max-width: 550px){
+    .body-container{
+        grid-template-columns: 1fr;
+        grid-template-rows: 0.4fr 0.4fr 2.2fr 1fr;
+        grid-template-areas: 
+        "nav"
+        "sidebar"
+        "content2"
+        "content3";
+    }
+}
+
