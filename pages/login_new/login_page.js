@@ -5,34 +5,33 @@ function switchStatus()
     const loginForm = document.getElementById("login");
     const signupForm =  document.getElementById("signup");
     const switchText = document.getElementById("switch-text");
-    if (button.innerText==="Sign Up")
+
+    if (button.innerText==="SIGN UP")
     {
         switchingDiv.className = "translate-left";     
-        button.innerText = "Sign In";       
+        button.innerText = "SIGN IN";       
         setTimeout(()=>{
-            switchText.innerText = "Hello Friend!";
-            switchText.className = "switch-text-left";
-        }, 400);
+            switchText.innerHTML = "Hello!<p>Already have account?</p>"
+        }, 500);
         
         setTimeout(()=>{
             loginForm.hidden = "on";
             signupForm.hidden = "";
-        }, 400);
+        }, 500);
        
 
     }    
     else
     {    
         switchingDiv.className = "translate-right";
-        button.innerText = "Sign Up";
+        button.innerText = "SIGN UP";
         setTimeout(()=>{
             loginForm.hidden = "";
             signupForm.hidden = "on";
-        }, 300);
+        }, 500);
         setTimeout(()=>{
-            switchText.innerText = "Welcome Back!";
-            switchText.className = "switch-text-right";
-        }, 450);
+            switchText.innerHTML = "Welcome!<p>Don't have any account?</p>"
+        }, 500);
       
       
        

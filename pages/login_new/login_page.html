@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Đăng nhập</title>
-
+    <title>Login</title>
     <link rel="stylesheet" type="text/css" href="./login_page.css">
     <script src="./login_page.js"></script>
 </head>
@@ -25,8 +24,16 @@
                     <span class="content-password">Password</span>
                 </label>
             </div>
+            <div class="forgot-password">
+                <a href="#">Forgot your password?</a>
+            </div>
             <div>
-                <button type="button" class="signin-button">Sign In</button>
+                <button type="button" class="signin-button">SIGN IN</button>
+            </div>
+            <div>
+                <a class="instagram" href="#"><img src="./img/instagram.png"></a>
+                <a class="facebook" href="#"><img src="./img/facebook.png"></a>
+                <a class="twitter" href="#"><img src="./img/twitter.png"></a>
             </div>
         </div>
         <div id="signup" class="container--signup" hidden>
@@ -41,8 +48,7 @@
                 <label for="user-mail" class="label-mail">
                     <span class="content-mail">Mail</span>
                 </label>
-            </div>
-            
+            </div>         
             <div class="password">
                 <input autocomplete="off" type="password" name="password" required>
                 <label for="password" class="label-password">
@@ -50,22 +56,27 @@
                 </label>
             </div>
             <div>
-                <button type="button" class="signup-button">Sign Up</button>
+                <button type="button" class="signup-button">SIGN UP</button>
+            </div>
+            <div>
+                <a class="instagram" href="#"><img src="./img/instagram.png"></a>
+                <a class="facebook" href="#"><img src="./img/facebook.png"></a>
+                <a class="twitter" href="#"><img src="./img/twitter.png"></a>
             </div>
         </div>
         <div id="switching" class="container--switch">
             <div class="container__bg">
             </div>
-
             <div>
-                <button onclick="switchStatus()" type="button" id="switch-button">Sign Up</button>
+                <button onclick="switchStatus()" type="button" id="switch-button">SIGN UP</button>
             </div>
-
+            <div class="switch-text-right" id ="switch-text">
+                Welcome!
+                <p>Don't have any account?</p>
+            </div>
+            
         </div>
-
-        <div class="switch-text-right" id ="switch-text">
-            Welcome Back!
-        </div>
+        
     </div>
 </body>
 
