@@ -5,7 +5,10 @@ function switchStatus()
     const loginForm = document.getElementById("login");
     const signupForm =  document.getElementById("signup");
     const switchText = document.getElementById("switch-text");
-
+    button.disabled= true;
+    setTimeout(() =>{
+        button.disabled = false;
+    }, 500);
     if (button.innerText==="SIGN UP")
     {
         switchingDiv.className = "translate-left";     
@@ -17,7 +20,7 @@ function switchStatus()
         setTimeout(()=>{
             loginForm.hidden = "on";
             signupForm.hidden = "";
-        }, 500);
+        }, 250);
        
 
     }    
@@ -28,7 +31,7 @@ function switchStatus()
         setTimeout(()=>{
             loginForm.hidden = "";
             signupForm.hidden = "on";
-        }, 500);
+        }, 300);
         setTimeout(()=>{
             switchText.innerHTML = "Welcome!<p>Don't have any account?</p>"
         }, 500);

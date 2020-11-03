@@ -4,8 +4,9 @@
   box-sizing: border-box;
   font-size: 20px;
 }
-body { 
-  background-image: url("./img/background.png");
+body {
+  /* background-image: url("./img/background.png"); */
+  position: relative;
   background-attachment: fixed;
   font-family: Calibri, sans-serif, Helvetica, Arial;
   width: 100vw;
@@ -17,50 +18,44 @@ body {
   width: 50%;
   min-width: 710px;
   height: 500px;
-  position: relative;
+  position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   border-radius: 0.5rem;
-  -webkit-box-shadow: 20px 20px 25px 5px rgba(0, 0, 0, 0.73);
-  -moz-box-shadow: 20px 20px 25px 5px rgba(0, 0, 0, 0.73);
-  box-shadow: 20px 20px 25px 5px rgba(0, 0, 0, 0.73);
+  -webkit-box-shadow: 0px 2px 29px -5px rgba(0, 0, 0, 0.73);
+  -moz-box-shadow: 0px 2px 29px -5px rgba(0, 0, 0, 0.73);
+  box-shadow: 0px 2px 29px -5px rgba(0, 0, 0, 0.73);
 }
 .container--login {
   position: absolute;
-  top: 30%;
-  left: 10%;
-  right: 40%;
-  width: 40rem;
-  height: 300px;
+  /* top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+  width: 70%;
+  height: 100%;
   font-size: 20rem;
 }
-.container--signup
-{
+.container--signup {
   position: absolute;
-  top: 30%;
-  
-  left: 40%;
-  right: 10%;
-  width: 40rem;
-  height: 300px;
+  right: 0%;
+  width: 70%;
+  height: 100%;
   font-size: 20rem;
 }
-.container--login .signin-button:hover{
-  width: 60%;
+.container--login .signin-button:hover {
+  width: 40%;
   transition: 0.5s;
 }
-.container--login .signin-button{
+.container--login .signin-button {
   position: absolute;
   color: white;
   height: auto;
-  width: 30%;
+  width: 20%;
   padding: 10px 10px;
-  margin: 0;
-  top: 55%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
-  margin: auto;
   outline: none;
 
   border-radius: 25px;
@@ -70,22 +65,22 @@ body {
     rgba(107, 29, 87, 1) 0%,
     rgba(77, 16, 101, 1) 100%
   );
-  
+  cursor: pointer;
   transition: 0.6s;
 }
 
-.container--signup .signup-button:hover{
-  width: 60%;
+.container--signup .signup-button:hover {
+  width: 40%;
   transition: 0.5s;
 }
-.container--signup .signup-button{
+.container--signup .signup-button {
   position: absolute;
   color: white;
-  width: 30%;
+  width: 20%;
   padding: 10px 10px;
-
+  cursor: pointer;
   margin: 0;
-  top: 55%;
+  top: 70%;
   left: 50%;
   transform: translate(-50%, -50%);
   margin: auto;
@@ -98,19 +93,25 @@ body {
     rgba(77, 16, 101, 1) 0%,
     rgba(107, 29, 87, 1) 100%
   );
-  
+
   transition: 0.5s;
 }
-.container--login div{
-  width:50%;
+.container--login div {
+  width: 50%;
   height: 50px;
+  left: 50%;
+  top: 25%;
+  transform: translate(-50%, -50%);
   position: relative;
   overflow: hidden;
 }
 
-.container--signup div{
+.container--signup div {
   width: 50%;
   height: 50px;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   position: relative;
   overflow: hidden;
 }
@@ -167,30 +168,35 @@ body {
 .password {
   width: 50%;
   height: 50px;
+  margin-top: 20px;
   position: relative;
   overflow: hidden;
 }
+.mail {
+  margin-top: 20px;
+}
 .container--switch {
-    position: relative;
-    width: 30%;
-    min-width: 210px;
-    background: linear-gradient(
-      90deg,
-      rgba(107, 29, 87, 1) 0%,
-      rgba(77, 16, 101, 1) 100%
-    );
-    border-top-right-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    height: 100%;
-    left: 70%;
-    top: 0;
-  }
-  
-#switch-button:hover{
+  position: relative;
+  width: 30%;
+  min-width: 210px;
+  background: linear-gradient(
+    90deg,
+    rgba(107, 29, 87, 1) 0%,
+    rgba(77, 16, 101, 1) 100%
+  );
+  border-top-right-radius: 0.5rem;
+  border-bottom-right-radius: 0.5rem;
+  height: 100%;
+  left: 70%;
+  top: 0;
+}
+
+#switch-button:hover {
   width: 70%;
   transition: 0.3s;
 }
 #switch-button {
+  cursor: pointer;
   position: absolute;
   color: white;
   width: 50%;
@@ -219,7 +225,7 @@ body {
     rgba(77, 16, 101, 1) 0%,
     rgba(107, 29, 87, 1) 100%
   );
-  
+
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
 
@@ -243,8 +249,8 @@ body {
 
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
-  
-  height: 100%; 
+
+  height: 100%;
   right: 0;
 
   animation: toRight, scale2;
@@ -259,7 +265,6 @@ body {
   }
   100% {
     width: 30%;
-  
   }
 }
 @keyframes scale2 {
@@ -268,32 +273,30 @@ body {
   }
   100% {
     width: 30%;
-  
   }
 }
 
 @keyframes toLeft {
-  from{
+  from {
     left: 70%;
   }
-  to
-  {
+  to {
     left: 0%;
   }
 }
 
 @keyframes toRight {
-  from{
+  from {
     right: 70%;
   }
-  to
-  {
+  to {
     right: 0%;
   }
 }
 
-.switch-text-left, .switch-text-right{
-  color:white;
+.switch-text-left,
+.switch-text-right {
+  color: white;
   font-size: 2rem;
   text-align: center;
   width: auto;
@@ -301,31 +304,17 @@ body {
   padding-top: 40%;
 }
 
-p{
+p {
   position: absolute;
   font-size: 16px;
   top: 220px;
   left: 14%;
-  right: 14%
+  right: 14%;
 }
 
-.forgot-password{
-  top: 20px;
-  left: 14%;
-  right: 10%;
-}
-.instagram{
+.forgot-password {
   position: absolute;
   top: 45%;
-  left: 10%
-}
-.facebook{
-  position: absolute;
-  top: 45%;
-  left: 45%;
-}
-.twitter{
-  position: absolute;
-  top: 45%;
-  left: 80%;
+  left: 25%;
+  padding-top: 2rem;
 }
