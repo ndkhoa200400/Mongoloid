@@ -88,7 +88,7 @@
 
   <!-- MAIN -->
   <div class="body-container">
-    <nav>Trang chủ > Xe Hơi</nav>
+    <nav>Trang chủ > Đồ gia dụng </nav>
     <div class="sidebar-and-grid">
       <div class="sidebar">
         <select name="Thương hiệu" id="thuonghieu">
@@ -114,14 +114,18 @@
           <option value="5">5 sao</option>
         </select>
 
-        <div class="price"> 
+        <div class="price">
           <p>Giá</p>
-          <hr>
-          0 VNĐ <span>10.000.000+ VNĐ</span>
+          <div class="slidecontainer">
+            <input type="range" min="1" max="10000000" value="5000" class="slider" id="myRange">
+          </div>
         </div>
 
         <div class="finding">
           <button>
+            <div class="finding-icon" style="float: left;">
+              <i class="fa fa-search" aria-hidden="true"></i>
+            </div>
             <b>Tìm kiếm</b>
           </button>
         </div>
@@ -130,82 +134,287 @@
       <div class="grid-container">
         <div class="grid">
           <div class="grid-item">
-            <div class="fixbug">
-              <div class="grid-item-image">
-                <img src="./imgs/product1.jpg"/>
-              </div>
-              <div class="grid-item-content" >
-                <span class="tenhang">Thùng sữa vinamilk</span>
-                <div class="sub-info">
-                    <div class="chuabiet sub-info-flex_item">
-                      <span><i class="fas fa-star"></i></span>
-                      <span id="">7206 </span>Đã bán
-                    </div>
-                    <div class="daban sub-info-flex_item">
-                      <span><i class="fas fa-shopping-bag"></i></span>
-                      <span id="">7206 </span>Đã bán
-                    </div>
+
+            <div class="grid-item-image">
+              <img src="./imgs/product1.jpg" />
+            </div>
+            <div class="grid-item-content">
+              <span class="tenhang">Thùng sữa vinamilk</span>
+              <div class="sub-info">
+                <div class="chuabiet sub-info-flex_item">
+                  <span><i class="fas fa-star"></i></span>
+                  <span id="">7206 </span>Đã bán
                 </div>
-                <div class="tien">
-                    <div class="tien-icon">
-                      <span><i class="fas fa-money-bill"></i>
-                    </div>
-                    <div class="tien-giatien">
-                      <span class="tien-giamoi">200.000 VNĐ</span><br>
-                      <span class="tien-giacu">199.000</span>
-                    </div>
+                <div class="daban sub-info-flex_item">
+                  <span><i class="fas fa-shopping-bag"></i></span>
+                  <span id="">7206 </span>Đã bán
+                </div>
+              </div>
+              <div class="tien">
+                <div class="tien-icon">
+                  <span><i class="fas fa-money-bill"></i>
+                </div>
+                <div class="tien-giatien">
+                  <span class="tien-giamoi">200.000 VNĐ</span><br>
+                  <span class="tien-giacu">199.000</span>
                 </div>
               </div>
             </div>
+
           </div>
-          <div class="grid-item">2</div>
-          <div class="grid-item">3</div>  
-          <div class="grid-item">4</div>
-          <div class="grid-item">5</div>
-          <div class="grid-item">6</div>
+
+          <div class="grid-item">
+          
+              <div class="grid-item-image">
+                <img src="./imgs/product2.jpg" />
+              </div>
+              <div class="grid-item-content">
+                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="sub-info">
+                  <div class="chuabiet sub-info-flex_item">
+                    <span><i class="fas fa-star"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                  <div class="daban sub-info-flex_item">
+                    <span><i class="fas fa-shopping-bag"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                </div>
+                <div class="tien">
+                  <div class="tien-icon">
+                    <span><i class="fas fa-money-bill"></i>
+                  </div>
+                  <div class="tien-giatien">
+                    <span class="tien-giamoi">200.000 VNĐ</span><br>
+                    <span class="tien-giacu">199.000</span>
+                  </div>
+                </div>
+              </div>
+           
+          </div>
+
+          <div class="grid-item">
+            
+              <div class="grid-item-image">
+                <img src="./imgs/product3.jpg" />
+              </div>
+              <div class="grid-item-content">
+                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="sub-info">
+                  <div class="chuabiet sub-info-flex_item">
+                    <span><i class="fas fa-star"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                  <div class="daban sub-info-flex_item">
+                    <span><i class="fas fa-shopping-bag"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                </div>
+                <div class="tien">
+                  <div class="tien-icon">
+                    <span><i class="fas fa-money-bill"></i>
+                  </div>
+                  <div class="tien-giatien">
+                    <span class="tien-giamoi">200.000 VNĐ</span><br>
+                    <span class="tien-giacu">199.000</span>
+                  </div>
+                </div>
+              </div>
+            
+          </div>
+
+          <div class="grid-item">
+            
+              <div class="grid-item-image">
+                <img src="./imgs/product4.jpg" />
+              </div>
+              <div class="grid-item-content">
+                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="sub-info">
+                  <div class="chuabiet sub-info-flex_item">
+                    <span><i class="fas fa-star"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                  <div class="daban sub-info-flex_item">
+                    <span><i class="fas fa-shopping-bag"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                </div>
+                <div class="tien">
+                  <div class="tien-icon">
+                    <span><i class="fas fa-money-bill"></i>
+                  </div>
+                  <div class="tien-giatien">
+                    <span class="tien-giamoi">200.000 VNĐ</span><br>
+                    <span class="tien-giacu">199.000</span>
+                  </div>
+                </div>
+              </div>
+          
+          </div>
+
+          <div class="grid-item">
+            
+              <div class="grid-item-image">
+                <img src="./imgs/product5.jpg" />
+              </div>
+              <div class="grid-item-content">
+                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="sub-info">
+                  <div class="chuabiet sub-info-flex_item">
+                    <span><i class="fas fa-star"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                  <div class="daban sub-info-flex_item">
+                    <span><i class="fas fa-shopping-bag"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                </div>
+                <div class="tien">
+                  <div class="tien-icon">
+                    <span><i class="fas fa-money-bill"></i>
+                  </div>
+                  <div class="tien-giatien">
+                    <span class="tien-giamoi">200.000 VNĐ</span><br>
+                    <span class="tien-giacu">199.000</span>
+                  </div>
+                </div>
+              </div>
+        
+          </div>
+
+          <div class="grid-item">
+              <div class="grid-item-image">
+                <img src="./imgs/product6.jpg" />
+              </div>
+              <div class="grid-item-content">
+                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="sub-info">
+                  <div class="chuabiet">
+                    <span><i class="fas fa-star"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                  <div class="daban">
+                    <span><i class="fas fa-shopping-bag"></i></span>
+                    <span id="">7206 </span>Đã bán
+                  </div>
+                </div>
+                <div class="tien">
+                  <div class="tien-icon">
+                    <span><i class="fas fa-money-bill"></i>
+                  </div>
+                  <div class="tien-giatien">
+                    <span class="tien-giamoi">200.000 VNĐ</span><br>
+                    <span class="tien-giacu">199.000</span>
+                  </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="grid-item">
+            <div class="grid-item-image">
+              <img src="./imgs/product8.png" />
+            </div>
+            <div class="grid-item-content">
+              <span class="tenhang">Son Hera Sensual Powder Matte</span>
+              <div class="sub-info">
+                <div class="chuabiet">
+                  <span><i class="fas fa-star"></i></span>
+                  <span id="">7206 </span>Đã bán
+                </div>
+                <div class="daban">
+                  <span><i class="fas fa-shopping-bag"></i></span>
+                  <span id="">7206 </span>Đã bán
+                </div>
+              </div>
+              <div class="tien">
+                <div class="tien-icon">
+                  <span><i class="fas fa-money-bill"></i>
+                </div>
+                <div class="tien-giatien">
+                  <span class="tien-giamoi">200.000 VNĐ</span><br>
+                  <span class="tien-giacu">199.000</span>
+                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="grid-item">
+          <div class="grid-item-image">
+            <img src="./imgs/product7.png" />
+          </div>
+          <div class="grid-item-content">
+            <span class="tenhang">Son Hera Sensual Powder Matte</span>
+            <div class="sub-info">
+              <div class="chuabiet">
+                <span><i class="fas fa-star"></i></span>
+                <span id="">7206 </span>Đã bán
+              </div>
+              <div class="daban">
+                <span><i class="fas fa-shopping-bag"></i></span>
+                <span id="">7206 </span>Đã bán
+              </div>
+            </div>
+            <div class="tien">
+              <div class="tien-icon">
+                <span><i class="fas fa-money-bill"></i>
+              </div>
+              <div class="tien-giatien">
+                <span class="tien-giamoi">200.000 VNĐ</span><br>
+                <span class="tien-giacu">199.000</span>
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div class="grid-item">
+        <div class="grid-item-image">
+          <img src="./imgs/product9.jpg" />
+        </div>
+        <div class="grid-item-content">
+          <span class="tenhang">Son Hera Sensual Powder Matte</span>
+          <div class="sub-info">
+            <div class="chuabiet">
+              <span><i class="fas fa-star"></i></span>
+              <span id="">7206 </span>Đã bán
+            </div>
+            <div class="daban">
+              <span><i class="fas fa-shopping-bag"></i></span>
+              <span id="">7206 </span>Đã bán
+            </div>
+          </div>
+          <div class="tien">
+            <div class="tien-icon">
+              <span><i class="fas fa-money-bill"></i>
+            </div>
+            <div class="tien-giatien">
+              <span class="tien-giamoi">200.000 VNĐ</span><br>
+              <span class="tien-giacu">199.000</span>
+            </div>
+          </div>
+        </div>
+    </div>
+
         </div>
       </div>
     </div>
+    
   </div>
-
-
   <!-- FOOTER -->
   <footer>
-    <table class="footer-container">
-      <tr class="footer-row">
-        <td class="footer-left">
-          <div>
-            <div class="footer-logo">
-              <a href="#">
-                <img class="header-logo" src="./imgs/logo.png" alt="" />
-            </div>
-            <div class="socials">
-              <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-              <a href="#"><i class="fa fa-instagram"></i></a>
-              <a href="#"><i class="fa fa-google"></i></a>
-            </div>
-          </div>
-        </td>
-        <td class="footer-center">
-          <div>
-            <ul>
-              <li>
-                <h6>TERMS AND CONDITIONS</h6>
-              </li>
-              <li>
-                <h6>PRIVACY POLICY</h6>
-              </li>
-              <li>
-                <h6>FAQS</h6>
-              </li>
-            </ul>
-          </div>
-        </td>
-        <td>
-
-        </td>
-      </tr>
-    </table>
+    <div class="footer-container">
+      <div class="footer-logo">
+        <a href="#">
+          <img class="header-logo" src="./imgs/logo.png" alt="" />
+        </a>
+      </div>
+      <div class="footer-link">
+        <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+        <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
+        <a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i></a>
+         
+      </div>
+    </div>
 
   </footer>
 </body>

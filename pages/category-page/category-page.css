@@ -100,23 +100,31 @@ input[type="text"] {
   width: 30px;
 }
 
-
-
 .body-container {
   width: 80%;
   margin: 0 auto;
   font-family: Calibri;
+  display: grid;
+  grid-template-rows: 0.1fr 3fr;
+  grid-template-areas: 
+  "nav "
+  "main";
 }
 .body-container nav {
   padding: 20px 0px 20px 0px;
   background-color:none;
   color: #969696;
+  grid-area: nav;
 }
 .sidebar-and-grid{
+  display:flex;
+  flex-direction: row;
+  grid-area: main;
 }
 .sidebar {
-  display: inline-block;
+  /* display: inline-block; */
   width: 20%;
+  height : fit-content;
   background-color: white;
   padding: 15px;
   text-align: center;
@@ -139,6 +147,44 @@ input[type="text"] {
   margin-top: 30px;
   text-align: left;
 }
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 1px;
+  border-radius: 5px;
+  background: #969696;
+  outline: none;
+  opacity: 0.5;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid black;
+  background-color: white;
+}
+
+.slider::-moz-range-thumb {
+  width: 100%;
+  height: 5px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
 .price span{
   float: right;
 }
@@ -149,35 +195,42 @@ input[type="text"] {
   height: 50px;
   width: 100%;
   vertical-align: middle;
-  background-color: #7f007f;
+  background-color:#7F007F;
   font-size: medium;
   color: white;
+  font-family: Calibri;
+  border-style: none;
+  border-radius: 3px;
+  text-align: center;
 }
 .grid-container{
-  display: inline-block;
+ /* display : inline-block; */
   height: auto;
   width: 75%;
+  margin-bottom: 50px;
   
 }
 .grid{
   margin-left: 40px;
   display: grid;
-  grid-template-columns: 270px 270px 270px;
-  grid-template-rows: 340px 340px;
-  grid-gap: 40px;
+  grid-template-columns: 30% 30% 30%;
+  grid-template-rows:fit-content(40%);
+  grid-gap: 30px;
+  width : 100%;
 
 }
 .grid-item{
-  height: 340px;
+  width: 100%;
+  height: 350px;
   background-color: white;
   box-shadow: 0px 8px 10px #dadada;
+  padding: 5px;
+  transition: transform 0.5s;
 }
-.fixbug{
-  height: 95%;
-  width: 90%;
-  padding: 10px;
-  margin: 0 auto;
+.grid-item :hover{
+  transform: translateY(-5px);
 }
+
 .grid-item-image{
   width: 100%;
   height: 200px;
@@ -200,20 +253,12 @@ input[type="text"] {
   margin: 5px 0;
   font-size: small;
   display: flex;
-}
-.sub-info-flex_item{
-  width: 110px;
-}
-.chuabiet{
-  text-align: left;
-}
-.daban{
-  text-align: right;
+  justify-content: space-between;
 }
 .tien{
-  padding: 10px;
+  padding-top: 10px;
   display: flex;
-  margin: 0 auto;
+  /* margin: 0 auto; */
   width: fit-content;
   vertical-align: middle;
 }
@@ -221,18 +266,18 @@ input[type="text"] {
   width: 35px;
 }
 .tien-giamoi{
-  font-size: 24px;
+  font-size: larger;
   font-weight: bold;
   line-height: 20px;
+  color:#7F007F;
+  ;
 }
 .tien-giacu{
+  width: 100%;
   font-size: 15px;
   font-weight: normal;
   color: #969696;
   text-decoration: line-through;
-}
-.fas{
-  margin-right: 5px;
 }
 .fa-star{
   color:gold;
@@ -241,6 +286,39 @@ input[type="text"] {
   color: forestgreen;
 }
 .fa-money-bill{
-  color: forestgreen;
+  color:#7F007F;
   font-size: 20px;
+}
+.fa-facebook{
+  color:#2838CE; 
+}
+.fa-instagram{
+  color:#FF0000;
+}
+.fa-twitter{
+  color: #03A9F4;
+}
+footer{
+  margin-top: 40px;
+  width: 100%;
+  background-color: white;
+  border: 1px solid#E6E6E6;
+}
+.footer-container{
+  width: 80%;
+  max-height: 40px;
+  height: 40px;
+  margin: 0 auto;
+  padding: 20px 0px;
+}
+.footer-logo{
+  width:20%;
+  float: left;
+}
+.footer-link{
+  width: 10%;
+  float: right;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
