@@ -1,3 +1,10 @@
+*{
+  font-family: Calibri;
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 .html {
   width: 100%;
   height: auto;
@@ -5,7 +12,6 @@
 }
 body {
   margin: 0;
-  border-top: 1px solid #aaaaaa;
   background-color: #fafafa;
 }
 .header-container {
@@ -21,43 +27,54 @@ body {
   position: relative;
 }
 .top {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
   width: 80%;
-  height: 40px;
+  padding-top: 15px;
   margin: 0 auto;
-  padding-top: 10px;
 }
-
-.tabletop {
-  width: 100%;
-  vertical-align: middle;
+.top ul li{
+  display: inline-block;
+  margin-right: 50px;
 }
-.tabletop td {
-  width:200px;
-  text-align: right;
+.top ul li a{
+  text-decoration: none;
+  padding: 3px;
+  color: black;
+  font-weight: 500;
+}
+.top ul li a:hover{
+  text-decoration: none;
+  padding: 3px;
+  color: #7f007f;
+  font-weight: bold;
+  border-bottom: 2px solid #7f007f;
+}
+.logo {
+  margin-right: auto;
 }
 .header-logo {
   width: auto;
   height: 30px;
-  float: left;
 }
-.header-menu-button {
-  padding: 3px;
-  background: none;
-  border-style: none;
-  border-bottom: 1px solid #7f007f;
-  border-radius: 0%;
-  color: #7f007f;
-  outline: none;
+.fa-user{
+  padding-right: 15px;
 }
 .sign-in {
+  text-decoration: none;
   border: 1px solid #7f007f;
   padding: 6px 30px 6px 30px;
-  background: none;
   color: #7f007f;
-  outline: none;
   border-radius: 3px;
-  font-size: smaller;
-  display: inline;
+}
+.sign-in:hover {
+  text-decoration: none;
+  border: 1px solid #7f007f;
+  padding: 6px 30px 6px 30px;
+  background-color: #7f007f;
+  color: white;
+  border-radius: 3px;
 }
 .bottom {
   height: 95px;
@@ -94,7 +111,7 @@ input[type="text"] {
   outline: none;
 }
 .cart-img {
-  width: 60%;
+  width: 80px;
 }
 .icon {
   width: 30px;
@@ -203,6 +220,9 @@ input[type="text"] {
   border-radius: 3px;
   text-align: center;
 }
+.finding-icon{
+  margin-left: 10%;
+}
 .grid-container{
  /* display : inline-block; */
   height: auto;
@@ -289,6 +309,9 @@ input[type="text"] {
   color:#7F007F;
   font-size: 20px;
 }
+
+
+/* footer */
 .fa-facebook{
   color:#2838CE; 
 }
@@ -306,18 +329,20 @@ footer{
 }
 .footer-container{
   width: 80%;
-  max-height: 40px;
-  height: 40px;
+  max-height: 80px;
   margin: 0 auto;
   padding: 20px 0px;
+  display :flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 .footer-logo{
   width:20%;
-  float: left;
+  margin-right: auto;
 }
 .footer-link{
   width: 10%;
-  float: right;
+  justify-content: flex-end;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
