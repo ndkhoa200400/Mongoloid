@@ -77,13 +77,57 @@ body {
   width: 80%;
   margin: 10px auto;
   display: flex;
-  justify-content: space-evenly;
+  flex-direction: row;
+  justify-content: space-between;
+  /* align-items: center; */
   align-items: center;
 }
-.bottom1{
-  width: 40%;
-  text-align: center;
+/* _____ */
+.dropbtn {
+  background-color: white;
+  color:#7f007f;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: bolder;
 }
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color:white;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 0;
+  color: white;
+  overflow:auto;
+}
+
+.dropdown-content a {
+  color:black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color:whitesmoke;
+color: #7f007f;
+font-weight: bolder;}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color:#f1f1f1;
+}
+/* _____ */
 .caterogy-list{
   text-decoration: none;
   padding-bottom: 10px;
@@ -119,7 +163,7 @@ input[type="text"] {
 }
 
 .body-container{
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: grid;
   grid-template-columns:auto;
@@ -156,6 +200,7 @@ input[type="text"] {
 .slide img{
   width: 100%;
   min-height: 550px;
+  object-fit: cover;
 }
 
 /* phần này là của manual slide bar */
