@@ -108,17 +108,19 @@ p[class="title-1"] {
   margin-top: 40px;
   margin-left: 60px;
   font-size: 35px;
+  font-weight: bold;
 }
-p[class="title-2"] {
+.title-2 {
   font-size: 20px;
+  font-weight: bold;
 }
 form {
-  margin-top: 40px;
+  margin-top: 30px;
 }
 /*thong tin cua hang*/
 .hoso {
   margin-left: 100px;
-  margin-top: 50px;
+  margin-top: 40px;
 }
 .col-25 {
   margin-top: 8px;
@@ -164,4 +166,13 @@ button:hover {
   background-color: #7f007f;
   color: white;
   cursor: pointer;
+}
+.col-75 {
+  float: left;
+  margin-top: 8px;
+  width: 75%;
+}
+.form-1 {
+  width: 700px;
+  height: 250px;
 }
