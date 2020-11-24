@@ -1,19 +1,23 @@
 const express = require('express');
 const controller = require('../controllers/product.controller')
+const authController = require('./../controllers/auth.controller')
 const router = express.Router();
 
 router.route('/')
-    //.get(authController.protect,
+   
     .get(controller.getAllProducts)
-    .post(controller.createProduct);
+    .post(authController.protect,
+        authController.restrictTo('seller'),
+        controller.createProduct);
 
 
 router.route('/:id')
     .get(controller.getProduct)
-    .patch(controller.updateProduct)
-    .delete(controller.deleteProduct);
-    //.delete(authController.protect,
-    //        authController.restrictTo('admin', 'leade-guide'),
-    //        controller.deleteTour);
+    .patch(authController.protect,
+        authController.restrictTo('seller'),
+        controller.updateProduct)
+    .delete(authController.protect,
+        authController.restrictTo('seller','admin'),
+        controller.deleteProduct);
 
 module.exports = router;
