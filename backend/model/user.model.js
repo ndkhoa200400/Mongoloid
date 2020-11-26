@@ -75,6 +75,7 @@ userSchema.pre('save', function(next){
     if (!this.isModified('password') || this.isNew) return next();
     // When user reset password, change this attribute to the time user reset
     this.passwordChangedAt = Date.now() - 1000;
+    next();
 });
 userSchema.methods.correctPassword = async function(candidatePassword, userPassword)
 {

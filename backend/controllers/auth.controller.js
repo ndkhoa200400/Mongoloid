@@ -77,6 +77,10 @@ exports.protect = catchAsync(async (req, res, next) => {
         req.headers.authorization.startsWith('Bearer')) {
         token = req.headers.authorization.split(' ')[1];
 
+    }else if (req.cookies.jwt)
+    {
+        // Get cookie from local storage of browser 
+        token = req.cookies.jwt;
     }
     if (!token) {
         return next(new appError('You are not logged in! Please log in to get access', 401));

@@ -6,6 +6,7 @@ const factory = require('./handlerFactory')
 exports.getAllUsers = factory.getAll(User);
 
 exports.getUser = factory.getOne(User);
+
 exports.createUser = (req, res) =>{
     res.status(500).json({
         status: 'error'
@@ -29,7 +30,7 @@ const filterObj = (obj, ...allowedFields) =>
 
 exports.getMe = (req, res,next) => {
     req.params.id = req.user.id; // From protect middleware
-    next();
+    next(); // pass to getUser function
 }
 
 exports.updateMe = catchAsync (async(req, res, next) =>{
