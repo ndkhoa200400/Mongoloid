@@ -6,73 +6,48 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mongoloid - Category</title>
   <link rel="stylesheet" type="text/css" href="category-page.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
 </head>
 
-<body>
+<body class="body">
   <!-- HEADER -->
   <header>
     <div class="header-container">
       <div class="menu">
         <div class="top">
           <a class="logo" href="#"
-              ><img class="header-logo" src="./imgs/logo.png" alt=""
-            /></a>
-            <ul>
-              <li><a href="#">ĐƠN HÀNG</a></li>
-              <li><a href="#">THÔNG BÁO</a></li>
-              <li><a href="#">KÊNH NGƯỜI BÁN</a></li>
-            </ul>
-            <a class="sign-in" href="#"><i class="far fa-user"></i>ĐĂNG NHẬP</a>
+            ><img class="header-logo" src="./imgs/logo.png" alt="" />
+          </a>
+          <ul>
+            <li><a href="#">ĐƠN HÀNG</a></li>
+            <li><a href="#">THÔNG BÁO</a></li>
+            <li><a href="#">KÊNH NGƯỜI BÁN</a></li>
+          </ul>
+          <a class="sign-in" href="#"><i class="far fa-user"></i>ĐĂNG NHẬP</a>
         </div>
-
         <div class="bottom">
-          <table class="tablebottom">
-            <tr>
-              <td>
-                <div>
-                  <img class="search" src="./imgs/search_logo.png" alt="" />
-                </div>
-              </td>
-              <td colspan="6">
-                <form action="">
-                  <input type="text" name="Search" placeholder="Tìm kiếm trên Mongoloid..." />
-                </form>
-              </td>
-              <td class="td-cart" rowspan="2">
-                <a href="#">
-                  <img class="cart-img" src="./imgs/cart.png" alt="" />
-                </a>
-              </td>
-            </tr>
-            <tr class="tablebottom-opt">
-              <td class="danh-muc" colspan="3">
-                <a href="#"><b>DANH MỤC SẢN PHẨM</b>
-                  <img class="icon" src="./imgs/arrow.png" alt="" /></a>
-              </td>
-              <td>
-                <a href="#">
-                  <img class="icon" src="./imgs/yellow-star.png" />Bán chạy
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img class="icon" src="./imgs/yellow-star.png" />Phổ biến
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img class="icon" src="./imgs/yellow-star.png" />Mới nhất
-                </a>
-              </td>
-              <td>
-                <a href="#">
-                  <img class="icon" src="./imgs/yellow-star.png" />Liên quan
-                </a>
-              </td>
-            </tr>
-          </table>
+          <div class="dropdown">
+            <span class="dropbtn"
+              >DANH MỤC SẢN PHẨM <i class="fas fa-angle-down"></i
+            ></span>
+            <div class="dropdown-content">
+              <a href="#">ÁO</a>
+              <a href="#">QUẦN</a>
+              <a href="#">NÓN</a>
+              <a href="#">BALO - TÚI</a>
+            </div>
+          </div>
+
+          <div class="search">
+            <img class="search-logo" src="./imgs/search_logo.png" />
+            <input type="text" placeholder="Tìm kiếm trên Mongoloid..." />
+          </div>
+
+          <div>
+            <a href="#"><img class="cart" src="./imgs/cart.png" /></a>
+          </div>
         </div>
       </div>
     </div>
@@ -80,7 +55,13 @@
 
   <!-- MAIN -->
   <div class="body-container">
-    <nav>Trang chủ > Đồ gia dụng </nav>
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb bg-transparent">
+        <li class="breadcrumb-item"><a class="text-dark" href="/pages/home-page/home-page.html">Trang chủ</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Áo</li>
+      </ol>
+    </nav>
+
     <div class="sidebar-and-grid">
       <div class="sidebar">
         <select name="Thương hiệu" id="thuonghieu">
@@ -105,14 +86,12 @@
           <option value="4">4 sao</option>
           <option value="5">5 sao</option>
         </select>
-
         <div class="price">
           <p>Giá</p>
           <div class="slidecontainer">
             <input type="range" min="1" max="10000000" value="5000" class="slider" id="myRange">
           </div>
         </div>
-
         <div class="finding">
           <button>
             <div class="finding-icon" style="float: left;">
@@ -123,23 +102,30 @@
         </div>
       </div>
 
+
       <div class="grid-container">
         <div class="grid">
+          <div class="grid-item1 sort btn-group" role="group" aria-label="Basic example">
+            <button type="button" class="btn"><i class="fa fa-star fa-fw" aria-hidden="true"></i>Bán chạy</button>
+            <button type="button" class="btn"><i class="fa fa-star fa-fw" aria-hidden="true"></i>Phổ biến</button>
+            <button type="button" class="btn"><i class="fa fa-star fa-fw" aria-hidden="true"></i>Mới nhất</button>
+            <button type="button" class="btn"><i class="fa fa-star fa-fw" aria-hidden="true"></i>Liên quan</button>
+          </div>
+          
           <div class="grid-item">
-
             <div class="grid-item-image">
               <img src="./imgs/product1.jpg" />
             </div>
             <div class="grid-item-content">
-              <span class="tenhang">Thùng sữa vinamilk</span>
+              <div class="tenhang">Thùng sữa vinamilk</div>
               <div class="sub-info">
                 <div class="chuabiet sub-info-flex_item">
                   <span><i class="fas fa-star"></i></span>
-                  <span id="">7206 </span>Đã bán
+                  <span id="">72 </span>Đánh giá
                 </div>
                 <div class="daban sub-info-flex_item">
                   <span><i class="fas fa-shopping-bag"></i></span>
-                  <span id="">7206 </span>Đã bán
+                  <span id="">7k1 </span>Đã bán
                 </div>
               </div>
               <div class="tien">
@@ -147,12 +133,11 @@
                   <span><i class="fas fa-money-bill"></i>
                 </div>
                 <div class="tien-giatien">
-                  <span class="tien-giamoi">200.000 VNĐ</span><br>
-                  <span class="tien-giacu">199.000</span>
+                  <div class="tien-giamoi">200.000 VNĐ</div>
+                  <div class="tien-giacu">199.000</div>
                 </div>
               </div>
             </div>
-
           </div>
 
           <div class="grid-item">
@@ -161,15 +146,15 @@
                 <img src="./imgs/product2.jpg" />
               </div>
               <div class="grid-item-content">
-                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="tenhang">Thùng sữa vinamilk</div>
                 <div class="sub-info">
                   <div class="chuabiet sub-info-flex_item">
                     <span><i class="fas fa-star"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">72 </span>Đánh giá
                   </div>
                   <div class="daban sub-info-flex_item">
                     <span><i class="fas fa-shopping-bag"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">7k1 </span>Đã bán
                   </div>
                 </div>
                 <div class="tien">
@@ -177,8 +162,8 @@
                     <span><i class="fas fa-money-bill"></i>
                   </div>
                   <div class="tien-giatien">
-                    <span class="tien-giamoi">200.000 VNĐ</span><br>
-                    <span class="tien-giacu">199.000</span>
+                    <div class="tien-giamoi">200.000 VNĐ</div>
+                    <div class="tien-giacu">199.000</div>
                   </div>
                 </div>
               </div>
@@ -191,15 +176,15 @@
                 <img src="./imgs/product3.jpg" />
               </div>
               <div class="grid-item-content">
-                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="tenhang">Thùng sữa vinamilk</div>
                 <div class="sub-info">
                   <div class="chuabiet sub-info-flex_item">
                     <span><i class="fas fa-star"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">72 </span>Đánh giá
                   </div>
                   <div class="daban sub-info-flex_item">
                     <span><i class="fas fa-shopping-bag"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">7k1 </span>Đã bán
                   </div>
                 </div>
                 <div class="tien">
@@ -207,8 +192,8 @@
                     <span><i class="fas fa-money-bill"></i>
                   </div>
                   <div class="tien-giatien">
-                    <span class="tien-giamoi">200.000 VNĐ</span><br>
-                    <span class="tien-giacu">199.000</span>
+                    <div class="tien-giamoi">200.000 VNĐ</div>
+                    <div class="tien-giacu">199.000</div>
                   </div>
                 </div>
               </div>
@@ -221,15 +206,15 @@
                 <img src="./imgs/product4.jpg" />
               </div>
               <div class="grid-item-content">
-                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="tenhang">Thùng sữa vinamilk</div>
                 <div class="sub-info">
                   <div class="chuabiet sub-info-flex_item">
                     <span><i class="fas fa-star"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">72 </span>Đánh giá
                   </div>
                   <div class="daban sub-info-flex_item">
                     <span><i class="fas fa-shopping-bag"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">7k1 </span>Đã bán
                   </div>
                 </div>
                 <div class="tien">
@@ -237,8 +222,8 @@
                     <span><i class="fas fa-money-bill"></i>
                   </div>
                   <div class="tien-giatien">
-                    <span class="tien-giamoi">200.000 VNĐ</span><br>
-                    <span class="tien-giacu">199.000</span>
+                    <div class="tien-giamoi">200.000 VNĐ</div>
+                    <div class="tien-giacu">199.000</div>
                   </div>
                 </div>
               </div>
@@ -251,15 +236,15 @@
                 <img src="./imgs/product5.jpg" />
               </div>
               <div class="grid-item-content">
-                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="tenhang">Thùng sữa vinamilk</div>
                 <div class="sub-info">
                   <div class="chuabiet sub-info-flex_item">
                     <span><i class="fas fa-star"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">72 </span>Đánh giá
                   </div>
                   <div class="daban sub-info-flex_item">
                     <span><i class="fas fa-shopping-bag"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">7k1 </span>Đã bán
                   </div>
                 </div>
                 <div class="tien">
@@ -267,8 +252,8 @@
                     <span><i class="fas fa-money-bill"></i>
                   </div>
                   <div class="tien-giatien">
-                    <span class="tien-giamoi">200.000 VNĐ</span><br>
-                    <span class="tien-giacu">199.000</span>
+                    <div class="tien-giamoi">200.000 VNĐ</div>
+                    <div class="tien-giacu">199.000</div>
                   </div>
                 </div>
               </div>
@@ -280,15 +265,15 @@
                 <img src="./imgs/product6.jpg" />
               </div>
               <div class="grid-item-content">
-                <span class="tenhang">Thùng sữa vinamilk</span>
+                <div class="tenhang">Thùng sữa vinamilk</div>
                 <div class="sub-info">
-                  <div class="chuabiet">
+                  <div class="chuabiet sub-info-flex_item">
                     <span><i class="fas fa-star"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">72 </span>Đánh giá
                   </div>
-                  <div class="daban">
+                  <div class="daban sub-info-flex_item">
                     <span><i class="fas fa-shopping-bag"></i></span>
-                    <span id="">7206 </span>Đã bán
+                    <span id="">7k1 </span>Đã bán
                   </div>
                 </div>
                 <div class="tien">
@@ -296,8 +281,8 @@
                     <span><i class="fas fa-money-bill"></i>
                   </div>
                   <div class="tien-giatien">
-                    <span class="tien-giamoi">200.000 VNĐ</span><br>
-                    <span class="tien-giacu">199.000</span>
+                    <div class="tien-giamoi">200.000 VNĐ</div>
+                    <div class="tien-giacu">199.000</div>
                   </div>
                 </div>
               </div>
@@ -308,15 +293,15 @@
               <img src="./imgs/product8.png" />
             </div>
             <div class="grid-item-content">
-              <span class="tenhang">Son Hera Sensual Powder Matte</span>
+              <div class="tenhang">Son Hera Sensual Powder Matte</div>
               <div class="sub-info">
-                <div class="chuabiet">
+                <div class="chuabiet sub-info-flex_item">
                   <span><i class="fas fa-star"></i></span>
-                  <span id="">7206 </span>Đã bán
+                  <span id="">72 </span>Đánh giá
                 </div>
-                <div class="daban">
+                <div class="daban sub-info-flex_item">
                   <span><i class="fas fa-shopping-bag"></i></span>
-                  <span id="">7206 </span>Đã bán
+                  <span id="">7k1 </span>Đã bán
                 </div>
               </div>
               <div class="tien">
@@ -324,8 +309,8 @@
                   <span><i class="fas fa-money-bill"></i>
                 </div>
                 <div class="tien-giatien">
-                  <span class="tien-giamoi">200.000 VNĐ</span><br>
-                  <span class="tien-giacu">199.000</span>
+                  <div class="tien-giamoi">200.000 VNĐ</div>
+                  <div class="tien-giacu">199.000</div>
                 </div>
               </div>
             </div>
@@ -336,15 +321,15 @@
             <img src="./imgs/product7.png" />
           </div>
           <div class="grid-item-content">
-            <span class="tenhang">Son Hera Sensual Powder Matte</span>
+            <div class="tenhang">Son Hera Sensual Powder Matte</div>
             <div class="sub-info">
-              <div class="chuabiet">
+              <div class="chuabiet sub-info-flex_item">
                 <span><i class="fas fa-star"></i></span>
-                <span id="">7206 </span>Đã bán
+                <span id="">72 </span>Đánh giá
               </div>
-              <div class="daban">
+              <div class="daban sub-info-flex_item">
                 <span><i class="fas fa-shopping-bag"></i></span>
-                <span id="">7206 </span>Đã bán
+                <span id="">7k1 </span>Đã bán
               </div>
             </div>
             <div class="tien">
@@ -352,8 +337,8 @@
                 <span><i class="fas fa-money-bill"></i>
               </div>
               <div class="tien-giatien">
-                <span class="tien-giamoi">200.000 VNĐ</span><br>
-                <span class="tien-giacu">199.000</span>
+                <div class="tien-giamoi">200.000 VNĐ</div>
+                <div class="tien-giacu">199.000</div>
               </div>
             </div>
           </div>
@@ -364,15 +349,15 @@
           <img src="./imgs/product9.jpg" />
         </div>
         <div class="grid-item-content">
-          <span class="tenhang">Son Hera Sensual Powder Matte</span>
+          <div class="tenhang">Son Hera Sensual Powder Matte</div>
           <div class="sub-info">
-            <div class="chuabiet">
+            <div class="chuabiet sub-info-flex_item">
               <span><i class="fas fa-star"></i></span>
-              <span id="">7206 </span>Đã bán
+              <span id="">72 </span>Đánh giá
             </div>
-            <div class="daban">
+            <div class="daban sub-info-flex_item">
               <span><i class="fas fa-shopping-bag"></i></span>
-              <span id="">7206 </span>Đã bán
+              <span id="">7k1 </span>Đã bán
             </div>
           </div>
           <div class="tien">
@@ -380,18 +365,19 @@
               <span><i class="fas fa-money-bill"></i>
             </div>
             <div class="tien-giatien">
-              <span class="tien-giamoi">200.000 VNĐ</span><br>
-              <span class="tien-giacu">199.000</span>
+              <div class="tien-giamoi">200.000 VNĐ</div>
+              <div class="tien-giacu">199.000</div>
             </div>
           </div>
         </div>
     </div>
-
+  
         </div>
       </div>
     </div>
     
   </div>
+  
   <!-- FOOTER -->
   <footer>
     <div class="footer-container">
@@ -404,11 +390,12 @@
         <a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
         <a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a>
         <a href="#"> <i class="fa fa-twitter" aria-hidden="true"></i></a>
-         
       </div>
     </div>
-
   </footer>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"></script>
 </body>
 
 </html>

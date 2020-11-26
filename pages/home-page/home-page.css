@@ -1,8 +1,8 @@
 *{
   font-family: Calibri;
   font-size: 16px;
-  padding: 0;
-  margin: 0;
+  padding: 0px;
+  margin: 0px;
   box-sizing: border-box;
 }
 .html {
@@ -34,6 +34,7 @@ body {
 .top ul li{
   display: inline-block;
   margin-right: 50px;
+  
 }
 .top ul li a{
   text-decoration: none;
@@ -128,17 +129,6 @@ font-weight: bolder;}
   background-color:#f1f1f1;
 }
 /* _____ */
-.caterogy-list{
-  text-decoration: none;
-  padding-bottom: 10px;
-  font-weight: bold;
-  color: #7f007f;
-  font-size: 20px;
-  letter-spacing: 1px;
-}
-.fa-angle-down{
-  padding: 20px;
-}
 .search{
   display: flex;
   justify-content: center;
@@ -153,6 +143,7 @@ font-weight: bolder;}
 input[type="text"] {
   width: 80%;
   padding: 6px 6px;
+  font-size: 14px;
   border-radius: 0px;
   border-style: none;
   border-bottom: 1px solid black;
@@ -206,7 +197,7 @@ input[type="text"] {
 /* phần này là của manual slide bar */
 .navigation-manual{
   position: absolute;
-  width: 80%;
+  width: 100%;
   margin-top: -40px;
   display: flex;
   justify-content: center;
@@ -241,7 +232,7 @@ input[type="text"] {
 .navigation-auto{
   position: absolute;
   display: flex;
-  width: 80%;
+  width: 100%;
   justify-content: center;
   margin-top: 510px;
 }
@@ -361,9 +352,128 @@ footer{
   margin-right: auto;
 }
 .footer-link{
-  width: 10%;
-  justify-content: flex-end;
+  width: 20%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+@media (max-width: 1200px){
+
+}
+@media (max-width: 1024px){
+  .top{
+    width: 90%;
+  }
+  .top ul li {
+    margin-right: 10px;
+  }
+}
+@media (max-width: 768px){
+  .header-container{
+    height: 200px;
+  }
+  .top{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 95%;
+  }
+  .logo{
+    width: 50%;
+    margin: 0;
+  }
+  .sign-in {
+    padding: 6px 20px;
+  }
+  .top :nth-child(1) { order: 1;}
+  .top :nth-child(2) { order: 3;}
+  .top :nth-child(3) { order: 2;}
+  .top ul{
+    margin-top: 10px;
+    width: 75%;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+  }
+  .top ul li a{
+    padding: 0;
+    font-size: 15px;
+  }
+  .bottom{
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    vertical-align: middle;
+    
+  }
+  .bottom :nth-child(1) { order: 1; width: auto;}
+  .bottom :nth-child(2) { order: 3;}
+  .bottom :nth-child(3) { order: 2; width: 30%;}
+  .dropdown{
+    font-size: 15px;
+  }
+  .dropbtn {
+    padding: 5px 0px;
+    margin: 0;
+    font-size: 15px;
+  }
+  .dropdown-content a {
+    color:black;
+    padding: 10px 10px;
+    font-size: 12px;
+  }
+  .fas .fa-angle-down{
+    padding: 0px;
+    margin: 0px;
+    font-size: 25px;
+  }
+  .cart{
+    max-width: 60px;
+    float: right;
+  }
+  .search{
+    margin-top: 10px;
+    width: 100%;
+  }
+  .search-logo{
+    max-width: 30px;
+  }
+  
+}
+@media (max-width: 480px){
+  .header-container{
+    height: 175px;
+  }
+  .logo{
+    max-width: 40%;
+  }
+  .header-logo{
+    height: 20px;
+  }
+  .sign-in {
+    padding: 5px 15px;
+    font-size: 12px;
+  }
+  .top ul{
+    margin-top: 10px;
+    width: 85%;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+  }
+  .top ul li a{
+    font-size: 12px;
+  }
+  .bottom{
+    margin-top: 15px;
+  }
+  .search{
+    margin-top: 5px;
+  }
+  .search input{
+    font-size: 12px;
+  }
+
 }
