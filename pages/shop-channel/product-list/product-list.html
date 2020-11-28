@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quản Lý Đơn Hàng</title>
+
+    <!-- CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+
+    <!-- jQuery and JS bundle w/ Popper.js -->
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+
+    <link rel="stylesheet" type="text/css" href="./product-list.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="#"><img src="./imgs/logo.png" alt="" /></a>
+      </div>
+      <div class="title-text">Kênh Người Bán</div>
+      <div class="signin-signup-button">
+        <button class="login">Đăng Nhập</button>
+        <button class="login">Đăng Kí</button>
+      </div>
+    </header>
+
+    <div class="body-container">
+      <div class="navigation-container">
+        <dl>
+          <dt>QUẢN LÝ CỬA HÀNG</dt>
+          <dd><a href="#ho-so">Hồ sơ cửa hàng</a></dd>
+
+          <dt>QUẢN LÝ ĐƠN HÀNG</dt>
+          <dd><a href="#don-hang">Tất cả đơn hàng</a></dd>
+          <dd><a href="#don-huy">Đơn bị huỷ</a></dd>
+          <dt>QUẢN LÝ SẢN PHẨM</dt>
+          <dd><a href="#san-pham">Tất cả sản phẩm</a></dd>
+          <dt>TÀI CHÍNH</dt>
+          <dd><a href="#doanh-thu">Doanh thu</a></dd>
+        </dl>
+      </div>
+      <div class="main-body">
+        <div class="title-body">
+          <div class="text">TẤT CẢ SẢN PHẨM</div>
+        </div>
+        <div class="search-container">
+          <div class="row">
+            <div class="col-4">
+              <label>Mã sản phẩm</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">
+                    Tìm
+                  </button>
+                </div>
+              </div>
+              <label>Tên sản phẩm</label>
+              <div class="input-group mb-3">
+                <input type="text" class="form-control" />
+                <div class="input-group-append">
+                  <button class="btn btn-outline-secondary" type="button">
+                    Tìm
+                  </button>
+                </div>
+              </div>
+            </div>
+            <div class="col-7">bên này sẽ hiện thông tin sản phẩm</div>
+          </div>
+        </div>
+        <div class="list-product-container">
+          <div class="tool-bar">
+            <button type="button" class="btn btn-outline-success">
+              Thêm sản phẩm
+            </button>
+            <button type="button" class="btn btn-outline-danger">Xoá</button>
+            <button type="button" class="btn btn-link" onclick="check()">
+              Chọn tất cả
+            </button>
+            <button type="button" class="btn btn-link" onclick="uncheck()">
+              Bỏ chọn tất cả
+            </button>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <img
+                src="./imgs/insert-picture-icon.png"
+                alt="..."
+                class="img-thumbnail"
+              />
+            </div>
+            <div class="col-9">
+              <div>
+                <span id="name-product">Tên sản phẩm</span>
+              </div>
+              <div>
+                <span id="price">200 đ</span
+                ><span id="post-date">01/01/2020</span>
+              </div>
+            </div>
+            <div class="col">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <img
+                src="./imgs/insert-picture-icon.png"
+                alt="..."
+                class="img-thumbnail"
+              />
+            </div>
+            <div class="col-9">
+              <div>
+                <span id="name-product">Tên sản phẩm</span>
+              </div>
+              <div>
+                <span id="price">200 đ</span
+                ><span id="post-date">01/01/2020</span>
+              </div>
+            </div>
+            <div class="col">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <img
+                src="./imgs/insert-picture-icon.png"
+                alt="..."
+                class="img-thumbnail"
+              />
+            </div>
+            <div class="col-9">
+              <div>
+                <span id="name-product">Tên sản phẩm</span>
+              </div>
+              <div>
+                <span id="price">200 đ</span
+                ><span id="post-date">01/01/2020</span>
+              </div>
+            </div>
+            <div class="col">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <img
+                src="./imgs/insert-picture-icon.png"
+                alt="..."
+                class="img-thumbnail"
+              />
+            </div>
+            <div class="col-9">
+              <div>
+                <span id="name-product">Tên sản phẩm</span>
+              </div>
+              <div>
+                <span id="price">200 đ</span
+                ><span id="post-date">01/01/2020</span>
+              </div>
+            </div>
+            <div class="col">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-2">
+              <img
+                src="./imgs/insert-picture-icon.png"
+                alt="..."
+                class="img-thumbnail"
+              />
+            </div>
+            <div class="col-9">
+              <div>
+                <span id="name-product">Tên sản phẩm</span>
+              </div>
+              <div>
+                <span id="price">200 đ</span
+                ><span id="post-date">01/01/2020</span>
+              </div>
+            </div>
+            <div class="col">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="defaultCheck1"
+              />
+            </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="./product-list.js"></script>
+</html>
