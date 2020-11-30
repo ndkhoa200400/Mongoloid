@@ -9,6 +9,3 @@ function slidebar(){
     console.log(counter);
 }
 setInterval(slidebar, 4000);
-
-
-
