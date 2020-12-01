@@ -12,6 +12,9 @@ router.patch("/resetPassword/:id", authController.resetPassword);
 // Protect all routers after this middleware
 router.use(authController.protect);
 
+
+router.patch('/beSeller', controller.beSeller);
+
 router.patch("/updateMyPassword", authController.updatePassword);
 router.get("/me", controller.getMe, controller.getUser);
 router.patch("/updateMe", controller.updateMe);

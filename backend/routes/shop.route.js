@@ -4,11 +4,11 @@ const authController = require('./../controllers/auth.controller')
 const router = express.Router();
 
 router.route('/')
-   
     .get(controller.getAllShops)
     .post(authController.protect,
         authController.restrictTo('seller'),
-        controller.createProduct);
+        controller.getSeller,
+        controller.createShop);
 
 
 router.route('/:id')

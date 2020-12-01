@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
+const validator = require('validator');
 const shopSchema = new mongoose.Schema({
-    idUser:{
+    sellerID:{
         type: String,
-        required: [true, 'Shop has to belong to a user']
+        required: [true, 'Shop has to belong to a seller'],
+        select: false
     },
     name: {
         type: String,
@@ -12,7 +14,24 @@ const shopSchema = new mongoose.Schema({
         minlength: [5, 'Shop name must have more or equal 5 characters'],
     },
     logo: String,
-    rating: Number,
+    rating: {
+        type: Number,
+        max: 5,
+        min: 1,
+        default: 3
+    },
+    phoneContact: {
+        type: String,
+        unique: true,
+        validate: [validator.isNumeric, 'Please provide a valid phone number']
+
+    },
+    email: {
+        type: String,
+        unique: true,
+        lowercase: true,
+        validate: [validator.isEmail, 'Please provide a valid email']
+    },
     description: String,
     joinDate:{
         type: Date,

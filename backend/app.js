@@ -10,13 +10,15 @@ const app = express();
 // Routing
 const productRoute = require('./routes/product.route');
 const userRoute = require('./routes/user.route');
+const shopRoute = require('./routes/shop.route');
+
 
 if(process.env.NODE_ENV ==='development')
     app.use(morgan('dev'));
 
 
 app.use(express.json());
-app.use(cookieParser);
+app.use(cookieParser());
 
 const limiter = rateLimit({
     // Alow 100 requests from the same IP in 1 hour
@@ -26,6 +28,8 @@ const limiter = rateLimit({
   });
 app.use("/api", limiter);
 
+
+app.use('/api/shop', shopRoute);
 app.use('/api/user', userRoute);
 app.use('/api/product', productRoute)
 app.all('*', (req, res, next)=>{

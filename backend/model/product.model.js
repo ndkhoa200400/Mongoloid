@@ -23,9 +23,9 @@ const productSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
-    seller:{
+    shopID:{
         type: String,
-        required: [true, 'A product has to belong to a seller']
+        required: [true, 'A product has to belong to a shop']
     },
     category:{
         type: String,
