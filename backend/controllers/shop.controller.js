@@ -4,12 +4,18 @@ const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeature');
 const factory = require('./handlerFactory')
 
+exports.getSeller = (req, res, next) =>{
+    req.body.sellerID = req.user.id;
+    console.log(req.body);
+    next(); 
+}
+
 exports.getAllShops = factory.getAll(Shop);
 
-exports.getShop = factory.getOne(Product);
+exports.getShop = factory.getOne(Shop);
 
-exports.createShop = factory.createOne(Product);
+exports.createShop = factory.createOne(Shop);
 
-exports.updateShop = factory.updateOne(Product);
+exports.updateShop = factory.updateOne(Shop);
 
-exports.deleteShop = factory.deleteOne(Product);
+exports.deleteShop = factory.deleteOne(Shop);

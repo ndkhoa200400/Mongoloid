@@ -61,3 +61,15 @@ exports.deleteMe = catchAsync(async(req, res, next) => {
         data: null
     });
 });
+
+
+exports.beSeller = catchAsync(async(req, res, next)=>{
+
+    const user = await User.findByIdAndUpdate(req.user.id, {role: 'seller'}, {new: true, runValidators: true});
+    
+
+    await user.save();
+    res.status(200).json({
+        status: 'success'
+    })
+})
