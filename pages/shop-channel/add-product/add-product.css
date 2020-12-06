@@ -48,7 +48,7 @@ button.login:hover {
 button.login {
   border: 1px solid #7f007f;
   padding: 8px 10px 8px 10px;
-  width: auto;
+  width: 100px;
   background: none;
   color: #7f007f;
   outline: none;
@@ -57,19 +57,84 @@ button.login {
   display: inline;
 }
 .body-container {
-  margin-top: 100px;
-  width: 100%;
-  height: 100%;
+  margin: 0 auto;
+  margin-top: 80px;
+  width: 80%;
+  display: flex;
+
 }
-.d-block {
-  width: 300px;
-  height: 300px;
+.navigation-container {
+  width: 25%;
+  height: 1500px;
+  background-color: white;
 }
-.row {
-  width: 100%;
+.navigation-container dl {
+  font-size: 20px;
+  margin-left: 50px;
+  margin-top: 60px;
 }
-.carousel {
+dt {
+  font-weight: bolder;
+  margin-top: 15px;
+}
+dd {
+  margin-left: 50px;
+  margin-top: 5px;
+}
+dd:hover {
+  color: #7f007f;
+  font-weight: bolder;
+  padding-left: 3px;
+  cursor: pointer;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+/*main body*/
+.main-body {
   margin-left: 30px;
-  width: 300px;
-  height: 300px;
+  width: 70%;
+  background-color: white;
+  overflow-x: hidden;
+}
+.title-body {
+  margin-top: 30px;
+  width: 100%;
+  border-bottom: 1px solid rgb(212, 212, 212);
+}
+.title-body .text {
+  margin-left: 60px;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.form-container{
+  padding: 30px;
+}
+
+.upload-label{
+  font-weight: bold;
+}
+#image-container{
+  display: grid;
+  grid-template-columns: 33% 33% 33%;
+  grid-gap: 10px;
+  padding-bottom: 50px;
+}
+
+#image-container img{
+  width: 100%;
+  height: 250px;
+  background-color: white;
+  object-fit: cover;
+}
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.btn-danger{
+  margin-right: 10px;
 }
