@@ -1,3 +1,4 @@
+//Hàm kiểm tra nhập đầy đủ thông tin
 (function() {
     'use strict';
     window.addEventListener('load', function() {
@@ -7,9 +8,11 @@
       var validation = Array.prototype.filter.call(forms, function(form) {
         form.addEventListener('submit', function(event) {
           if (form.checkValidity() === false) {
+            var x = document.getElementById('alert');
+            x.innerHTML = "*Chưa nhập đủ thông tin";
             event.preventDefault();
             event.stopPropagation();
-            alert("Bạn chưa nhập đủ thông tin")
+            
           }
           form.classList.add('was-validated');
         }, false);
@@ -17,6 +20,7 @@
     }, false);
   })();
 
+  //Hàm tải ảnh lên
   var loadFile = function(event) {
     var file ="";
     var image = document.getElementById('image-container');
@@ -35,3 +39,4 @@
         image.src = URL.createObjectURL(event.target.files[i]);
     }
 };
+

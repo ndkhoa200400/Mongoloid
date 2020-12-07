@@ -10,6 +10,7 @@ body {
 }
 header {
   position: fixed;
+  top: 0;
   width: 100%;
   height: 80px;
   display: flex;
@@ -55,18 +56,17 @@ button.login {
   font-size: 15px;
   display: inline;
 }
+
 /*bodyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyyy*/
 .body-container {
-  position: relative;
-  top: 80px;
-  height: 600px;
-  width: 100%;
+  margin: 0 auto;
+  margin-top: 80px;
+  width: 80%;
+  display: flex;
 }
 .navigation-container {
-  position: fixed;
-  left: 150px;
-  width: 300px;
-  height: 100%;
+  width: 25%;
+  height: auto;
   background-color: white;
 }
 .navigation-container dl {
@@ -90,13 +90,12 @@ dd:hover {
 }
 
 .main-body-container {
-  position: absolute;
-  left: 480px;
-  top: 30px;
-
-  width: 800px;
-  height: 100%;
+  margin-left: 30px;
+  width: 70%;
   background-color: white;
+  overflow-x: hidden;
+  background-color: white;
+  padding: 40px;
 }
 a {
   color: inherit;
@@ -104,9 +103,7 @@ a {
 }
 
 p[class="title-1"] {
-  margin-top: 40px;
-  margin-left: 60px;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: bold;
 }
 .title-2 {
@@ -117,9 +114,34 @@ form {
   margin-top: 30px;
 }
 /*thong tin cua hang*/
-.hoso {
-  margin-left: 50px;
-  margin-top: 40px;
+.hosocanhan{
+  margin-bottom: 50px;
 }
-
-
+.hoso {
+  display: flex;
+  line-height: 35px;
+}
+.title{
+  width: 30%;
+  font-weight: 600;
+}
+.info{
+  width: 70%;
+}
+.info1{
+  border: none;
+  width: 100%;
+}
+.oldpass{
+  border: none;
+  width: 100%;
+}
+.alertpass{
+  color: crimson;
+}
+.edit-save{
+  margin-top: 20px;
+}
+.table{
+  border: 1px solid #E9ECEF;
+}

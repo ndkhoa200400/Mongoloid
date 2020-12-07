@@ -65,7 +65,7 @@ button.login {
 }
 .navigation-container {
   width: 25%;
-  height: 1500px;
+  height: auto;
   background-color: white;
 }
 .navigation-container dl {
@@ -116,6 +116,30 @@ a {
 .upload-label{
   font-weight: bold;
 }
+
+
+
+.buttons{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.btn-danger{
+  margin-right: 10px;
+}
+.submit-btn{
+  display: flex;
+  align-items: center;
+}
+#alert{
+  color: crimson;
+  margin-right: 10px;
+  font-weight: bold;
+}
+.invalid-feedback{
+  font-size: 16px;
+  font-weight: 700;
+}
 #image-container{
   display: grid;
   grid-template-columns: 33% 33% 33%;
@@ -128,13 +152,4 @@ a {
   height: 250px;
   background-color: white;
   object-fit: cover;
-}
-
-.buttons{
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 30px;
-}
-.btn-danger{
-  margin-right: 10px;
 }
