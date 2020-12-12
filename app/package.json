@@ -1,0 +1,29 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "E-commerce website - Mongoloid",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon server.js",
+    "start:prod": "NODE_ENV=production nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "express-rate-limit": "^5.2.3",
+    "hbs": "^4.1.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.7",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.6",
+    "numeral": "^2.0.6",
+    "path": "^0.12.7",
+    "validator": "^13.5.2"
+  }
+}

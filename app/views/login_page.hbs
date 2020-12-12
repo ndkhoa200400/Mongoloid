@@ -1,0 +1,63 @@
+
+    <div class="container">
+        <div id="login" class="container--login">
+            <div class="mail">
+                <input autocomplete="off" type="text" name="user-mail" required>
+                <label for="user-mail" class="label-mail">
+                    <span class="content-mail">Mail</span>
+                </label>
+            </div>
+            <div class="password">
+                <input autocomplete="off" type="password" name="password" required>
+                <label for="password" class="label-password">
+                    <span class="content-password">Password</span>
+                </label>
+            </div>
+            
+            
+            <button type="button" class="signin-button">SIGN IN</button>
+            
+            
+            <a class="forgot-password" href="#">Forgot your password?</a>
+            
+        
+        </div>
+        <div id="signup" class="container--signup" hidden>
+            <div class="username">
+                <input autocomplete="off" type="text" name="username" required>
+                <label for="username" class="label-username">
+                    <span class="content-username">Username</span>
+                </label>
+            </div>
+            <div class="mail">
+                <input autocomplete="off" type="text" name="user-mail" required>
+                <label for="user-mail" class="label-mail">
+                    <span class="content-mail">Mail</span>
+                </label>
+            </div>         
+            <div class="password">
+                <input autocomplete="off" type="password" name="password" required>
+                <label for="password" class="label-password">
+                    <span class="content-password">Password</span>
+                </label>
+            </div>
+            
+                <button type="button" class="signup-button">SIGN UP</button>
+            
+            
+        </div>
+        <div id="switching" class="container--switch">
+            <div class="container__bg">
+            </div>
+            <div>
+                <button onclick="switchStatus()" type="button" id="switch-button">SIGN UP</button>
+            </div>
+            <div class="switch-text-right" id ="switch-text">
+                Welcome!
+                <p>Don't have any account?</p>
+            </div>
+            
+        </div>
+        
+    </div>
+<script src="./login_page.js"></script>
