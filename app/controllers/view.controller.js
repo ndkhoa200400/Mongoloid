@@ -1,13 +1,31 @@
+
+const User = require("../model/user.model");
 const Product = require("../model/product.model");
-const catchAsync = require("./../utils/catchAsync");
+const catchAsync = require("../utils/catchAsync");
 
 exports.getOverview = catchAsync(async (req, res, next) => {
-  const product = await Product.find();
-  let user = res.locals.user;
-  user = { name: user.name, email: user.user-mail, role: user.role };
-  res.status(200).render("home", {
-    title: "Home",
+  var user = await User.find();
+  var product = await Product.find({}, {
+    images: 1,
+    name : 1,
+    price :1
+  });
+
+  //user = { name: user.username, email: user.email, role: user.role };
+  res.status(200).render("category", {
+    title: "Category",
     user: user,
-    product,
+    products : product,
+    empty: product.empty,
+    csspath : "category-page",
+    layout: 'default',
+    images : images,
+    name: name,
+    price : price
   });
 });
+
+exports.getUser = catchAsync(async (req, res, next) => {
+
+});
+

@@ -106,6 +106,9 @@ body {
   overflow: hidden;
 }
 
+form{
+  margin-top: 100px;
+}
 .container--signup div {
   width: 50%;
   height: 50px;

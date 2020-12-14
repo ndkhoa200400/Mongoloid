@@ -1,6 +1,7 @@
 const express = require('express');
-// const controller = require('../controllers/view.controller');
-// const authController = require('../controllers/auth.controller')
+const controller = require('../controllers/view.controller');
+//const authController = require('../controllers/auth.controller')
+const User = require("../model/user.model");
 var hbs = require('hbs');
 
 const router = express.Router();
@@ -9,22 +10,20 @@ router.use(express.static('public'));
 
 hbs.registerPartials(__dirname + '../views/partials');
 
-// router.use(authController.isLoggedIn);
 
-// router.get('/', controller.getOverview);
+router.get('/', controller.getOverview);
 
-router.get('/login', (req,res)=>{
-  res.render('login_page',{
-    layout: 'login',
-    title: 'Login'
-  });
-})
-
-router.get('/', function(req,res){
-  res.render('category',{
-    layout: 'default',
-    title: 'Home'
-  });
-});
+// router.get('/', async (req, res, next) => {
+//   const user = await User.find();
+//   let user = res.locals.user;
+  
+//   res.status(200).render("category", {
+//     layout: 'default',
+//     title: 'Category',
+//     csspath : "category-page",
+//     jspath : "category-page",
+//     user : user
+//   })
+// });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+
 const shopSchema = new mongoose.Schema({
     sellerID:{
         type: String,
@@ -41,8 +42,5 @@ const shopSchema = new mongoose.Schema({
 
 })
 const Shop = mongoose.model('Shop', shopSchema);
-
-
-
 
 module.exports = Shop;

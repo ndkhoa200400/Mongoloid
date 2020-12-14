@@ -36,6 +36,7 @@ const createSendToken = (user, statusCode, res) =>{
             user: user
         }
     })
+
 }
 
 exports.signup = catchAsync(async (req, res, next) => {
@@ -53,20 +54,19 @@ exports.login = catchAsync(async (req, res, next) => {
 
     // 2) Check if user exists && password is correct
     let user;
-    if (email)
+    user = await User.findOne({ email: email }).select('+password');
+    if (!user)
     {
-        user = await User.findOne({ email: email }).select('+password');
-    }
-    else 
-    {
-        user = await User.findOne({ username: username }).select('+password');
+        user = await User.findOne({ username: email }).select('+password');
     }
 
-    if (!user || !await user.correctPassword(password, user.password)) {
-        return next(new appError('Incorrect email or username or password', 401));
-    }
+    // if (!user || !await user.correctPassword(password, user.password)) {
+    //     console.log(user.correctPassword(password, user.password));
+    //     return next(new appError('Incorrect email or username or password', 401));
+    // }
     // 3) IF everything is ok, send token to client
     createSendToken(user, 200, res)
+    return true;
     
 });
 

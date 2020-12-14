@@ -58,20 +58,18 @@ app.use('/',viewRoute);
 app.use('/api/shop', shopRoute);
 app.use('/api/user', userRoute);
 app.use('/api/product', productRoute)
-app.all('*', (req, res, next)=>{
-    // 404 Not Found Error;
-    next(new AppError(`Can't find ${req.originalUrl} on this server!`), 404);
-});
+// app.all('*', (req, res, next)=>{
+//     // 404 Not Found Error;
+//     next(new AppError(`Can't find ${req.originalUrl} on this server!`), 404);
+// });
 
-app.get('*', function(req, res,next){
-    res.status(404);
-    // 404 Not Found Error;
-    res.render('error_404',{
-      title: 'Not Found',
-      layout : false
-    })
-    //next(new AppError(`Can't find ${req.originalUrl} on this server!`), 404);
+app.use(function(err, req, res, next) {
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
   });
+});
   
 
 module.exports = app;

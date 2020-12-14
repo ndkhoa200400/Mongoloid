@@ -4,7 +4,7 @@ const crypto = require('crypto')
 const validator = require('validator');
 const bcrypt = require('bcrypt');   // for hashing password
 
-userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
         name: {
             type: String,
             required: [true, 'Name must be provided']
