@@ -1,0 +1,674 @@
+* {
+    font-family: Calibri;
+    font-size: 16px;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+.html {
+    width: 100%;
+    height: auto;
+}
+
+.body {
+    background-color: #fdfdfd;
+}
+
+.header-container {
+    width: 100%;
+    height: 135px;
+    box-shadow: 0px 8px 10px #dadada;
+    background-color: white;
+}
+
+.menu {
+    width: 100%;
+    height: 135px;
+    position: relative;
+    
+}
+
+.top {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    vertical-align: middle;
+    width: 80%;
+    padding-top: 15px;
+    margin: 0 auto;
+}
+
+.top ul {
+    padding: 0px;
+    margin: 0;
+}
+
+.top ul li {
+    display: inline-block;
+    margin-right: 50px;
+}
+
+.top ul li a {
+    text-decoration: none;
+    padding: 3px;
+    color: black;
+    font-weight: 500;
+}
+
+.top ul li a:hover {
+    text-decoration: none;
+    padding: 3px;
+    color: #7f007f;
+    font-weight: bold;
+    border-bottom: 2px solid #7f007f;
+}
+
+.logo {
+    margin-right: auto;
+}
+
+.header-logo {
+    width: auto;
+    height: 30px;
+}
+
+.fa-user {
+    padding-right: 15px;
+}
+
+.sign-in {
+    text-decoration: none;
+    border: 1px solid #7f007f;
+    padding: 6px 30px 6px 30px;
+    color: #7f007f;
+    border-radius: 3px;
+}
+
+.sign-in:hover {
+    text-decoration: none;
+    border: 1px solid #7f007f;
+    padding: 6px 30px 6px 30px;
+    background-color: #7f007f;
+    color: white;
+    border-radius: 3px;
+}
+
+.bottom {
+    width: 80%;
+    margin: 10px auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    /* align-items: center; */
+    align-items: center;
+}
+
+
+/* _____ */
+
+.dropbtn {
+    background-color: white;
+    color: #7f007f;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    font-weight: bolder;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    z-index: 5;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 0;
+    color: white;
+    overflow: auto;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: whitesmoke;
+    color: #7f007f;
+    font-weight: bolder;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #f1f1f1;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40%;
+}
+
+.search-logo {
+    width: auto;
+    height: 20px;
+    padding-right: 8px;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 6px 6px;
+    font-size: 14px;
+    border-radius: 0px;
+    border-style: none;
+    border-bottom: 1px solid black;
+    outline: none;
+}
+
+.cart {
+    width: 80px;
+}
+
+
+/* BODY */
+
+.body-container {
+    width: 80%;
+    margin: 0 auto;
+}
+
+
+
+/* THÔNG TIN CỬA HÀNG */
+.shop-info{
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+}
+.shop-avatar{
+    display: flex;
+    align-items: center;
+}
+.shop-ava{
+    height: 90px;
+    width: 90px;
+    margin-right: 20px;
+}
+
+.ava{
+    width: 100%;
+    border-radius: 100px;
+    object-fit: cover;
+}
+.shop-name a{
+    text-decoration: none;
+    font-size: 20px;
+    color: black;
+    font-weight: 600px;
+}
+.rating{
+    display: grid;
+    align-items: center;
+}
+.rating div i{
+    font-size: 20px;
+}
+.rating-value{
+    grid-row: 1;
+    grid-column: 1;
+    font-size: 35px;
+    font-weight: bold;
+    color: crimson;
+    margin-right: 15px;
+}
+.rating-star{
+    margin-right: 10px;
+    grid-row: 1;
+    grid-column: 2;
+}
+.rating-number{
+    grid-row: 2;
+    grid-column: 1/ span 2;
+}
+
+
+/* MÔ TẢ CỬA HÀNG */
+
+.detail-info {
+    margin-top: 50px;
+}
+
+.description {
+    margin-top: 20px;
+    padding: 30px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    background-color: white;
+}
+
+
+/* SẢN PHẨM TƯƠNG TỰ*/
+
+.similar-product {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-gap: 10px;
+}
+
+.grid-item {
+    width: 100%;
+    height: 350px;
+    background-color: white;
+    box-shadow: 0px 8px 10px #dadada;
+    transition: transform 0.5s;
+}
+
+.grid-item-image {
+    width: 100%;
+    height: 200px;
+}
+
+.grid-item-image img {
+    width: 100%;
+    max-height: 200px;
+    min-height: 200px;
+    object-fit: cover;
+}
+
+.grid-item-image img:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.grid-item-content {
+    padding: 10px 15px 0px 15px;
+}
+
+.tenhang {
+    font-weight: bold;
+    line-height: normal;
+}
+
+.sub-info {
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+    padding: 5px;
+    margin: 5px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.sub-info-flex_item span {
+    font-size: 12px;
+}
+
+.sub-info-flex_item span i {
+    font-size: 12px;
+}
+.format{
+    font-size: 12px;
+}
+
+.tien {
+    padding-top: 10px;
+    display: flex;
+    /* margin: 0 auto; */
+    width: fit-content;
+    vertical-align: middle;
+}
+
+.tien-icon {
+    width: 35px;
+}
+
+.tien-giamoi {
+    font-size: larger;
+    font-weight: bold;
+    line-height: 95%;
+    color: #7F007F;
+}
+
+.tien-giacu {
+    width: 100%;
+    font-size: 15px;
+    font-weight: normal;
+    color: #969696;
+    text-decoration: line-through;
+}
+
+
+/* ICON */
+.space{
+    text-align: center;
+    width: 30px;
+}
+
+.fa-star {
+    color: gold;
+}
+.fa-star-o {
+    color: gold;
+}
+.fa-shopping-bag {
+    color: forestgreen;
+}
+
+.fa-money-bill {
+    color: #7F007F;
+    font-size: 20px;
+}
+
+
+/* FOOTER */
+
+.fa-facebook {
+    color: #2838CE;
+}
+
+.fa-instagram {
+    color: #FF0000;
+}
+
+.fa-twitter {
+    color: #03A9F4;
+}
+
+footer {
+    margin-top: 40px;
+    width: 100%;
+    background-color: white;
+    border: 1px solid#E6E6E6;
+}
+
+.footer-container {
+    width: 80%;
+    max-height: 80px;
+    margin: 0 auto;
+    padding: 20px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.footer-logo {
+    width: 20%;
+    margin-right: auto;
+}
+
+.footer-link {
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+}
+
+@media (max-width: 1024px) {
+    .top {
+        width: 90%;
+    }
+    .top ul li {
+        margin-right: 10px;
+    }
+    .body-container {
+        width: 90%;
+    }
+    .grid-container {
+        margin-left: 20px;
+        width: 80%;
+    }
+    .grid {
+        grid-gap: 10px;
+    }
+
+    /*body*/
+    
+    
+    .grid-item {
+        width: 100%;
+        height: 370px;
+    }
+    .tien-icon {
+        width: 35px;
+    }
+    
+    .tien-giamoi {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header-container {
+        height: 205px;
+    }
+    .top {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 95%;
+    }
+    .logo {
+        width: 50%;
+        margin: 0;
+    }
+    .sign-in {
+        padding: 6px 20px;
+    }
+    .top :nth-child(1) {
+        order: 1;
+    }
+    .top :nth-child(2) {
+        order: 3;
+    }
+    .top :nth-child(3) {
+        order: 2;
+    }
+    .top ul {
+        margin-top: 10px;
+        width: 75%;
+        align-self: center;
+        display: flex;
+        justify-content: space-between;
+    }
+    .top ul li a {
+        padding: 0;
+        font-size: 15px;
+    }
+    .bottom {
+        margin-top: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        vertical-align: middle;
+    }
+    .bottom :nth-child(1) {
+        order: 1;
+        width: auto;
+    }
+    .bottom :nth-child(2) {
+        order: 3;
+    }
+    .bottom :nth-child(3) {
+        order: 2;
+        width: 30%;
+    }
+    .dropdown {
+        font-size: 15px;
+    }
+    .dropbtn {
+        padding: 5px 0px;
+        margin: 0;
+        font-size: 15px;
+    }
+    .dropdown-content a {
+        color: black;
+        padding: 10px 10px;
+        font-size: 12px;
+    }
+    .fas .fa-angle-down {
+        padding: 0px;
+        margin: 0px;
+        font-size: 25px;
+    }
+    .cart {
+        max-width: 60px;
+        float: right;
+    }
+    .search {
+        margin-top: 10px;
+        width: 100%;
+    }
+    .search-logo {
+        max-width: 30px;
+    }
+    
+    /* BODY */
+    .body-container {
+        width: 95%;
+    }
+
+    
+    
+    /* SIMILAR PRODUCT */
+    .similar-product {
+        grid-template-columns: auto auto;
+    }
+    .grid-item {
+        height: 350px;
+    }
+    .grid-item-image {
+        height: 200px;
+    }
+    .grid-item-image img {
+        max-height: 200px;
+        min-height: 200px;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-container {
+        height: 180px;
+    }
+    .logo {
+        max-width: 40%;
+    }
+    .header-logo {
+        height: 20px;
+    }
+    .sign-in {
+        padding: 5px 15px;
+        font-size: 12px;
+    }
+    .top ul {
+        margin-top: 10px;
+        width: 85%;
+        align-self: center;
+        display: flex;
+        justify-content: space-between;
+    }
+    .top ul li a {
+        font-size: 12px;
+    }
+    .bottom {
+        margin-top: 15px;
+    }
+    .search {
+        margin-top: 5px;
+    }
+    .search input {
+        font-size: 12px;
+    }
+
+    /* BODY */
+    
+    /* THÔNG TIN SHOP */
+    .shop-info{
+        display: block;
+        align-content: center;
+    }
+    .shop-avatar{
+        margin: 0 auto;
+        justify-content: center;
+    }
+    
+    .shop-name a{
+        text-decoration: none;
+        font-size: 24px;
+        color: black;
+        font-weight: 600px;
+    }
+    .rating{
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+
+    }
+    
+    /* SIMILAR PRODUCT */
+    .similar-product {
+        grid-template-columns: auto auto;
+        grid-gap: 7px;
+    }
+
+    .grid-item {
+        height: 240px;
+    }
+    
+    .grid-item-content {
+        padding: 5px 10px 0px 10px;
+    }
+    .grid-item-image {
+        height: 120px;
+    }
+    .grid-item-image img {
+        max-height: 120px;
+        min-height: 120px;
+    }
+    .tenhang{
+        font-size: 12px;
+    }
+
+    .sub-info{
+        padding: 2px;
+    }
+    .sub-info-flex_item span {
+        font-size: 9px;
+    }
+    
+    .sub-info-flex_item span i {
+        font-size: 9px;
+    }
+    .format{
+        font-size: 9px;
+    }
+    
+
+    .tien-icon {
+        width: 30px;
+    }
+    .fa-money-bill {
+        font-size: 18px;
+    }
+    .tien-giamoi {
+        font-size: 16px;
+        ;
+    }
+    .tien-giacu {
+        font-size: 12px;
+    }
+}

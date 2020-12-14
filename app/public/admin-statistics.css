@@ -112,35 +112,32 @@ p[class="title-1"] {
 form {
   margin-top: 30px;
 }
-/*thong tin cua hang*/
-.hosocanhan{
+
+/*DANH SÁCH TÀI KHOẢN*/
+.danhsachtaikhoan{
   margin-bottom: 50px;
 }
-.hoso {
+#title3{
+  color: #7f007f;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+.search{
   display: flex;
-  line-height: 35px;
-}
-.title{
-  width: 30%;
-  font-weight: 600;
-}
-.info{
-  width: 70%;
-}
-.info1{
-  border: none;
+  align-items: center;
   width: 100%;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  padding: 0 10px;;
 }
-.oldpass{
-  border: none;
+
+input[type="text"] {
   width: 100%;
+  border: none;
+  padding: 6px 10px;
+  font-size: 16px;
+  outline: none;
 }
-.alertpass{
-  color: crimson;
-}
-.edit-save{
-  margin-top: 20px;
-}
-.table{
-  border: 1px solid #E9ECEF;
+.fa-search{
+  color:grey;
 }
