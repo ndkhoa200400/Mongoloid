@@ -1,12 +1,11 @@
 const express = require('express');
 const morgan =  require("morgan");
 const cookieParser = require('cookie-parser');
-const AppError = require('./utils/appError')
 const rateLimit = require("express-rate-limit");
 const exphbs = require('express-handlebars');
 const numeral = require('numeral');
 const path = require('path');
-
+const globalErrorHandler = require("./controllers/error.controller");
 const app = express();
 app.use(express.static(path.join(__dirname , "./" , "/public")));
 
@@ -71,5 +70,6 @@ app.use("*", function(err, req, res, next) {
   });
 });
   
-
+// error handling
+app.use(globalErrorHandler);
 module.exports = app;
