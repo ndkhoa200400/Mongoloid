@@ -6,8 +6,7 @@ const bcrypt = require('bcrypt');   // for hashing password
 
 const userSchema = new mongoose.Schema({
         name: {
-            type: String,
-            required: [true, 'Name must be provided']
+            type: String
         },
         username:{
             type: String,
@@ -24,7 +23,6 @@ const userSchema = new mongoose.Schema({
         },
         phone:{
             type: String,
-            required: [true, 'Phone number must be provided'],
             unique: true,
             validate: [validator.isNumeric, 'Please provide a valid phone number']
         },

@@ -63,7 +63,9 @@
         {{#each this.products}}
         <div class="grid-item">
           <div class="grid-item-image">
-            <img src="{{images}}" />
+            {{#each this.images}}
+            <img src="{{this}}" />
+            {{/each}}
           </div>
           <div class="grid-item-content">
             <div class="tenhang">{{name}}</div>

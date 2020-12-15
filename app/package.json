@@ -6,11 +6,14 @@
   "scripts": {
     "start": "nodemon server.js",
     "start:prod": "NODE_ENV=production nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch:js": "parcel watch ./public/index.js --out-dir ./public/ --out-file bundle.js",
+    "build:js": "parcel watch ./public/index.js --out-dir ./public/ --out-file bundle.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.21.0",
     "bcrypt": "^5.0.0",
     "cookie-parser": "^1.4.5",
     "dotenv": "^8.2.0",
@@ -25,5 +28,13 @@
     "numeral": "^2.0.6",
     "path": "^0.12.7",
     "validator": "^13.5.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "parcel-bundler": "^1.12.4"
   }
 }

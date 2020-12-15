@@ -52,7 +52,7 @@ const limiter = rateLimit({
     window: 60 * 60 * 1000,
     message: "Too many requests from this IP, please try again in an hour!",
   });
-app.use("/api", limiter);
+app.use("/", limiter);
 
 app.use('/',viewRoute);
 app.use('/api/shop', shopRoute);
@@ -63,7 +63,7 @@ app.use('/api/product', productRoute)
 //     next(new AppError(`Can't find ${req.originalUrl} on this server!`), 404);
 // });
 
-app.use(function(err, req, res, next) {
+app.use("*", function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,

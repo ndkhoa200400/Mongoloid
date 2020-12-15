@@ -1,25 +1,13 @@
 const express = require("express");
 const authController = require("../controllers/auth.controller");
 const controller = require("../controllers/user.controller");
-const User = require("../model/user.model");
+
 
 const router = express.Router();
 router.use(express.static('public'));
 
-router.get('/login', (req,res)=>{
-  res.render('login_page',{
-    layout: false,
-    title: 'Login'
-  });
-})
-
-router.post("/login", async function (req, res) {
-  if (authController.signup){
-    console.log(req.body);
-    res.redirect('/');
-  }
-    
-})
+router.post("/signup", authController.signup);
+router.post("/login", authController.login);
 
 router.post("/forgotPassword", authController.forgotPassword);
 router.patch("/resetPassword/:id", authController.resetPassword);
