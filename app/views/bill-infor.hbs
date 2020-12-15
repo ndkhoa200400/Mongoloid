@@ -1,0 +1,69 @@
+{{>head-shop}}
+
+<body>
+  {{>header-shop}}
+
+  {{nav-shop}}
+  <div class="main-body">
+    <div class="title-body">
+      <div class="text">TẤT CẢ ĐƠN HÀNG</div>
+    </div>
+    <div class="search-container">
+      <div class="row">
+        <div class="col-4">
+          <label>Mã đơn hàng</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                Tìm
+              </button>
+            </div>
+          </div>
+          <label>Tên người mua</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                Tìm
+              </button>
+            </div>
+          </div>
+          <label>Ngày mua</label>
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="dd/mm/yyyy" />
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="button">
+                Tìm
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="col-7">bên này sẽ hiện list bill sau khi tìm D:</div>
+      </div>
+    </div>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Mã đơn hàng</th>
+          <th scope="col">Tên người mua</th>
+          <th scope="col">Ngày mua</th>
+          <th scope="col">Tổng tiền</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each billList}}
+        <tr>
+          <th scope="row">DH001</th>
+          <td>Mark</td>
+          <td>24/11/2020</td>
+          <td>1,000$</td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </div>
+  </div>
+</body>
+<script src="../public/bill-infor.js"></script>

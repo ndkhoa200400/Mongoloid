@@ -1,0 +1,157 @@
+{{>head-shop}}
+
+<body>
+  {{>header-shop}}
+
+  <div class="body-container">
+    {{>nav-shop}}
+    <div class="main-body-container">
+      <p class="title-1">HỒ SƠ CỬA HÀNG</p>
+      <div class="hoso">
+        <div class="title-2">Thông tin cơ bản</div>
+        <form class="form-1">
+          <div class="row" id="shop-name" hidden>
+            <div class="col-25">
+              <label for="name">Tên cửa hàng</label>
+            </div>
+            <div class="col-60">
+              <input type="text" id="name" />
+            </div>
+            <div class="col-15">
+              <button onclick="saveName()" type="button">Lưu</button>
+            </div>
+          </div>
+          <div class="row" id="shop-name-active">
+            <div class="col-25">
+              <label for="name">Tên cửa hàng</label>
+            </div>
+            <div class="col-60">
+              <label>{{shopName}}</label>
+            </div>
+            <div class="col-15">
+              <button type="button" onclick="modifyName()">Sửa</button>
+            </div>
+          </div>
+          <div class="row" id="shop-phone" hidden>
+            <div class="col-25">
+              <label for="phone">Số điện thoại</label>
+            </div>
+            <div class="col-60">
+              <input type="text" id="phone" />
+            </div>
+            <div class="col-15">
+              <button onclick="savePhone()" type="button">Lưu</button>
+            </div>
+          </div>
+          <div class="row" id="shop-phone-active">
+            <div class="col-25">
+              <label for="phone">Số điện thoại</label>
+            </div>
+            <div class="col-60">
+              <label for="phone">{{shopPhone}}</label>
+            </div>
+            <div class="col-15">
+              <button type="button" onclick="modifyPhone()">Sửa</button>
+            </div>
+          </div>
+          <div class="row" id="shop-address" hidden>
+            <div class="col-25">
+              <label for="name">Địa chỉ</label>
+            </div>
+            <div class="col-60">
+              <input type="text" id="name" />
+            </div>
+            <div class="col-15">
+              <button onclick="saveAddress()" type="button">Lưu</button>
+            </div>
+          </div>
+          <div class="row" id="shop-address-active">
+            <div class="col-25">
+              <label for="name">Địa chỉ</label>
+            </div>
+            <div class="col-60">
+              <label>{{shopAddress}}</label>
+            </div>
+            <div class="col-15">
+              <button type="button" onclick="modifyAddress()">Sửa</button>
+            </div>
+          </div>
+          <div class="row" id="shop-day" hidden>
+            <div class="col-25">
+              <label for="name">Ngày thành lập</label>
+            </div>
+            <div class="col-60">
+              <input type="text" id="name" />
+            </div>
+            <div class="col-15">
+              <button onclick="saveDay()" type="button">Lưu</button>
+            </div>
+          </div>
+          <div class="row" id="shop-day-active">
+            <div class="col-25">
+              <label>Ngày thành lập</label>
+            </div>
+            <div class="col-60">
+              <label>{{shopEstDay}}</label>
+            </div>
+            <div class="col-15">
+              <button type="button" onclick="modifyDay()">Sửa</button>
+            </div>
+          </div>
+          <div class="row" id="shop-describe" hidden>
+            <div class="col-25">
+              <label for="name">Mô tả cửa hàng</label>
+            </div>
+            <div class="col-60">
+              <input type="text" id="name" />
+            </div>
+            <div class="col-15">
+              <button onclick="saveDescribe()" type="button">Lưu</button>
+            </div>
+          </div>
+          <div class="row" id="shop-describe-active">
+            <div class="col-25">
+              <label for="name">Mô tả cửa hàng</label>
+            </div>
+            <div class="col-60">
+              <label for="name">{{shopDescribe}}</label>
+            </div>
+            <div class="col-15">
+              <button onclick="modifyDescribe()" type="button">Sửa</button>
+            </div>
+          </div>
+        </form>
+        <div class="title-2">Chi tiết</div>
+        <form>
+          <div class="row">
+            <div class="col-25">
+              <label for="name">Số lượng mặt hàng</label>
+            </div>
+            <div class="col-75"><label>{{numProduct}}</label></div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="name">Số sản phẩm đã bán</label>
+            </div>
+            <div class="col-75"><label>{{numSaledProduct}}</label></div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="name">Đánh giá cửa hàng</label>
+            </div>
+            <div class="col-75"><label>{{overallRating}}</label></div>
+          </div>
+          <div class="row">
+            <div class="col-25">
+              <label for="name">Tỉ lệ đơn bị huỷ</label>
+            </div>
+            <div class="col-75"><label>{{billCanceledRate}}</label></div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="./shop-infor.js"></script>
+
+</html>

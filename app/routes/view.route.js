@@ -13,10 +13,27 @@ hbs.registerPartials(__dirname + '../views/partials');
 
 router.get('/', controller.getOverview)
 
-router.get('/login', (req, res)=>{
-    res.render('login_page',{
-        title:'Welcome',
+router.get('/login', (req, res) => {
+    res.render('login_page', {
+        title: 'Welcome',
         csspath: 'login_page'
     })
 });
+
+//test shop channel
+router.get('/shop-infor', (req, res) => {
+    res.render('shop-infor', {
+        stylecss: 'shop-infor.css',
+        title: 'Thông tin cửa hàng',
+        shopName: 'Shop đồ nam Thuận Mỹ',
+        shopPhone: '01212121212',
+        shopAddress: 'TPHCM',
+        shopEstDay: '10/10/1111',
+        shopDescribe: 'Shop chuyên sỉ lẻ đồ nam trên toàn quốc',
+        numProduct: '1500',
+        numSaledProduct: '1200',
+        overallRating: '4.5',
+        billCanceledRate: '5%',
+    })
+})
 module.exports = router;
