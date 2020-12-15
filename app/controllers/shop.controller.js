@@ -4,9 +4,8 @@ const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeature');
 const factory = require('./handlerFactory')
 
-exports.getSeller = (req, res, next) =>{
+exports.setSeller = (req, res, next) =>{
     req.body.sellerID = req.user.id;
-    console.log(req.body);
     next(); 
 }
 

@@ -7,7 +7,7 @@ router.route('/')
     .get(controller.getAllShops)
     .post(authController.protect,
         authController.restrictTo('seller'),
-        controller.getSeller,
+        controller.setSeller,
         controller.createShop);
 
 

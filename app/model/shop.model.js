@@ -5,7 +5,7 @@ const shopSchema = new mongoose.Schema({
     sellerID:{
         type: String,
         required: [true, 'Shop has to belong to a seller'],
-        select: false
+        unique: true
     },
     name: {
         type: String,

@@ -3,14 +3,16 @@ const controller = require('../controllers/product.controller')
 const authController = require('./../controllers/auth.controller')
 const router = express.Router();
 
+
+
 router.route('/')
     .get(controller.getAllProducts)
     .post(authController.protect,
         authController.restrictTo('seller'),
-        controller.getShop,
+        controller.setShop,
         controller.createProduct);
 
-
+router.get("/search", controller.search);
 router.route('/:id')
     .get(controller.getProduct)
     .patch(authController.protect,

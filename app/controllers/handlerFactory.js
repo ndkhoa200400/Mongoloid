@@ -80,7 +80,6 @@ exports.getAll = Model => catchAsync(async (req, res) => {
 
     res.status("200").json({
         status: "success",
-        requestAt: req.requestTime,
         results: docs.length,
         data: {
             docs,

@@ -24,8 +24,8 @@ const productSchema = new mongoose.Schema({
         default: 0
     },
     shopID:{
-        type: String,
-        required: [true, 'A product has to belong to a shop']
+        type: mongoose.Types.ObjectId,
+        ref:'Shop'
     },
     category:{
         type: String,
@@ -41,11 +41,11 @@ const productSchema = new mongoose.Schema({
     }
 })
 // runs before .save() and .create(), not affect .insertMany() and .findAndUpdate()
-productSchemaSchema.pre('save', function(next){
+productSchema.pre('save', function(next){
     this.slug = slugify(this.name, {lower: true});
     next();
 });
-productSchemaSchema.post("findOneAndUpdate", async function () {
+productSchema.post("findOneAndUpdate", async function () {
     // Sau khi cap nhat thi sua ten slug
     const updatedDoc = await this.model.findOne(this.getQuery());
     await this.model.updateOne(this.getQuery(), {
