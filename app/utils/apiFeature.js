@@ -1,3 +1,5 @@
+const { options } = require("../app");
+
 class APIFeatures{
     constructor(query, queryString)
     {
@@ -13,11 +15,15 @@ class APIFeatures{
 
         let queryStr = JSON.stringify(queryObj);
 
-        queryStr = queryStr.replace(/\b{gte|gt|lte|lt}\b/g, match =>{
+        queryStr = JSON.parse(queryStr.replace(/\b{gte|gt|lte|lt}\b/g, match =>{
             `$${match}`;
-        })
-
-        this.query = this.query.find(JSON.parse(queryStr));
+        }));
+        for(const property in queryStr)
+        {
+            queryStr[property]=new RegExp(`.*${queryStr[property]}.*`,"i")
+        }
+        console.log(queryObj, (queryStr));
+        this.query = this.query.find(queryStr,{$options:'i'});
         
         return this;
     }

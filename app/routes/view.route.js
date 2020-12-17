@@ -1,24 +1,27 @@
 const express = require('express');
 const controller = require('../controllers/view.controller');
-//const authController = require('../controllers/auth.controller')
-const User = require("../model/user.model");
+const authController = require('../controllers/auth.controller')
+
 var hbs = require('hbs');
 
 const router = express.Router();
 
-
-
 hbs.registerPartials(__dirname + '../views/partials');
 
+router.use(authController.isLoggedIn);
 
 router.get('/', controller.getOverview)
 
 router.get('/login', (req, res) => {
     res.render('login_page', {
-        title: 'Welcome',
-        csspath: 'login_page'
+        title: 'Xin chào',
+        csspath: 'login_page',
+      
     })
 });
+
+router.get('/product/search/', controller.getProduct);
+
 
 //test shop channel
 router.get('/shop-infor', (req, res) => {

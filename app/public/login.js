@@ -22,7 +22,7 @@ export const login = async (email, password) => {
   }
 };
 
-export const signup = async (username, email, password, passwordConfirm) => {
+export const signup = async (username, email, phone, password, passwordConfirm) => {
   try {
     const res = await axios({
       method: "POST",
@@ -30,18 +30,20 @@ export const signup = async (username, email, password, passwordConfirm) => {
       data: {
         username,
         email,
+        phone,
         password,
         passwordConfirm,
       },
     });
     console.log(res);
     if (res.data.status === "success") {
-      alert("success", "Signed up successfully");
+      alert("Signed up successfully");
       window.setTimeout(() => {
         location.assign("/"); // back to home page
       }, 1000);
     } else {
         alert("error", "Email has already been taken!");
+        
     }
   } catch (err) {
     // show alert page here

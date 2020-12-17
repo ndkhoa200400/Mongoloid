@@ -5,7 +5,7 @@ const productSchema = new mongoose.Schema({
         type: String,
         required:  [true, 'A product must have a name'],
         trim: true,
-        maxlength: [40, 'A product name must have less or equal 40 characters'],
+        
         minlength: [5, 'A product name must have more or equal 5 characters'],
     },
     slug: String,
