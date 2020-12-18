@@ -1,8 +1,8 @@
 const express = require('express');
 const controller = require('../controllers/product.controller')
 const authController = require('./../controllers/auth.controller')
+const reviewRouter = require('./review.route');
 const router = express.Router();
-
 
 
 router.route('/')
@@ -21,5 +21,7 @@ router.route('/:id')
     .delete(authController.protect,
         authController.restrictTo('seller','admin'),
         controller.deleteProduct);
+
+router.use("/:productID/reviews", reviewRouter);
 
 module.exports = router;

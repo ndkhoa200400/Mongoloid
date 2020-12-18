@@ -5,7 +5,7 @@ export const searchByName = async(keyword)=>{
    try {
        const res = await axios({
            method:"GET",
-           url:"http://localhost:8000/api/product/search?q="+keyword
+           url:"http://localhost:8000/api/product/"+keyword
        });
    
        if(res.data.status=="success")

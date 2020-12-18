@@ -20,8 +20,9 @@ router.get('/login', (req, res) => {
     })
 });
 
-router.get('/product/search/', controller.getProduct);
+router.get('/product/search/', controller.getFitleredProduct);
 
+router.get('/product/:slug', controller.getProduct);
 
 //test shop channel
 router.get('/shop-infor', (req, res) => {
