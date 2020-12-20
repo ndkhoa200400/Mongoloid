@@ -7,26 +7,27 @@ const numeral = require('numeral');
 const path = require('path');
 const globalErrorHandler = require("./controllers/error.controller");
 const app = express();
+const hbs_sections = require('express-handlebars-sections');
 app.use(express.static(path.join(__dirname, "./", "/public")));
 
 //this required before view engine setup
 
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'hbs');
-app.engine(
-  'hbs',
-  exphbs({
+
+app.engine('hbs', exphbs({
     extname: 'hbs',
     layoutsDir: path.join(__dirname, 'views', 'layouts'),
     partialsDir: path.join(__dirname, 'views', 'partials'),
     defaultLayout: 'default',
     helpers: {
-        format_number(val) {
-          return numeral(val).format('0,0');
-        }
+      section: hbs_sections(),
+      format_number(val) {
+        return numeral(val).format('0,0');
       }
+    }
   })
 );
+app.set('view engine', 'hbs');
 app.use(express.urlencoded({
   extended: true
 }));

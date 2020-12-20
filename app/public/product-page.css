@@ -490,7 +490,16 @@ input[type="text"] {
     color: #969696;
     text-decoration: line-through;
 }
-
+.discountvalue1{
+    margin-left: 20px;
+    color: crimson;
+    font-size: 25px;
+    font-weight: bold;
+}
+.discountvalue{
+    margin-left: 10px;
+    color: crimson;
+}
 
 /* ICON */
 .space{

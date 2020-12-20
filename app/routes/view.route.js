@@ -10,8 +10,12 @@ hbs.registerPartials(__dirname + '../views/partials');
 
 router.use(authController.isLoggedIn);
 
-router.get('/', controller.getOverview)
-router.get('/category', controller.ProByCat)
+router.get('/', controller.getOverview);
+router.get('/category', controller.getOverview);
+//router.post('/category', controller.ProByCatAndFilter);
+
+router.get('/category/:cat', controller.ProByCat);
+
 
 router.get('/login', (req, res) => {
     res.render('login_page', {

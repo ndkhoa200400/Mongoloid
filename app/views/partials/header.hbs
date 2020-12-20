@@ -21,13 +21,13 @@
                 <div class="dropdown">
                     <span class="dropbtn">DANH MỤC SẢN PHẨM <i class="fas fa-angle-down"></i></span>
                 
+                    
                     <div class="dropdown-content">
-                        
-                        <a href="/category?cat=shirt">ÁO</a>
-                        <a href="/category?cat=pants">QUẦN</a>
-                        <a href="/category?cat=hat">NÓN</a>
-                        <a href="/category?cat=backpack">BALO - TÚI</a>
+                        {{#each this.category}}
+                        <a href="/category/{{this}}">{{this}}</a>
+                        {{/each}}
                     </div>
+
                 </div>
 
                 <div class="search">

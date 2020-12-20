@@ -62,42 +62,31 @@
 
         <div class="sidebar-and-grid">
             <div class="sidebar">
-                <select name="Thương hiệu" id="thuonghieu">
-          <option value="chon" selected>Thương hiệu</option>
-          <option value="Gucci">Gucci</option>
-          <option value="LV">LV</option>
-          <option value="Adidas">Adidas</option>
-          <option value="Apolo">Apolo</option>
-        </select>
-                <select name="Nơi bán" id="noiban">
-          <option value="chon" selected>Nơi bán</option>
-          <option value="tphcm">TP. Hồ Chí Minh</option>
-          <option value="hanoi">Hà Nội</option>
-          <option value="nhatrang">Nha Trang</option>
-          <option value="camau">Cà Mau</option>
-        </select>
+                <form method="POST" action="">
                 <select name="Đánh giá" id="danhgia">
-          <option value="chon" selected>Đánh giá</option>
-          <option value="1">1 sao</option>
-          <option value="2">2 sao</option>
-          <option value="3">3 sao</option>
-          <option value="4">4 sao</option>
-          <option value="5">5 sao</option>
-        </select>
+                  <option value="chon" selected>Đánh giá</option>
+                  <option value="1">1 sao</option>
+                  <option value="2">2 sao</option>
+                  <option value="3">3 sao</option>
+                  <option value="4">4 sao</option>
+                  <option value="5">5 sao</option>
+                </select>
                 <div class="price">
                     <p>Giá</p>
                     <div class="slidecontainer">
-                        <input type="range" min="1" max="10000000" value="5000" class="slider" id="myRange">
+                      <input type="range" name="rangeInput" min="0" max="100" onchange="updateTextInput(this.value);">
+                      <input type="text" id="textInput" value="">>
                     </div>
                 </div>
                 <div class="finding">
-                    <button>
-            <div class="finding-icon" style="float: left;">
-              <i class="fa fa-search" aria-hidden="true"></i>
-            </div>
-            <b>Tìm kiếm</b>
-          </button>
+                    <button type="submit">
+                      <div class="finding-icon" style="float: left;">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                      </div>
+                      <b>Tìm kiếm</b>
+                    </button>
                 </div>
+              </form>
             </div>
 
 

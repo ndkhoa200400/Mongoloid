@@ -5,6 +5,11 @@ const productController = require("./product.controller");
 const axios = require("axios");
 const url = require("url");
 const Shop = require("../model/shop.model");
+
+
+
+
+
 exports.getOverview = catchAsync(async (req, res, next) => {
   var product = await Product.find().lean();
   let user = res.locals.user;
@@ -16,11 +21,12 @@ exports.getOverview = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-
+  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
   res.status(200).render("category", {
     title: "Category",
+    category,
     products: product,
-    empty: product.empty,
+    empty : product === null,
     csspath: "category-page",
     layout: "default",
     user: user,
@@ -33,19 +39,19 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
     .lean({ virtuals: true });
   
   let user = res.locals.user;
-  console.log(product);
   if (user) user = { name: user.name, email: user.email, role: user.role };
-
+  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
   res.status(200).render("category", {
     title: catName,
-    product: product,
+    category,
+    products: product,
     user: user,
     empty : product === null,
     csspath : "category-page",
     layout: 'default',
-
   })
-  });
+});
+
 exports.getFitleredProduct = catchAsync(async (req, res, next) => {
   let user = res.locals.user;
   if (user) {
@@ -69,10 +75,12 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
     res.status(200).render("category", {
       title: "Category",
       products: response.data.data.docs,
-
+      category,
+      empty : product === null,
       csspath: "category-page",
       layout: "default",
       user: user,
+      
     });
   } else {
     res.render("error");
@@ -97,12 +105,16 @@ exports.getProduct = catchAsync(async (req, res, next) => {
   })
   .lean();
 
-  console.log(product);
+  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
   res.status(200).render("product-page", {
     title: "Sản phẩm",
+    category,
+    empty : product === null,
     product: product,
+    // /activeImg: product.toArray().images,
     user: user,
     csspath: "product-page",
+    jspath: "product-page",
     layout: "default",
   });
 });

@@ -1,3 +1,20 @@
+{{#section 'js'}}
+<script>
+  function updateTextInput(val) {
+    var a = formatStringtoNumber(val);
+    document.getElementById('textInput1').innerHTML=(a); 
+  }
+  function formatStringtoNumber(x) {
+    x = x.toString();
+    var pattern = /(-?\d+)(\d{3})/;
+    while (pattern.test(x))
+        x = x.replace(pattern, "$1,$2");
+    return x.replace(/,/g, ",");
+  } 
+</script>
+{{/section}}
+
+
 {{> header}}
 <div class="body-container">
   <nav aria-label="breadcrumb">
@@ -9,42 +26,32 @@
 
   <div class="sidebar-and-grid">
     <div class="sidebar">
-      <select name="Thương hiệu" id="thuonghieu">
-        <option value="chon" selected>Thương hiệu</option>
-        <option value="Gucci">Gucci</option>
-        <option value="LV">LV</option>
-        <option value="Adidas">Adidas</option>
-        <option value="Apolo">Apolo</option>
-      </select>
-      <select name="Nơi bán" id="noiban">
-        <option value="chon" selected>Nơi bán</option>
-        <option value="tphcm">TP. Hồ Chí Minh</option>
-        <option value="hanoi">Hà Nội</option>
-        <option value="nhatrang">Nha Trang</option>
-        <option value="camau">Cà Mau</option>
-      </select>
-      <select name="Đánh giá" id="danhgia">
-        <option value="chon" selected>Đánh giá</option>
-        <option value="1">1 sao</option>
-        <option value="2">2 sao</option>
-        <option value="3">3 sao</option>
-        <option value="4">4 sao</option>
-        <option value="5">5 sao</option>
-      </select>
-      <div class="price">
-        <p>Giá</p>
-        <div class="slidecontainer">
-          <input type="range" min="1" max="10000000" value="5000" class="slider" id="myRange">
+      <form method="POST" action="">
+        <select name="rate" id="danhgia">
+          <option value="0" selected>Đánh giá</option>
+          <option value="1">1 sao</option>
+          <option value="2">2 sao</option>
+          <option value="3">3 sao</option>
+          <option value="4">4 sao</option>
+          <option value="5">5 sao</option>
+        </select>
+        <div class="price">
+            <p>Giá</p>
+            <div class="slidecontainer">
+              <input type="range" value="50000" name="price" step="50000" min="50000" max="100000000" onchange="updateTextInput(this.value);">
+              
+              <div><span id="textInput1">50,000</span> VNĐ</div>
+            </div>
         </div>
-      </div>
-      <div class="finding">
-        <button class>
-          <div class="finding-icon" style="float: left;">
-            <i class="fa fa-search" aria-hidden="true"></i>
-          </div>
-          <b>Tìm kiếm</b>
-        </button>
-      </div>
+        <div class="finding">
+            <button type="submit">
+              <div class="finding-icon" style="float: left;">
+                <i class="fa fa-search" aria-hidden="true"></i>
+              </div>
+              <b>Tìm kiếm</b>
+            </button>
+        </div>
+      </form>
     </div>
 
 
@@ -60,16 +67,15 @@
         <h5 class="card-title">Không có dữ liệu!</h5>
       
         {{else}}
-        {{#each this.product}}
+        {{#each this.products}}
         <div class="grid-item">
           <div class="grid-item-image">
-            
             <a href="/product/{{this.slug}}">
               <img src="{{this.images.[0]}}" </a>
               
           </div>
           <div class="grid-item-content">
-            <a href="/product/{{slug}}" class="tenhang">{{name}}</a>
+            <a href="/product/{{this.slug}}" class="tenhang">{{name}}</a>
             <div class="sub-info">
               <div class="chuabiet sub-info-flex_item">
                 <span><i class="fas fa-star"></i></span>
@@ -85,9 +91,10 @@
                 <span><i class="fas fa-money-bill"></i>
               </div>
               <div class="tien-giatien">
-                <div class="tien-giamoi">{{this.price}} VNĐ</div>
-                <div class="tien-giacu">{{this.price}} VNĐ</div>
+                <div class="tien-giamoi">{{format_number this.price}} VNĐ<span class="discountvalue">-20%</span></div>
+                <div class="tien-giacu">{{format_number this.price}} VNĐ</div>
               </div>
+              
             </div>
           </div>
         </div>
@@ -98,4 +105,5 @@
   </div>
 
 </div>
+
 {{> footer}}
