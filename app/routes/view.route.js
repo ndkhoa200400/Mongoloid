@@ -12,6 +12,7 @@ hbs.registerPartials(__dirname + '../views/partials');
 
 
 router.get('/', controller.getOverview)
+router.get('/category', controller.ProByCat)
 
 router.get('/login', (req, res) => {
     res.render('login_page', {

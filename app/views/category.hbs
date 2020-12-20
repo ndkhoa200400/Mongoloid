@@ -3,7 +3,7 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb bg-transparent">
       <li class="breadcrumb-item"><a class="text-dark" href="/pages/home-page/home-page.html">Trang chủ</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Áo</li>
+      <li class="breadcrumb-item active" aria-current="page">{{title}}</li>
     </ol>
   </nav>
 
@@ -58,9 +58,9 @@
         </div>
         {{#if this.empty}}
         <h5 class="card-title">Không có dữ liệu!</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+      
         {{else}}
-        {{#each this.products}}
+        {{#each this.product}}
         <div class="grid-item">
           <div class="grid-item-image">
             {{#each this.images}}
@@ -68,7 +68,7 @@
             {{/each}}
           </div>
           <div class="grid-item-content">
-            <div class="tenhang">{{name}}</div>
+            <div class="tenhang">{{this.name}}</div>
             <div class="sub-info">
               <div class="chuabiet sub-info-flex_item">
                 <span><i class="fas fa-star"></i></span>
@@ -84,8 +84,8 @@
                 <span><i class="fas fa-money-bill"></i>
               </div>
               <div class="tien-giatien">
-                <div class="tien-giamoi">{{price}} VNĐ</div>
-                <div class="tien-giacu">{{price}} VNĐ</div>
+                <div class="tien-giamoi">{{this.price}} VNĐ</div>
+                <div class="tien-giacu">{{this.price}} VNĐ</div>
               </div>
             </div>
           </div>

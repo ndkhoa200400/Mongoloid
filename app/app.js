@@ -17,14 +17,14 @@ app.engine(
   'hbs',
   exphbs({
     extname: 'hbs',
-    // layoutsDir: path.join(__dirname, 'views', 'layouts'),
-    // partialsDir: path.join(__dirname, 'views', 'partials'),
-    defaultLayout: 'default'
-    //   helpers: {
-    //     format_number(val) {
-    //       return numeral(val).format('0,0');
-    //     }
-    //   }
+    layoutsDir: path.join(__dirname, 'views', 'layouts'),
+    partialsDir: path.join(__dirname, 'views', 'partials'),
+    defaultLayout: 'default',
+    helpers: {
+        format_number(val) {
+          return numeral(val).format('0,0');
+        }
+      }
   })
 );
 app.use(express.urlencoded({

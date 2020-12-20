@@ -18,7 +18,23 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.getUser = catchAsync(async (req, res, next) => {
+exports.ProByCat = catchAsync(async (req, res, next) => {
+  const catName = req.param('cat');
+  const product = await Product.find({ category: catName })
+    .lean({ virtuals: true });
+  
+  let user = res.locals.user;
+  console.log(product);
+  if (user) user = { name: user.name, email: user.email, role: user.role };
 
+  res.status(200).render("category", {
+    title: catName,
+    product: product,
+    user: user,
+    empty : product === null,
+    csspath : "category-page",
+    layout: 'default',
+    // num : course thả chổ để length course cho tao!
+  });
 });
 
