@@ -61,7 +61,6 @@ button.login {
   margin-top: 80px;
   width: 80%;
   display: flex;
-
 }
 .navigation-container {
   width: 25%;
@@ -109,45 +108,43 @@ a {
   margin-bottom: 20px;
 }
 
-.form-container{
+.form-container {
   padding: 30px;
 }
 
-.upload-label{
+.upload-label {
   font-weight: bold;
 }
 
-
-
-.buttons{
+.buttons {
   display: flex;
   justify-content: space-between;
   margin-bottom: 30px;
 }
-.btn-danger{
+.btn-danger {
   margin-right: 10px;
 }
-.submit-btn{
+.submit-btn {
   display: flex;
   align-items: center;
 }
-#alert{
+#alert {
   color: crimson;
   margin-right: 10px;
   font-weight: bold;
 }
-.invalid-feedback{
+.invalid-feedback {
   font-size: 16px;
   font-weight: 700;
 }
-#image-container{
+#image-container {
   display: grid;
   grid-template-columns: 33% 33% 33%;
   grid-gap: 10px;
   padding-bottom: 50px;
 }
 
-#image-container img{
+#image-container img {
   width: 100%;
   height: 250px;
   background-color: white;

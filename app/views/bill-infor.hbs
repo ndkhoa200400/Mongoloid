@@ -3,7 +3,7 @@
 <body>
   {{>header-shop}}
 
-  {{nav-shop}}
+  {{>nav-shop}}
   <div class="main-body">
     <div class="title-body">
       <div class="text">TẤT CẢ ĐƠN HÀNG</div>
@@ -54,10 +54,10 @@
       <tbody>
         {{#each billList}}
         <tr>
-          <th scope="row">DH001</th>
-          <td>Mark</td>
-          <td>24/11/2020</td>
-          <td>1,000$</td>
+          <th scope="row">{{billID}}</th>
+          <td>{{nameCustomer}}</td>
+          <td>{{buyDay}}</td>
+          <td>{{totalPrice}}</td>
         </tr>
         {{/each}}
 
