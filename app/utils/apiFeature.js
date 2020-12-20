@@ -1,3 +1,5 @@
+const { options } = require("../app");
+
 class APIFeatures{
     constructor(query, queryString)
     {
@@ -13,11 +15,15 @@ class APIFeatures{
 
         let queryStr = JSON.stringify(queryObj);
 
-        queryStr = queryStr.replace(/\b{gte|gt|lte|lt}\b/g, match =>{
+        queryStr = JSON.parse(queryStr.replace(/\b{gte|gt|lte|lt}\b/g, match =>{
             `$${match}`;
-        })
-
-        this.query = this.query.find(JSON.parse(queryStr));
+        }));
+        for(const property in queryStr)
+        {
+            queryStr[property]=new RegExp(`.*${queryStr[property]}.*`,"i")
+        }
+  
+        this.query = this.query.find(queryStr,{$options:'i'});
         
         return this;
     }
@@ -57,7 +63,7 @@ class APIFeatures{
     paginate()
     {
         const page = this.queryString.page * 1 || 1;
-        const limit = this.queryString.limit * 1 || 100;
+        const limit = this.queryString.limit * 1 || 10;
         const skip = (page - 1) *limit;
         this.query = this.query.skip(skip).limit(limit);
        

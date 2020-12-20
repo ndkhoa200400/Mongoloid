@@ -2,17 +2,20 @@
     <div class="header-container">
         <div class="menu">
             <div class="top">
-                <a class="logo" href="#"><img class="header-logo" src="/imgs/logo.png" alt="" />
+                <a class="logo" href="/"><img class="header-logo" src="/imgs/logo.png" alt="" />
                 </a>
                 <ul>
                     <li><a href="#">ĐƠN HÀNG</a></li>
                     <li><a href="#">THÔNG BÁO</a></li>
-                    <li><a href="#">KÊNH NGƯỜI BÁN</a></li>
+                    <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
                 </ul>
-                
-                <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.username}}</a>
-                
-                
+                {{#if this.user}}
+                <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.name}}</a>
+                {{else}}
+                <a class="sign-in" href="/login"><i class="far fa-user"></i>Đăng nhập</a>
+
+                {{/if}}
+
             </div>
             <div class="bottom">
                 <div class="dropdown">
@@ -28,8 +31,11 @@
                 </div>
 
                 <div class="search">
-                    <img class="search-logo" src="/imgs/search_logo.png" />
-                    <input type="text" placeholder="Tìm kiếm trên Mongoloid..." />
+                    <img class="search-logo" src="/imgs/search_logo.png" for="search" />
+                    <form class="form--search" action="/product/search">
+                        <input id="text-search" type="text" name="name" placeholder="Tìm kiếm trên Mongoloid..." />
+                    </form>
+
                 </div>
 
                 <div>

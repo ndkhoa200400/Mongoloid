@@ -8,10 +8,12 @@ const Shop = require('./../model/shop.model');
 exports.setShop = catchAsync(async(req,res,next) => {
     const sellerID = req.user.id;
     const shop = await Shop.findOne({sellerID: sellerID});
-    if (shop)
+   
+    if (!shop)
     {
-        next(new AppError("You have not opened a shop yet!", 400))
-        return;
+        
+        return next(new AppError("You have not opened a shop yet!", 400))
+       
     }
     req.body.shopID = shop._id;
     next(); // pass to getUser function
@@ -30,7 +32,7 @@ exports.updateProduct = factory.updateOne(Product);
 exports.deleteProduct = factory.deleteOne(Product);
 
 exports.search = catchAsync(async (req, res, next)=>{
-    const query = req.query.q; // /product/search?q='';
+    const query = req.query.name; // /product/search?name='';
 
     const matchedProducts = await Product.find({
         name: {

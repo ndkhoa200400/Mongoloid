@@ -47,6 +47,7 @@ exports.signup = catchAsync(async (req, res, next) => {
   } catch (e) {
     res.json({
       status: "fail",
+      error: e
     });
   }
 });
@@ -78,7 +79,7 @@ exports.login = catchAsync(async (req, res, next) => {
 
 exports.isLoggedIn = catchAsync(async (req, res, next) => {
   if (req.cookies.jwt) {
-      
+
     const decoded = await promisify(jwt.verify)(
       req.cookies.jwt,
       process.env.JWT_SECRET

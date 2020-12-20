@@ -29,6 +29,7 @@
     "numeral": "^2.0.6",
     "path": "^0.12.7",
     "slugify": "^1.4.6",
+    "url": "^0.11.0",
     "validator": "^13.5.2"
   },
   "devDependencies": {

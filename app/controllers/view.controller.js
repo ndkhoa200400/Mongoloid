@@ -1,20 +1,29 @@
-
 const User = require("../model/user.model");
 const Product = require("../model/product.model");
 const catchAsync = require("../utils/catchAsync");
-
+const productController = require("./product.controller");
+const axios = require("axios");
+const url = require("url");
+const Shop = require("../model/shop.model");
 exports.getOverview = catchAsync(async (req, res, next) => {
-  var user = await User.find().lean();
   var product = await Product.find().lean();
-  console.log(product);
-  //user = { name: user.username, email: user.email, role: user.role };
+  let user = res.locals.user;
+  if (user) {
+    if (!user.name) user.name = user.username;
+    user = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+  }
+
   res.status(200).render("category", {
     title: "Category",
-    user: user,
-    products : product,
+    products: product,
     empty: product.empty,
-    csspath : "category-page",
-    layout: 'default',
+    csspath: "category-page",
+    layout: "default",
+    user: user,
   });
 });
 
@@ -34,7 +43,66 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
     empty : product === null,
     csspath : "category-page",
     layout: 'default',
-    // num : course thả chổ để length course cho tao!
+
+  })
   });
+exports.getFitleredProduct = catchAsync(async (req, res, next) => {
+  let user = res.locals.user;
+  if (user) {
+    if (!user.name) user.name = user.username;
+    user = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+  }
+
+  // Get các query sau dấu ?
+  const queryString = req.url.substring(req.url.indexOf("?"));
+
+  const response = await axios({
+    method: "GET",
+    url: "http://localhost:8000/api/product" + queryString,
+  });
+
+  if (response.data.status === "success") {
+    res.status(200).render("category", {
+      title: "Category",
+      products: response.data.data.docs,
+
+      csspath: "category-page",
+      layout: "default",
+      user: user,
+    });
+  } else {
+    res.render("error");
+  }
 });
 
+exports.getProduct = catchAsync(async (req, res, next) => {
+  let user = res.locals.user;
+  if (user) {
+    if (!user.name) user.name = user.username;
+    user = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+  }
+
+  const product = await Product.findOne(
+    { slug: req.params.slug }
+  ).populate({
+    path:"shopID"
+  })
+  .lean();
+
+  console.log(product);
+  res.status(200).render("product-page", {
+    title: "Sản phẩm",
+    product: product,
+    user: user,
+    csspath: "product-page",
+    layout: "default",
+  });
+});

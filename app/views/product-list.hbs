@@ -1,0 +1,70 @@
+{{>head-shop}}
+
+<body>
+  {{>header-shop}}
+  <div class="body-container">
+    {{>nav-shop}}
+    <div class="main-body">
+      <div class="title-body">
+        <div class="text">TẤT CẢ SẢN PHẨM</div>
+      </div>
+      <div class="search-container">
+        <div class="row">
+          <div class="col-4">
+            <label>Mã sản phẩm</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">
+                  Tìm
+                </button>
+              </div>
+            </div>
+            <label>Tên sản phẩm</label>
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" />
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="button">
+                  Tìm
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="col-7">bên này sẽ hiện thông tin sản phẩm</div>
+        </div>
+      </div>
+      <div class="list-product-container">
+        <div class="tool-bar">
+          <a href="/product-list/add-product"><button type="button" class="btn btn-outline-success">
+              Thêm sản phẩm
+            </button></a>
+          <button type="button" class="btn btn-outline-danger">Xoá</button>
+          <button type="button" class="btn btn-link" onclick="check()">
+            Chọn tất cả
+          </button>
+          <button type="button" class="btn btn-link" onclick="uncheck()">
+            Bỏ chọn tất cả
+          </button>
+        </div>
+        {{#each productList}}
+        <div class="row">
+          <div class="col-2">
+            <img src="./imgs/insert-picture-icon.png" alt="..." class="img-thumbnail" />
+          </div>
+          <div class="col-9">
+            <div>
+              <span id="name-product">Tên sản phẩm: {{nameProduct}}</span>
+            </div>
+            <div>
+              <span id="price">Số tiền: {{price}}</span><span id="post-date">Ngày đăng: {{postDate}}</span>
+            </div>
+          </div>
+          <div class="col">
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+          </div>
+        </div>
+        {{/each}}
+      </div>
+    </div>
+</body>
+<script src="./product-list.js"></script>

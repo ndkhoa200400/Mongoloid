@@ -38,7 +38,7 @@
         </div>
       </div>
       <div class="finding">
-        <button>
+        <button class>
           <div class="finding-icon" style="float: left;">
             <i class="fa fa-search" aria-hidden="true"></i>
           </div>
@@ -63,12 +63,13 @@
         {{#each this.product}}
         <div class="grid-item">
           <div class="grid-item-image">
-            {{#each this.images}}
-            <img src="{{this}}" />
-            {{/each}}
+            
+            <a href="/product/{{this.slug}}">
+              <img src="{{this.images.[0]}}" </a>
+              
           </div>
           <div class="grid-item-content">
-            <div class="tenhang">{{this.name}}</div>
+            <a href="/product/{{slug}}" class="tenhang">{{name}}</a>
             <div class="sub-info">
               <div class="chuabiet sub-info-flex_item">
                 <span><i class="fas fa-star"></i></span>
