@@ -1,6 +1,7 @@
 const express = require('express');
 const controller = require('../controllers/shop.controller')
 const authController = require('./../controllers/auth.controller')
+const voucherController = require('../controllers/voucher.controller')
 const router = express.Router();
 
 router.route('/')
@@ -12,7 +13,7 @@ router.route('/')
 
 
 router.route('/:id')
-    .get(controller.getShop)
+    .get(controller.getShop, voucherController.getAllVouchers)
     .patch(authController.protect,
         authController.restrictTo('seller'),
         controller.updateShop)
