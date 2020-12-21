@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const billSchema = new mongoose.Schema({
+const cartSchema = new mongoose.Schema({
 
     listProduct:{
 	    type: [{product: {type: mongoose.Types.ObjectId,
@@ -19,6 +19,6 @@ const billSchema = new mongoose.Schema({
     }
 
 })
-const Bill = mongoose.model('Bill', billSchema);
+const cart = mongoose.model('Cart', cartSchema);
 
-module.exports = Bill;
+module.exports = cart;

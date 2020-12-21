@@ -1,4 +1,4 @@
-const Bill = require('./../model/Bill.model');
+const Bill = require('./../model/bill.model');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('../utils/appError');
 const APIFeatures = require('../utils/apiFeature');
