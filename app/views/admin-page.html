@@ -5,19 +5,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin - Accounts</title>
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!--jquery-->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
-    <link rel="stylesheet" type="text/css" href="./admin-page.css" />
+    <script
+      src="https://kit.fontawesome.com/cabc320003.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" type="text/css" href="/public/admin-page.css" />
   </head>
   <body>
     <header>
       <div class="logo">
-        <a href="#"><img src="./imgs/logo.png" alt="" /></a>
+        <a href="#"><img src="/public/imgs/logo.png" alt="" /></a>
       </div>
       <div class="title-text">Trang quản lý</div>
       <div class="signin-signup-button">
@@ -38,16 +44,20 @@
           <!-- DANH SÁCH TÀI KHOẢN -->
           <div class="danhsachtaikhoan">
             <p class="title-1">DANH SÁCH TÀI KHOẢN</p>
-            <h4><a href="#customer">Người dùng</a></h4>  
-            <h4><a href="#shop">Shop</a></h4> 
+            <h4><a href="#customer">Người dùng</a></h4>
+            <h4><a href="#shop">Shop</a></h4>
 
             <!-- Customer -->
             <div id="customer">
-              <br>
-              <h3 id="title3">Người dùng</h3>  
-              <div class=search>
+              <br />
+              <h3 id="title3">Người dùng</h3>
+              <div class="search">
                 <i class="fa fa-search" aria-hidden="true"></i>
-                <input id="myInput" type="text" placeholder="Tìm kiếm người dùng...">
+                <input
+                  id="myInput"
+                  type="text"
+                  placeholder="Tìm kiếm người dùng..."
+                />
               </div>
               <table class="table table-bordered">
                 <thead>
@@ -79,14 +89,18 @@
 
             <!-- Shop -->
             <div id="shop">
-              <br>
-              <h3 id="title3">Shop</h3> 
-              <div class=search>
+              <br />
+              <h3 id="title3">Shop</h3>
+              <div class="search">
                 <i class="fa fa-search" aria-hidden="true"></i>
-                <input id="myInput1" type="text" placeholder="Tìm kiếm shop...">
+                <input
+                  id="myInput1"
+                  type="text"
+                  placeholder="Tìm kiếm shop..."
+                />
               </div>
               <table class="table table-bordered">
-                <thead >
+                <thead>
                   <tr>
                     <th>Shop name</th>
                     <th>Email</th>
@@ -114,8 +128,6 @@
             </div>
           </div>
         </form>
-
-
 
         <!-- THỐNG KÊ
         <div class="lichsumuahang">
@@ -155,9 +167,11 @@
         </div> -->
       </div>
     </div>
-
   </body>
 
-  <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
-  <script src="./admin-page.js"></script>
+  <script
+    src="https://kit.fontawesome.com/cabc320003.js"
+    crossorigin="anonymous"
+  ></script>
+  <script src="/public/admin-page.js"></script>
 </html>

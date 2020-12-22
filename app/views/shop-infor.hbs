@@ -2,126 +2,103 @@
 
 <body>
   {{>header-shop}}
-
   <div class="body-container">
     {{>nav-shop}}
     <div class="main-body-container">
       <p class="title-1">HỒ SƠ CỬA HÀNG</p>
       <div class="hoso">
-        <div class="title-2">Thông tin cơ bản</div>
-        <form class="form-1">
-          <div class="row" id="shop-name" hidden>
+        <form class="form-1" id="form-input" hidden>
+          <div class="row" id="shop-name">
             <div class="col-25">
               <label for="name">Tên cửa hàng</label>
             </div>
             <div class="col-60">
-              <input type="text" id="name" />
-            </div>
-            <div class="col-15">
-              <button onclick="saveName()" type="button">Lưu</button>
+              <input type="text" id="name" placeholder="{{shopName}}" />
             </div>
           </div>
-          <div class="row" id="shop-name-active">
-            <div class="col-25">
-              <label for="name">Tên cửa hàng</label>
-            </div>
-            <div class="col-60">
-              <label>{{shopName}}</label>
-            </div>
-            <div class="col-15">
-              <button type="button" onclick="modifyName()">Sửa</button>
-            </div>
-          </div>
-          <div class="row" id="shop-phone" hidden>
+          <div class="row" id="shop-phone">
             <div class="col-25">
               <label for="phone">Số điện thoại</label>
             </div>
             <div class="col-60">
-              <input type="text" id="phone" />
+              <input type="text" id="phone" placeholder="{{shopPhone}}" />
             </div>
-            <div class="col-15">
-              <button onclick="savePhone()" type="button">Lưu</button>
+          </div>
+          <div class="row" id="shop-address">
+            <div class="col-25">
+              <label for="name">Địa chỉ</label>
+            </div>
+            <div class="col-60">
+              <input type="text" id="name" placeholder="{{shopAddress}}" />
+            </div>
+          </div>
+          <div class="row" id="shop-day">
+            <div class="col-25">
+              <label for="name">Ngày thành lập</label>
+            </div>
+            <div class="col-60">
+              <input type="text" id="name" placeholder="{{shopEstDay}}" />
+            </div>
+          </div>
+          <div class="row" id="shop-describe">
+            <div class="col-25">
+              <label for="name">Mô tả cửa hàng</label>
+            </div>
+            <div class="col-60">
+              <textarea class="form-control" aria-label="With textarea" placeholder="{{shopDescribe}}"></textarea>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <button onclick="switchingModifyMode()" type="button">Lưu</button>
+          </div>
+        </form>
+        <form class="form-1" id="form-view">
+          <div class="row" id="shop-name-active">
+            <div class="col-25">
+              <label for="name">Tên cửa hàng</label>
+            </div>
+            <div class="col-60-txt">
+              <label>{{shopName}}</label>
             </div>
           </div>
           <div class="row" id="shop-phone-active">
             <div class="col-25">
               <label for="phone">Số điện thoại</label>
             </div>
-            <div class="col-60">
+            <div class="col-60-txt">
               <label for="phone">{{shopPhone}}</label>
-            </div>
-            <div class="col-15">
-              <button type="button" onclick="modifyPhone()">Sửa</button>
-            </div>
-          </div>
-          <div class="row" id="shop-address" hidden>
-            <div class="col-25">
-              <label for="name">Địa chỉ</label>
-            </div>
-            <div class="col-60">
-              <input type="text" id="name" />
-            </div>
-            <div class="col-15">
-              <button onclick="saveAddress()" type="button">Lưu</button>
             </div>
           </div>
           <div class="row" id="shop-address-active">
             <div class="col-25">
               <label for="name">Địa chỉ</label>
             </div>
-            <div class="col-60">
+            <div class="col-60-txt">
               <label>{{shopAddress}}</label>
-            </div>
-            <div class="col-15">
-              <button type="button" onclick="modifyAddress()">Sửa</button>
-            </div>
-          </div>
-          <div class="row" id="shop-day" hidden>
-            <div class="col-25">
-              <label for="name">Ngày thành lập</label>
-            </div>
-            <div class="col-60">
-              <input type="text" id="name" />
-            </div>
-            <div class="col-15">
-              <button onclick="saveDay()" type="button">Lưu</button>
             </div>
           </div>
           <div class="row" id="shop-day-active">
             <div class="col-25">
               <label>Ngày thành lập</label>
             </div>
-            <div class="col-60">
+            <div class="col-60-txt">
               <label>{{shopEstDay}}</label>
-            </div>
-            <div class="col-15">
-              <button type="button" onclick="modifyDay()">Sửa</button>
-            </div>
-          </div>
-          <div class="row" id="shop-describe" hidden>
-            <div class="col-25">
-              <label for="name">Mô tả cửa hàng</label>
-            </div>
-            <div class="col-60">
-              <input type="text" id="name" />
-            </div>
-            <div class="col-15">
-              <button onclick="saveDescribe()" type="button">Lưu</button>
             </div>
           </div>
           <div class="row" id="shop-describe-active">
             <div class="col-25">
               <label for="name">Mô tả cửa hàng</label>
             </div>
-            <div class="col-60">
-              <label for="name">{{shopDescribe}}</label>
-            </div>
-            <div class="col-15">
-              <button onclick="modifyDescribe()" type="button">Sửa</button>
+            <div class="col-60-txt">
+              <textarea disabled class="form-control" aria-label="With textarea"
+                placeholder="{{shopDescribe}}"></textarea>
             </div>
           </div>
+          <div class="d-flex justify-content-center">
+            <button onclick="switchingModifyMode()" type="button">Sửa</button>
+          </div>
         </form>
-        <div class="title-2">Chi tiết</div>
+        <p class="title-2">Chi tiết</p>
         <form>
           <div class="row">
             <div class="col-25">
@@ -152,4 +129,4 @@
     </div>
   </div>
 </body>
-<script src="./shop-infor.js"></script>
+<script src="/public/shop-infor.js"></script>

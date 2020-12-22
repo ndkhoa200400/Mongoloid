@@ -65,9 +65,9 @@ router.get('/product-list', (req, res) => {
     });
 });
 //add product
-router.get('/product-list/add-product', (req, res) => {
+router.get('/add-product', (req, res) => {
     res.render('add-product', {
-        stylecss: '../public/add-product.css',
+        stylecss: 'add-product.css',
     });
 });
 //view shop sales

@@ -58,7 +58,7 @@ button.login {
 }
 .body-container {
   position: absolute;
-  top: 80px;
+  margin-top: 80px;
 
   height: 82%;
   width: 100%;

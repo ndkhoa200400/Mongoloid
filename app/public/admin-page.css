@@ -114,21 +114,21 @@ form {
 }
 
 /*DANH SÁCH TÀI KHOẢN*/
-.danhsachtaikhoan{
+.danhsachtaikhoan {
   margin-bottom: 50px;
 }
-#title3{
+#title3 {
   color: #7f007f;
   font-weight: bold;
   margin-bottom: 20px;
 }
-.search{
+.search {
   display: flex;
   align-items: center;
   width: 100%;
   border: 1px solid lightgrey;
   border-radius: 5px;
-  padding: 0 10px;;
+  padding: 0 10px;
 }
 
 input[type="text"] {
@@ -138,6 +138,6 @@ input[type="text"] {
   font-size: 16px;
   outline: none;
 }
-.fa-search{
-  color:grey;
+.fa-search {
+  color: grey;
 }
