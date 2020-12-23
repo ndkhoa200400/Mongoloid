@@ -1,0 +1,125 @@
+{{#section 'css'}}
+
+
+{{/section}}
+
+{{#section 'js'}}
+  <script src="/customer-page.js"></script>
+{{/section}}
+
+
+
+
+
+<div class="main-body-container">
+  <form>
+    <!-- HỒ sơ cá nhân -->
+    <div class="hosocanhan">
+      <p class="title-1">HỒ SƠ CÁ NHÂN</p>
+      
+      <!-- Tên -->
+      <div class="hoso">
+        <div class="title">Tên</div>
+        <div class="info">
+          <input type="text" class="info1" name="customer-name" value="{{this.user.name}}" readonly required>
+        </div>
+      </div>
+      <!-- Email -->
+      <div class="hoso">
+        <div class="title">Email</div>
+        <div class="info">
+          <input type="text" class="info1" name="customer-email" value="{{this.user.email}}" readonly required>
+        </div>
+      </div>
+      <!-- Ngày sinh -->
+      <div class="hoso">
+        <div class="title">Ngày sinh</div>
+        <div class="info">
+          <input type="text" class="info1" name="customer-dob" value="01/01/2020" readonly required>
+        </div>
+      </div>
+      <!-- Số điện thoại -->
+      <div class="hoso">
+        <div class="title">Số điện thoại</div>
+        <div class="info">
+          <input type="number" min=0 class="info1" name="customer-phone" value="{{this.user.phone}}" readonly required>
+        </div>
+      </div>
+      <!-- Địa chỉ -->
+      <div class="hoso">
+        <div class="title">Địa chỉ</div>
+        <div class="info">
+          <input type="text" class="info1" name="customer-address" value="{{this.user.address}}" readonly required>
+        </div>
+      </div>
+      <!-- Mật khẩu -->
+      <div class="hoso">
+        <div class="title">Mật khẩu</div>
+        <div class="info">
+          <input type="password" class="oldpass" name="customer-pass" value="{{this.user.passwrod}}" readonly required>
+        </div>
+      </div>
+      <!-- Xác nhận Mật khẩu cũ -->
+      <div class="hoso" style="display: none;">
+        <div class="title">Nhập mật khẩu hiện tại</div>
+        <div class="info">
+          <input type="password" class="oldpass-check" name="customer-oldpass-check">
+        </div>
+        <p class="alertpass" style="display: none;">*Mật khẩu hiện tại không đúng</p>
+      </div>
+      <!-- Mật khẩu mới -->
+      <div class="hoso" style="display: none;">
+        <div class="title">Nhập mật khẩu mới</div>
+        <div class="info">
+          <input type="password" class="newpass" name="customer-newpass">
+        </div>
+      </div>
+
+      <!--Mấy cái Nút -->
+      <div class="edit-save">
+        <button class="edit-pass btn btn-success"">Đổi mật khẩu</button>
+        <button class="edit-btn btn btn-primary"">Chỉnh sửa thông tin</button>
+        <button type="submit" class="submit-btn btn btn-danger" disabled>Lưu thay đổi</button>
+      </div>
+    </div>
+  </form>
+
+
+
+  <!-- LỊCH SỬ MMUA HÀNG -->
+  <div class="lichsumuahang">
+    <p class="title-1">LỊCH SỬ MUA HÀNG</p>
+
+    <table class="table">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">Tên sản phẩm</th>
+          <th scope="col">Số lượng</th>
+          <th scope="col">Tổng tiền</th>
+          <th scope="col">Ngày mua</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>xe hơi canh dương</td>
+          <td>2</td>
+          <td>400.000 VNĐ</td>
+          <td>12/02/2020</td>
+        </tr>
+        <tr>
+          <td>xe hơi canh dương</td>
+          <td>2</td>
+          <td>400.000 VNĐ</td>
+          <td>12/02/2020</td>
+        </tr>
+        <tr>
+          <td>xe hơi canh dương</td>
+          <td>2</td>
+          <td>400.000 VNĐ</td>
+          <td>12/02/2020</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>

@@ -29,6 +29,16 @@ router.get('/product/search/', controller.getFitleredProduct);
 
 router.get('/product/:slug', controller.getProduct);
 
+//customer channel
+    //view customer info
+router.get('/customer/:mail', controller.getCustomerInfo);
+    //sign to be shop
+
+
+
+
+
+
 //test shop channel
 //view shop information
 router.get('/shop-infor', (req, res) => {

@@ -10,13 +10,19 @@
                     <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
                 </ul>
                 {{#if this.user}}
-                <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.name}}</a>
+                <div class="dropdown">
+                    <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.name}}</a>
+                    <div class="dropdown-content">
+                        <a href="/customer/{{this.user.email}}">Thông tin</a>
+                        <form id="frmLogout" action="/customer/logout" method="POST"></form>
+                        <a href="javascript: $('#frmLogout').submit();">Logout</a>
+                    </div>
+                </div>
                 {{else}}
                 <a class="sign-in" href="/login"><i class="far fa-user"></i>Đăng nhập</a>
-
                 {{/if}}
-
             </div>
+
             <div class="bottom">
                 <div class="dropdown">
                     <span class="dropbtn">DANH MỤC SẢN PHẨM <i class="fas fa-angle-down"></i></span>

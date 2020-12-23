@@ -118,3 +118,24 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     layout: "default",
   });
 });
+
+//CUSTOMER
+exports.getCustomerInfo = catchAsync(async (req, res, next) => {
+  let user = res.locals.user;
+  if (user) {
+    if (!user.name) user.name = user.username;
+    user = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+  }
+  const getCustomer = await User.findOne({ email: user.email }).lean({ virtuals: true });
+  console.log(getCustomer);
+
+  res.status(200).render("customer-page", {
+    user: getCustomer,
+    csspath : "customer-page",
+    layout: 'customer',
+  })
+});
