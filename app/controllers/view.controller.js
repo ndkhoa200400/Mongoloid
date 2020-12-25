@@ -19,7 +19,7 @@ exports.getHome = catchAsync(async (req, res, next) => {
   }
   const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("home-page", {
-    title: "Mongoloid - Home",
+    title: "Home",
     csspath: "home-page",
     category,
     layout: "default",

@@ -28,8 +28,8 @@
     <div class="body-container">
       <div class="navigation-container">
         <dl>
-          <dt>HỒ SƠ CÁ NHÂN</dt>
-          <dt>LỊCH SỬ MUA HÀNG</dt>
+          <dt><a href="/customer/{{this.user.email}}">HỒ SƠ CÁ NHÂN</a></dt>
+          <dt><a href="/customer/{{this.user.email}}">LỊCH SỬ MUA HÀNG</a></dt>
           {{#is this.user.role "customer"}}
           <dt><a href="/customer/signtobeshop/{{this.user.email}}">ĐĂNG KÝ THÀNH SHOP</a></dt>
           {{/is}}
