@@ -10,7 +10,7 @@ hbs.registerPartials(__dirname + '../views/partials');
 
 router.use(authController.isLoggedIn);
 
-router.get('/', controller.getOverview);
+router.get('/', controller.getHome);
 router.get('/category', controller.getOverview);
 //router.post('/category', controller.ProByCatAndFilter);
 
@@ -36,9 +36,13 @@ router.get('/product/:slug', controller.getProduct);
     //view customer info
 router.get('/customer/:mail', controller.getCustomerInfo);
     //sign to be shop
+router.get('/customer/signtobeshop/:mail', controller.getSigntobeshop);
 
-
-
+//admin channel
+    //view account info
+router.get('/admin', controller.getAccountAdmin);
+    //view statistics
+router.get('/admin/statistics', controller.getStatisticsAdmin);
 
 
 

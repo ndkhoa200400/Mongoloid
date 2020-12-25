@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{title}}</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--jquery-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/{{csspath}}.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <a href="/"><img src="/imgs/logo.png" alt="" /></a>
+      </div>
+      <div class="title-text">Trang quản lý</div>
+      <div class="signin-signup-button">
+        <button class="login">ADMIN</button>
+      </div>
+    </header>
+
+    <div class="body-container">
+      <div class="navigation-container">
+        <dl>
+          <dt><a href="/admin">DANH SÁCH TÀI KHOẢN</a></dt>
+          <dt><a href="/admin/statistics">THỐNG KÊ</a></dt>
+        </dl>
+      </div>
+      {{{body}}}
+    </div>
+
+  </body>
+
+  <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
+  {{{_sections.js}}}
+</html>

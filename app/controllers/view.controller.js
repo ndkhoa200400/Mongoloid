@@ -7,7 +7,25 @@ const url = require("url");
 const Shop = require("../model/shop.model");
 
 
-
+exports.getHome = catchAsync(async (req, res, next) => {
+  let user = res.locals.user;
+  if (user) {
+    if (!user.name) user.name = user.username;
+    user = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+  }
+  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
+  res.status(200).render("home-page", {
+    title: "Mongoloid - Home",
+    csspath: "home-page",
+    category,
+    layout: "default",
+    user: user,
+  });
+});
 
 
 exports.getOverview = catchAsync(async (req, res, next) => {
@@ -37,9 +55,15 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
   const catName = req.param('cat');
   const product = await Product.find({ category: catName })
     .lean({ virtuals: true });
-  
   let user = res.locals.user;
-  if (user) user = { name: user.name, email: user.email, role: user.role };
+  if (user) {
+    if (!user.name) user.name = user.username;
+    user = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+  }
   const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
   res.status(200).render("category", {
     title: catName,
@@ -137,5 +161,42 @@ exports.getCustomerInfo = catchAsync(async (req, res, next) => {
     user: getCustomer,
     csspath : "customer-page",
     layout: 'customer',
+  })
+});
+
+exports.getSigntobeshop = catchAsync(async (req, res, next) => {
+  let user = res.locals.user;
+  if (user) {
+    if (!user.name) user.name = user.username;
+    user = {
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    };
+  }
+  const getCustomer = await User.findOne({ email: user.email }).lean({ virtuals: true });
+  console.log(getCustomer);
+
+  res.status(200).render("signtobeshop", {
+    user: getCustomer,
+    csspath : "signtobeshop",
+    layout: 'customer',
+  })
+});
+
+
+//ADMIN
+exports.getAccountAdmin = catchAsync(async (req, res, next) => {
+
+  res.status(200).render("admin-page", {
+    csspath : "admin-page",
+    layout: 'admin',
+  })
+});
+
+exports.getStatisticsAdmin = catchAsync(async (req, res, next) => {
+  res.status(200).render("admin-statistics", {
+    csspath : "admin-statistics",
+    layout: 'admin',
   })
 });

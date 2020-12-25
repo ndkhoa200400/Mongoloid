@@ -1,0 +1,101 @@
+
+{{#section 'css'}}
+
+
+{{/section}}
+
+{{#section 'js'}}
+  <script src="/admin-page.js"></script>
+{{/section}}
+
+<div class="main-body-container">
+  <form>
+    <!-- DANH SÁCH TÀI KHOẢN -->
+    <div class="danhsachtaikhoan">
+      <p class="title-1">DANH SÁCH TÀI KHOẢN</p>
+      <h4><a href="#customer">Người dùng</a></h4>
+      <h4><a href="#shop">Shop</a></h4>
+
+      <!-- Customer -->
+      <div id="customer">
+        <br />
+        <h3 id="title3">Người dùng</h3>
+        <div class="search">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input
+            id="myInput"
+            type="text"
+            placeholder="Tìm kiếm người dùng..."
+          />
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>username</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            <tr>
+              <td><a href="">Doe</a></td>
+              <td>john@example.com</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>mary@mail.com</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>july@greatstuff.com</td>
+            </tr>
+            <tr>
+              <td>Anja</td>
+              <td>a_r@test.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Shop -->
+      <div id="shop">
+        <br />
+        <h3 id="title3">Shop</h3>
+        <div class="search">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input
+            id="myInput1"
+            type="text"
+            placeholder="Tìm kiếm shop..."
+          />
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Shop name</th>
+              <th>Email</th>
+            </tr>
+          </thead>
+          <tbody id="myTable1">
+            <tr>
+              <td><a href="">Doe</a></td>
+              <td>john@example.com</td>
+            </tr>
+            <tr>
+              <td>Mary</td>
+              <td>mary@mail.com</td>
+            </tr>
+            <tr>
+              <td>July</td>
+              <td>july@greatstuff.com</td>
+            </tr>
+            <tr>
+              <td>Anja</td>
+              <td>a_r@test.com</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </form>
+</div>
+    

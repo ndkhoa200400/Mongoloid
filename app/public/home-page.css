@@ -141,14 +141,14 @@ font-weight: bolder;}
   padding-right: 8px;
 }
 input[type="text"] {
-  width: 80%;
+  width: 350px;
   padding: 6px 6px;
   font-size: 14px;
   border-radius: 0px;
   border-style: none;
   border-bottom: 1px solid black;
   outline: none;
-}  
+}
 .cart{
   width: 80px;
 }

@@ -10,7 +10,7 @@
 
     {{!-- font awesome 4.7 --}}
     <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
-
+    {{{_sections.css}}}
     <link rel="stylesheet" type="text/css" href="/{{csspath}}.css" />
   </head>
 
@@ -30,7 +30,7 @@
         <dl>
           <dt>HỒ SƠ CÁ NHÂN</dt>
           <dt>LỊCH SỬ MUA HÀNG</dt>
-          <dt><a href="">ĐĂNG KÝ THÀNH SHOP</a></dt>
+          <dt><a href="/customer/signtobeshop/{{this.user.email}}">ĐĂNG KÝ THÀNH SHOP</a></dt>
         </dl>
       </div>
 
