@@ -10,7 +10,7 @@ const app = express();
 const hbsHelpers = require('handlebars-helpers')();
 const hbs_sections = require('express-handlebars-sections');
 app.use(express.static(path.join(__dirname, "./", "/public")));
-
+app.use('/public', express.static('public'))
 //this required before view engine setup
 
 app.set('views', path.join(__dirname, 'views'));
