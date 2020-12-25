@@ -21,6 +21,8 @@
     "express-handlebars": "^5.2.0",
     "express-handlebars-sections": "^1.0.1",
     "express-rate-limit": "^5.2.3",
+    "handlebars-helper": "0.0.12",
+    "handlebars-helpers": "^0.10.0",
     "hbs": "^4.1.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.11.7",

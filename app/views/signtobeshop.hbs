@@ -1,0 +1,86 @@
+{{#section 'js'}}
+<script>
+  $('.launchShop').on('click', function (e) {
+    e.preventDefault();
+    const shopName = $('#shop-name-id').val();
+    $('#form--be-seller').submit();
+   
+  })
+</script>
+
+{{/section}}
+
+<body>
+  <header>
+    {{!-- <div class="logo">
+      <a href="/"><img src="./imgs/logo.png" alt="" /></a>
+    </div>
+    <div class="title-text">Thông tin tài khoản</div>
+    <div class="signin-signup-button">
+      <button class="login">username</button>
+    </div> --}}
+  </header>
+
+  <div class="body-container">
+    <div class="main-body">
+      <div class="title-body">
+        <div class="text">ĐĂNG KÝ THÀNH SHOP</div>
+      </div>
+      {{#if error}} 
+      <div class="alert alert-danger">{{error}}</div>
+      {{/if}}
+      <!-- FORM -->
+      <div class="form-container">
+        <form class="needs-validation" action="/api/user/beSeller" method="POST" id="form--be-seller" novalidate>
+          <!-- Tên sshop -->
+          <label for="validationCustom01">Tên shop</label>
+          <input type="text" class="form-control" id="shop-name-id" name="shopName"
+            placeholder="Nhập tên shop" required>
+          <br>
+          <!-- Mô tả shop -->
+          <label for="validationCustom06">Mô tả shop</label>
+          <textarea class="form-control" aria-label="With textarea" id="validationCustom06" name="shopDescription"
+            placeholder="Nhập mô tả shop" required></textarea>
+          <br>
+          <label for="validationCustom06">Số điện thoại</label>
+          <textarea class="form-control" aria-label="With textarea" id="validationCustom06" name="shopContact"
+            placeholder="Nhập số điện thoại của shop" required></textarea>
+          <br>
+          <label for="validationCustom06">Email</label>
+          <textarea class="form-control" aria-label="With textarea" id="validationCustom06" name="shopEmail"
+            placeholder="Nhập email của shop" required></textarea>
+          <br>
+          <!-- Đăng hình ảnh sản phẩm -->
+          <label class="btn btn-light upload-label" for="validationCustom07">Tải lên ảnh đại diện của shop</label>
+          <div class="custom-file">
+            <input type="file" accept="image/*" onchange="loadFile(event)" style="display: none;"
+              class="custom-file-input" id="validationCustom07" name="shopLogo" multiple required>
+            <div class="invalid-feedback">
+              *Chưa đăng tải ảnh đại diện của shop
+            </div>
+            <div id="image-container"></div>
+          </div>
+
+        </form>
+      </div>
+      <!-- Mấy cái nút -->
+      <div class="buttons">
+
+
+        <div class="submit-btn">
+          <div id="alert"></div>
+          <a class="btn btn-sm btn-outline-success launchShop" href="javascript:;" role="button">
+            <i class="fas fa-check" aria-hidden="true"></i>
+            Đăng ký
+          </a>
+        </div>
+        <button class="btn btn-danger" onclick="window.location='/'" type="button">Quay lại</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+<script src="./signtobeshop.js"></script>
+
+</html>

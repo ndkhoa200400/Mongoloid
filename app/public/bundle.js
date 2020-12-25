@@ -8506,7 +8506,7 @@ var signup = /*#__PURE__*/function () {
                 location.assign("/"); // back to home page
               }, 1000);
             } else {
-              alert("error", "Email has already been taken!");
+              alert(res.data.error.message);
             }
 
             _context2.next = 11;
@@ -8559,7 +8559,7 @@ var searchByName = /*#__PURE__*/function () {
             _context.next = 3;
             return (0, _axios.default)({
               method: "GET",
-              url: "http://localhost:8000/api/product/search?q=" + keyword
+              url: "http://localhost:8000/api/product/" + keyword
             });
 
           case 3:
@@ -8917,7 +8917,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52490" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "62545" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

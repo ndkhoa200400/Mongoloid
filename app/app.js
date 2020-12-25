@@ -7,6 +7,7 @@ const numeral = require('numeral');
 const path = require('path');
 const globalErrorHandler = require("./controllers/error.controller");
 const app = express();
+const hbsHelpers = require('handlebars-helpers')();
 const hbs_sections = require('express-handlebars-sections');
 app.use(express.static(path.join(__dirname, "./", "/public")));
 
@@ -23,7 +24,8 @@ app.engine('hbs', exphbs({
       section: hbs_sections(),
       format_number(val) {
         return numeral(val).format('0,0');
-      }
+      },
+      hbsHelpers
     }
   })
 );

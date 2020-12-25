@@ -16,6 +16,9 @@ router.get('/category', controller.getOverview);
 
 router.get('/category/:cat', controller.ProByCat);
 
+router.get('/become-seller', (req,res)=>{
+    res.render('signtobeshop')
+})
 
 router.get('/login', (req, res) => {
     res.render('login_page', {

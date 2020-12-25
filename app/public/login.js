@@ -42,7 +42,7 @@ export const signup = async (username, email, phone, password, passwordConfirm) 
         location.assign("/"); // back to home page
       }, 1000);
     } else {
-        alert("error", "Email has already been taken!");
+        alert(res.data.error.message);
         
     }
   } catch (err) {

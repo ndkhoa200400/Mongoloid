@@ -4,12 +4,12 @@ const validator = require('validator');
 const shopSchema = new mongoose.Schema({
     sellerID:{
         type: String,
-        required: [true, 'Shop has to belong to a seller'],
+        required: [true, 'Thông tin người dùng không hợp lệ'],
         unique: true
     },
     name: {
         type: String,
-        required:  [true, 'Shop must have a name'],
+        required:  [true, 'Shop phải có tên!'],
         trim: true,
         maxlength: [40, 'Shop name must have less or equal 40 characters'],
         minlength: [5, 'Shop name must have more or equal 5 characters'],

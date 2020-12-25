@@ -65,18 +65,18 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
 
   // Get các query sau dấu ?
   const queryString = req.url.substring(req.url.indexOf("?"));
-
+ 
   const response = await axios({
     method: "GET",
     url: "http://localhost:8000/api/product" + queryString,
   });
-
+  const products = response.data.data.docs;
   if (response.data.status === "success") {
     res.status(200).render("category", {
       title: "Category",
-      products: response.data.data.docs,
-      category,
-      empty : product === null,
+      products: products,
+     
+      empty : products.length === 0 ,
       csspath: "category-page",
       layout: "default",
       user: user,
