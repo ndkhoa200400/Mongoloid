@@ -16,7 +16,7 @@ router.get('/category', controller.getOverview);
 
 router.get('/category/:cat', controller.ProByCat);
 
-router.get('/become-seller', (req,res)=>{
+router.get('/become-seller', (req, res) => {
     res.render('signtobeshop')
 })
 
@@ -33,36 +33,20 @@ router.get('/product/search/', controller.getFitleredProduct);
 router.get('/product/:slug', controller.getProduct);
 
 //customer channel
-    //view customer info
+//view customer info
 router.get('/customer/:mail', controller.getCustomerInfo);
-    //sign to be shop
-router.get('/customer/signtobeshop/:mail', controller.getSigntobeshop);
 
 //admin channel
-    //view account info
+//view account info
 router.get('/admin', controller.getAccountAdmin);
-    //view statistics
+//view statistics
 router.get('/admin/statistics', controller.getStatisticsAdmin);
 
 
 
 //test shop channel
 //view shop information
-router.get('/shop-infor', (req, res) => {
-    res.render('shop-infor', {
-        stylecss: 'shop-infor.css',
-        title: 'Thông tin cửa hàng',
-        shopName: 'Shop đồ nam Thuận Mỹ',
-        shopPhone: '01212121212',
-        shopAddress: 'TPHCM',
-        shopEstDay: '10/10/1111',
-        shopDescribe: 'Shop chuyên sỉ lẻ đồ nam trên toàn quốc',
-        numProduct: '1500',
-        numSaledProduct: '1200',
-        overallRating: '4.5',
-        billCanceledRate: '5%',
-    });
-});
+router.get('/shop-infor', authController.protect, authController.restrictTo('seller'), controller.getShopInfo);
 //view shop bills
 router.get('/bill-infor', (req, res) => {
     res.render('bill-infor', {
@@ -76,13 +60,9 @@ router.get('/bill-cancel-infor', (req, res) => {
     });
 });
 //view shop all products
-router.get('/product-list', (req, res) => {
-    res.render('product-list', {
-        stylecss: 'product-list.css',
-    });
-});
+router.get('/product-list', authController.protect, authController.restrictTo('seller'), controller.getProductList);
 //add product
-router.get('/add-product', (req, res) => {
+router.get('/add-product', authController.protect, authController.restrictTo('seller'), (req, res) => {
     res.render('add-product', {
         stylecss: 'add-product.css',
     });

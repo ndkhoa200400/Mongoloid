@@ -76,18 +76,22 @@ exports.beSeller = catchAsync(async (req, res, next) => {
         user = await user;
         await user.save();
         res.send(`
-            <script> alert('Mở shop thành công!');
-            window.location.replace('/');
-        `)    
+            <script> 
+                    alert('Mở shop thành công!');
+                    window.location.replace('/');
+            </script>
+            
+        `)
     } catch (error) {
-        
+
         res.send(`
-            <script> alert('${error.message}');
+            <script> 
+                    alert('${error.message}');
                     window.location.replace('/become-seller');
             </script>
             
         `)
-      
+
     }
 
 

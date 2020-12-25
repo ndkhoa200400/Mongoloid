@@ -30,7 +30,9 @@
         <dl>
           <dt>HỒ SƠ CÁ NHÂN</dt>
           <dt>LỊCH SỬ MUA HÀNG</dt>
+          {{#is this.user.role "customer"}}
           <dt><a href="/customer/signtobeshop/{{this.user.email}}">ĐĂNG KÝ THÀNH SHOP</a></dt>
+          {{/is}}
         </dl>
       </div>
 

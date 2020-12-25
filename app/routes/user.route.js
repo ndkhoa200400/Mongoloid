@@ -5,7 +5,7 @@ const controller = require("../controllers/user.controller");
 
 const router = express.Router();
 router.use(express.static('public'));
-
+router.get("/logout", authController.logout)
 router.post("/signup", authController.signup);
 router.post("/login", authController.login);
 

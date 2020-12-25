@@ -2,17 +2,15 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const shopSchema = new mongoose.Schema({
-    sellerID:{
-        type: String,
+    sellerID: {
+        type: mongoose.Types.ObjectId,
         required: [true, 'Thông tin người dùng không hợp lệ'],
         unique: true
     },
     name: {
         type: String,
-        required:  [true, 'Shop phải có tên!'],
-        trim: true,
-        maxlength: [40, 'Shop name must have less or equal 40 characters'],
-        minlength: [5, 'Shop name must have more or equal 5 characters'],
+        required: [true, 'Shop phải có tên!'],
+        trim: true
     },
     logo: String,
     rating: {
@@ -24,20 +22,19 @@ const shopSchema = new mongoose.Schema({
     phoneContact: {
         type: String,
         unique: true,
-        validate: [validator.isNumeric, 'Please provide a valid phone number']
+        validate: [validator.isNumeric, 'Số điện thoại không hợp lệ']
 
     },
     email: {
         type: String,
         unique: true,
         lowercase: true,
-        validate: [validator.isEmail, 'Please provide a valid email']
+        validate: [validator.isEmail, 'Email không hợp lệ']
     },
     description: String,
-    joinDate:{
+    joinDate: {
         type: Date,
         default: Date.now(),
-        select: false
     }
 
 })

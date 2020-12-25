@@ -53,10 +53,13 @@
           </div>
           <div class="col-9">
             <div>
-              <span id="name-product">Tên sản phẩm: {{nameProduct}}</span>
+              <span id="name-product">Tên sản phẩm: {{name}}</span>
             </div>
             <div>
-              <span id="price">Số tiền: {{price}}</span><span id="post-date">Ngày đăng: {{postDate}}</span>
+              <span id="price">Số tiền: {{price}}</span>
+            </div>
+            <div>
+              <span id="post-date">Ngày đăng: {{moment createdAt format='DD-MM-YYYY'}}</span>
             </div>
           </div>
           <div class="col">

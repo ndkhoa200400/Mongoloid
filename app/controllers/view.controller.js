@@ -17,7 +17,7 @@ exports.getHome = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
+  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("home-page", {
     title: "Mongoloid - Home",
     csspath: "home-page",
@@ -39,12 +39,12 @@ exports.getOverview = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
+  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("category", {
     title: "Category",
     category,
     products: product,
-    empty : product === null,
+    empty: product === null,
     csspath: "category-page",
     layout: "default",
     user: user,
@@ -64,14 +64,14 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
+  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("category", {
     title: catName,
     category,
     products: product,
     user: user,
-    empty : product === null,
-    csspath : "category-page",
+    empty: product === null,
+    csspath: "category-page",
     layout: 'default',
   })
 });
@@ -86,10 +86,9 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-
   // Get các query sau dấu ?
   const queryString = req.url.substring(req.url.indexOf("?"));
- 
+
   const response = await axios({
     method: "GET",
     url: "http://localhost:8000/api/product" + queryString,
@@ -99,12 +98,12 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
     res.status(200).render("category", {
       title: "Category",
       products: products,
-     
-      empty : products.length === 0 ,
+
+      empty: products.length === 0,
       csspath: "category-page",
       layout: "default",
       user: user,
-      
+
     });
   } else {
     res.render("error");
@@ -125,15 +124,15 @@ exports.getProduct = catchAsync(async (req, res, next) => {
   const product = await Product.findOne(
     { slug: req.params.slug }
   ).populate({
-    path:"shopID"
+    path: "shopID"
   })
-  .lean();
+    .lean();
 
-  const category = await Product.find({}).distinct("category").populate("category").lean({virtuals: true});
+  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("product-page", {
     title: "Sản phẩm",
     category,
-    empty : product === null,
+    empty: product === null,
     product: product,
     // /activeImg: product.toArray().images,
     user: user,
@@ -159,7 +158,7 @@ exports.getCustomerInfo = catchAsync(async (req, res, next) => {
 
   res.status(200).render("customer-page", {
     user: getCustomer,
-    csspath : "customer-page",
+    csspath: "customer-page",
     layout: 'customer',
   })
 });
@@ -175,11 +174,11 @@ exports.getSigntobeshop = catchAsync(async (req, res, next) => {
     };
   }
   const getCustomer = await User.findOne({ email: user.email }).lean({ virtuals: true });
-  console.log(getCustomer);
+
 
   res.status(200).render("signtobeshop", {
     user: getCustomer,
-    csspath : "signtobeshop",
+    csspath: "signtobeshop",
     layout: 'customer',
   })
 });
@@ -189,14 +188,58 @@ exports.getSigntobeshop = catchAsync(async (req, res, next) => {
 exports.getAccountAdmin = catchAsync(async (req, res, next) => {
 
   res.status(200).render("admin-page", {
-    csspath : "admin-page",
+    csspath: "admin-page",
     layout: 'admin',
   })
 });
 
 exports.getStatisticsAdmin = catchAsync(async (req, res, next) => {
   res.status(200).render("admin-statistics", {
-    csspath : "admin-statistics",
+    csspath: "admin-statistics",
     layout: 'admin',
   })
 });
+
+exports.getShopInfo = catchAsync(async (req, res, next) => {
+  const userID = req.user.id;
+
+  const shop = await Shop.findOne({ sellerID: userID }).select("+joinDate").lean();
+
+  if (shop)
+    res.render('shop-infor', {
+      stylecss: 'shop-infor.css',
+      title: 'Thông tin cửa hàng',
+      shopName: shop.name,
+      shopPhone: shop.phoneContact,
+      shopAddress: 'TPHCM',
+      shopEstDay: shop.joinDate,
+      shopDescribe: shop.description,
+      numProduct: '1500',
+      numSaledProduct: '1200',
+      overallRating: '4.5',
+      billCanceledRate: '5%',
+    });
+})
+
+exports.getProductList = catchAsync(async (req, res, next) => {
+  try {
+    const user = res.locals.user;
+    const shop = await Shop.findOne({ sellerID: user.id });
+    if (shop) {
+      const products = await Product.find({ shopID: shop.id }).select("+createdAt").lean();
+      res.status(200).render("product-list", {
+        title: "Trang sản phẩm",
+        productList: products,
+        stylecss: 'product-list.css'
+  
+      }
+  
+      )
+    }
+  } catch (error) {
+    console.log(error);
+  }
+ 
+ 
+
+})

@@ -1,3 +1,17 @@
+{{#section 'js'}}
+<script>
+    $('#logout').on('click', function (e) {
+        e.preventDefault();
+        console.log("ok")
+        $('#frmLogout').submit();
+
+        setTimeout(() => {
+            window.replace('/login');
+        }, 1500);
+    })
+
+</script>
+{{/section}}
 <header>
     <div class="header-container">
         <div class="menu">
@@ -11,9 +25,7 @@
                     {{#is this.user.role "seller"}}
                     <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
                     {{/is}}
-                    {{#is this.user.role "customer"}}
-                    <li><a href="/become-seller">TRỞ THÀNH NGƯỜI BÁN</a></li>
-                    {{/is}}
+
                     {{/if}}
                 </ul>
                 {{#if this.user}}
@@ -21,8 +33,10 @@
                     <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.name}}</a>
                     <div class="dropdown-content">
                         <a href="/customer/{{this.user.email}}">Thông tin</a>
-                        <form id="frmLogout" action="/customer/logout" method="POST"></form>
-                        <a href="javascript: $('#frmLogout').submit();">Logout</a>
+                        <form id="frmLogout" action="/api/user/logout" method="GET">
+                           
+                        </form>
+                         <a href="javascript:;" id="logout">Logout</a>
                     </div>
                 </div>
                 {{else}}

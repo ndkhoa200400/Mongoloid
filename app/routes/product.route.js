@@ -19,7 +19,7 @@ router.route('/:id')
         authController.restrictTo('seller'),
         controller.updateProduct)
     .delete(authController.protect,
-        authController.restrictTo('seller','admin'),
+        authController.restrictTo('seller', 'admin'),
         controller.deleteProduct);
 
 router.use("/:productID/reviews", reviewRouter);

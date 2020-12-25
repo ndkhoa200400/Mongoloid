@@ -9,16 +9,21 @@ export const login = async (email, password) => {
         password,
       },
     });
+    console.log("OK");
     if (res.data.status === "success") {
       alert("Login successfully");
       window.setTimeout(() => {
         location.assign("/"); // back to home page
       }, 1500);
     } else {
-      alert("Username or password is incorrect");
+      console.log(res.data.error.message);
+      alert(res.data.error.message);
     }
-  } catch (e) {
-    console.log(e);
+  } catch (err) {
+    console.log(err);
+    let res = err.response.data;
+    console.log(err.response.data);
+		alert(err.response.data.message);
   }
 };
 

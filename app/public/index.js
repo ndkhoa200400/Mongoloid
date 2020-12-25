@@ -1,13 +1,11 @@
 import '@babel/polyfill';
 
 import {login, signup} from './login';
-import {searchByName} from './product-api';
-
 
 
 const loginForm = document.querySelector(".form--login");
 const signupForm = document.querySelector('.form--signup')
-const searchForm = document.querySelector(".form--search");
+
 if(loginForm)
 {
   loginForm.addEventListener("submit", (e) => {
@@ -15,7 +13,6 @@ if(loginForm)
     e.preventDefault();
     const email = document.getElementById("email").value;
     const password = document.getElementById("password").value;
-    console.log(email, password);
     login(email, password)
   });
   
