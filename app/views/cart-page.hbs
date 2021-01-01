@@ -72,13 +72,13 @@
                   <div class="col muc-san-pham">GIÁ TIỀN</div>
               </div>
               <!-- DANH SÁCH SẢN PHẨM -->
-
+              {{#each productsInCart}}
               <div class="row mb-3 product border bg-white text-dark p-2">
                 <div class="col img-product">
                     <img src="../public/imgs/product5.jpg" alt="" class= "img-thumbnail">
                 </div>
                 <div class="col d-flex flex-column justify-content-center text-sp ">
-                   <h6>OUTOFORDER LOGO VEST BLACK -  M</h6>
+                   <h6>{{this.name}}</h6>
                    <button type="button" class="btn btn-outline-primary">Xóa</button>
                   </div>
                 <div class="col d-flex flex-column justify-content-center text-sp">
@@ -88,34 +88,16 @@
                         <button type="button" class="soluong-button bg-transparent" onclick="increase()">+</button>
                     </div>
                 </div>
-                <div class="col d-flex flex-column justify-content-center newprice text-sp" id="newprice">300.000 VNĐ</div>
+                <div class="col d-flex flex-column justify-content-center newprice text-sp" id="newprice">{{this.price}}</div>
               </div>
+             {{/each}}
              
-
-              <div class="row mb-3 product border bg-white text-dark p-2">
-                <div class="col img-product">
-                    <img src="./imgs/product5.jpg" alt="" class= "img-thumbnail">
-                </div>
-                <div class="col d-flex flex-column justify-content-center text-sp "> 
-                  <h6>OUTOFORDER LOGO VEST BLACK -  M</h6>
-                  <button type="button" class="btn btn-outline-primary">Xóa</button>
-                </div>
-                <div class="col d-flex flex-column justify-content-center text-sp">
-                    <div class="btn-group soluong d-flex justify-content-center" role="group" aria-label="Basic example">
-                        <button type="button" class="soluong-button bg-transparent" onclick="decrease()">-</button>
-                        <input type="button" id="number2" value="1">
-                        <button type="button" class="soluong-button bg-transparent" onclick="increase()">+</button>
-                    </div>
-                </div>
-                <div class="col d-flex flex-column justify-content-center newprice text-sp" id="newprice">300.000 VNĐ</div>
-              </div>
-              
           </div>
         </div>
         <div class="col-3 p-0 mt-5 checkout-side">
           <div class="row mb-1 p-3 bg-white text-dark">
               <div class="col">Tạm tính</div>
-              <div class="col text-right price-cu">600.000 VND</div>
+              <div class="col text-right price-cu">{{this.totalPrice}}</div>
           </div>
           <div class="row mb-1 p-3 bg-white text-dark">
             <div class="col">Mã Giảm Giá </div>
@@ -124,7 +106,7 @@
           <div class="row mb-1 p-3 bg-white text-dark">
             <div class="col thanhtien">Thành Tiền</div>
             <div class="col text-right">
-              <p class=" thanhtien-price">600.000 VND</p>
+              <p class=" thanhtien-price">{{this.totalPrice}}</p>
             </div>
           </div>
           <div class="row mb-1 p-0 ">

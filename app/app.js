@@ -9,6 +9,7 @@ const globalErrorHandler = require("./controllers/error.controller");
 const app = express();
 const hbsHelpers = require('handlebars-helpers')();
 const hbs_sections = require('express-handlebars-sections');
+const session = require('express-session');
 app.use(express.static(path.join(__dirname, "./", "/public")));
 app.use('/public', express.static('public'))
 //this required before view engine setup
@@ -39,7 +40,7 @@ const viewRoute = require('./routes/view.route');
 const productRoute = require('./routes/product.route');
 const userRoute = require('./routes/user.route');
 const shopRoute = require('./routes/shop.route');
-
+const cartRoute = require('./routes/cart.route');
 
 if (process.env.NODE_ENV === 'development')
   app.use(morgan('dev'));
@@ -47,7 +48,19 @@ if (process.env.NODE_ENV === 'development')
 
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(session({
+  secret: 'SECRET_KEY',
+  resave: false,
+  saveUninitialized: true,
+  maxAge: Date.now() + (60 * 60 * 1000)
+}));
+app.use(function (req, res, next) {
+  //Enabling CORS
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-client-key, x-client-token, x-client-secret, Authorization");
+  next();
+});
 // const limiter = rateLimit({
 //   // Alow 100 requests from the same IP in 1 hour
 //   max: 100,
@@ -57,6 +70,7 @@ app.use(cookieParser());
 // app.use("/", limiter);
 
 app.use('/', viewRoute);
+app.use('/cart', cartRoute);
 app.use('/api/shop', shopRoute);
 app.use('/api/user', userRoute);
 app.use('/api/product', productRoute)

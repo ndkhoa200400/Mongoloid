@@ -75,7 +75,7 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   if (!user || !await user.correctPassword(password, user.password)) {
-      return next(new appError('Incorrect email or username or password', 401));
+      return next(new appError('Sai tên tài khoản hoặc mật khẩu!', 401));
   }
   // 3) IF everything is ok, send token to client
   createSendToken(user, 200, res);

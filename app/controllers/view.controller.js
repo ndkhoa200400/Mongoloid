@@ -1,9 +1,7 @@
 const User = require("../model/user.model");
 const Product = require("../model/product.model");
 const catchAsync = require("../utils/catchAsync");
-const productController = require("./product.controller");
 const axios = require("axios");
-const url = require("url");
 const Shop = require("../model/shop.model");
 
 
@@ -231,15 +229,53 @@ exports.getProductList = catchAsync(async (req, res, next) => {
         title: "Trang sản phẩm",
         productList: products,
         stylecss: 'product-list.css'
-  
+
       }
-  
+
       )
     }
   } catch (error) {
     console.log(error);
   }
- 
- 
+
+
 
 })
+
+exports.getCart = catchAsync(async (req, res, next) => {
+  try {
+    const cart = req.session.cart;
+    let user = res.locals.user;
+
+    if (user) user = { name: user.name, email: user.email, role: user.role };
+    let totalPrice = 0;
+    let isEmpty = true;
+    let numProducts = 0;
+    let products = [];
+    if (cart) {
+      for(let i = 0; i< cart.length; i++)
+      {
+        products.push(await Product.findOne({slug: cart[i]}).lean());
+      }
+
+      products.forEach(element => {
+        totalPrice += element.price;
+      });
+      numProducts = products.length;
+      if (numProducts != 0) isEmpty = false;
+
+    }
+
+    res.status(200).render("cart-page", {
+      title: "Cart",
+      user: user,
+      empty: isEmpty,
+      productsInCart: products,
+      numProducts: numProducts,
+      totalPrice: totalPrice
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+});

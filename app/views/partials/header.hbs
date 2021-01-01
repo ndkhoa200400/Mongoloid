@@ -1,17 +1,3 @@
-{{#section 'js'}}
-<script>
-    $('#logout').on('click', function (e) {
-        e.preventDefault();
-        console.log("ok")
-        $('#frmLogout').submit();
-
-        setTimeout(() => {
-            window.replace('/login');
-        }, 1500);
-    })
-
-</script>
-{{/section}}
 <header>
     <div class="header-container">
         <div class="menu">
@@ -33,10 +19,10 @@
                     <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.name}}</a>
                     <div class="dropdown-content">
                         <a href="/customer/{{this.user.email}}">Thông tin</a>
-                        <form id="frmLogout" action="/api/user/logout" method="GET">
-                           
-                        </form>
-                         <a href="javascript:;" id="logout">Logout</a>
+                       
+                        <a href="/login" id="logout">Đăng xuất</a>
+                       
+                       
                     </div>
                 </div>
                 {{else}}
@@ -65,10 +51,12 @@
                     </form>
 
                 </div>
-
+                {{#if this.user}}
                 <div>
-                    <a href="#"><img class="cart" src="/imgs/cart.png" /></a>
+                    <a href="/cart"><img class="cart" src="/imgs/cart.png" /></a>
+    
                 </div>
+                {{/if}}
             </div>
         </div>
     </div>

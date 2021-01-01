@@ -21,6 +21,7 @@
     "express-handlebars": "^5.2.0",
     "express-handlebars-sections": "^1.0.1",
     "express-rate-limit": "^5.2.3",
+    "express-session": "^1.17.1",
     "handlebars-helper": "0.0.12",
     "handlebars-helpers": "^0.10.0",
     "hbs": "^4.1.1",

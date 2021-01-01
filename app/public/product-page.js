@@ -1,4 +1,3 @@
-const { $where } = require("../model/user.model");
 
 function increase() {
     var value = parseInt(document.getElementById('number').value, 10);

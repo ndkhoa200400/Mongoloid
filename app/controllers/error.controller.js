@@ -9,23 +9,23 @@ const handleCastErrorDB = (err) => {
 const handleDuplicateFieldsDB = (err) => {
   // const value = err.errmsg.match(/(["'])(\\?.)*?\1/)[0];
 
-  const mess = `Duplicate field value: ${Object.keys(
+  const mess = `Các dữ liệu sau đã được sữ dụng: \n${Object.keys(
     err.keyValue
-  )}. Please use another value`;
+  ).join("\n")}\nVui lòng sử dụng giá trị khác!`;
   return new AppError(mess, 400);
 };
 
 const handleValidationErrorDB = (err) => {
   const errors = Object.values(err.errors).map((el) => el.message);
-  const mess = `Invalid input data:\n${errors.join("\n")}`;
+  const mess = `Lỗi nhập dữ liệu:\n${errors.join("\n")}`;
   return new AppError(mess, 400);
 };
 
 const handleJWTError = (err) =>
-  new AppError("Invalid token. Please log in again!", 401);
+  new AppError("Vui lòng đăng nhập lại!", 401);
 
 const handleJWTExpiredError = (err) =>
-  new AppError("Your token has expired! Please log in again.", 401);
+  new AppError("Hết thời hạn đăng nhập. Vui lòng đăng nhập lại!", 401);
 
 const sendErrorDev = (err, res) => {
   // A) API

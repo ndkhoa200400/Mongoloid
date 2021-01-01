@@ -13,6 +13,7 @@ router.use(authController.isLoggedIn);
 router.get('/', controller.getHome);
 router.get('/category', controller.getOverview);
 //router.post('/category', controller.ProByCatAndFilter);
+router.get('/cart',controller.getCart)
 
 router.get('/category/:cat', controller.ProByCat);
 

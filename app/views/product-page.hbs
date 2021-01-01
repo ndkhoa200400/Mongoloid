@@ -6,9 +6,8 @@
 {{#section 'js'}}
 <script>
     function loadActive() {
-        var element =  document.querySelector('.carousel-item');
+        var element = document.querySelector('.carousel-item');
         element.classList.add("active");
-        console.log("hello");
     }
     loadActive();
 </script>
@@ -33,21 +32,21 @@
             <div class="main-image">
                 <!-- Boostrap Slide -->
                 <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner" onload="loadActive()">
-                    {{#each this.product.images as |image|}}
-                    <div class="carousel-item" data-bs-interval="3000">
-                        <img src="{{image}}" class="d-block w-100">
+                    <div class="carousel-inner" onload="loadActive()">
+                        {{#each this.product.images as |image|}}
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <img src="{{image}}" class="d-block w-100">
+                        </div>
+                        {{/each}}
                     </div>
-                    {{/each}}
-                </div>
-                <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </a>
-                <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </a>
+                    <a class="carousel-control-prev" href="#carouselExampleInterval" role="button" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </a>
+                    <a class="carousel-control-next" href="#carouselExampleInterval" role="button" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </a>
                 </div>
                 <!--End Boostrap Slide -->
             </div>
@@ -76,7 +75,11 @@
             <div class="discountvalue1">-20%</div>
             <div class="buy-and-addcart">
                 <button type="button" class="buy-now" onclick="">MUA NGAY</button>
-                <button type="button" class="add-cart" onclick="">THÊM VÀO GIỎ HÀNG</button>
+                <form action="/cart/add" method="POST">
+                    <input type="hidden" value="{{this.product.slug}}" name="id">
+                    <button class="add-cart">THÊM VÀO GIỎ HÀNG</button>
+                </form>
+
             </div>
         </div>
     </div>
@@ -139,13 +142,41 @@
                                         <i class="fas fa-money-bill"></i>
                                     </div>
                                     <div class="tien-giatien">
-                                        <div class="tien-giamoi">200.000 VNĐ<span class="discountvalue">-20%</span></div>
+                                        <div class="tien-giamoi">200.000 VNĐ<span class="discountvalue">-20%</span>
+                                        </div>
                                         <div class="tien-giacu">199.000</div>
                                     </div>
                         </div>
                     </div>
                 </div>
 
+                <div class="grid-item">
+                    <div class="grid-item-image">
+                        <img src="./imgs/product3.jpg" />
+                    </div>
+                    <div class="grid-item-content">
+                        <div class="tenhang">Son Hera Sensual Powder Matte</div>
+                        <div class="sub-info">
+                            <div class="chuabiet sub-info-flex_item">
+                                <span><i class="fas fa-star"></i></span>
+                                <span id="">72 </span><span class="format">Đánh giá</span>
+                            </div>
+                            <div class=" daban sub-info-flex_item">
+                                <span><i class="fas fa-shopping-bag"></i></span>
+                                <span id="">7k1 </span><span class="format">Đã bán</span>
+                            </div>
+                        </div>
+                        <div class=" tien">
+                            <div class="tien-icon">
+                                <i class="fas fa-money-bill"></i>
+                            </div>
+                            <div class="tien-giatien">
+                                <div class="tien-giamoi">200.000 VNĐ<span class="discountvalue">-20%</span></div>
+                                <div class="tien-giacu">199.000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="grid-item">
                     <div class="grid-item-image">
                         <img src="./imgs/product3.jpg" />
@@ -167,7 +198,7 @@
                                             <i class="fas fa-money-bill"></i>
                                         </div>
                                         <div class="tien-giatien">
-                                            <div class="tien-giamoi">200.000 VNĐ<span class="discountvalue">-20%</span></div>
+                                            <div class="tien-giamoi">200.000 VNĐ</div>
                                             <div class="tien-giacu">199.000</div>
                                         </div>
                             </div>
@@ -200,40 +231,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid-item">
-                            <div class="grid-item-image">
-                                <img src="./imgs/product3.jpg" />
-                            </div>
-                            <div class="grid-item-content">
-                                <div class="tenhang">Son Hera Sensual Powder Matte</div>
-                                <div class="sub-info">
-                                    <div class="chuabiet sub-info-flex_item">
-                                        <span><i class="fas fa-star"></i></span>
-                                        <span id="">72 </span><span class="format"">Đánh giá</span>
-                        </div>
-                        <div class=" daban sub-info-flex_item">
-                                            <span><i class="fas fa-shopping-bag"></i></span>
-                                            <span id="">7k1 </span><span class="format"">Đã bán</span>
-                        </div>
+
+
                     </div>
-                    <div class=" tien">
-                                                <div class="tien-icon">
-                                                    <i class="fas fa-money-bill"></i>
-                                                </div>
-                                                <div class="tien-giatien">
-                                                    <div class="tien-giamoi">200.000 VNĐ</div>
-                                                    <div class="tien-giacu">199.000</div>
-                                                </div>
-                                    </div>
-                                </div>
-                            </div>
+                </div>
+            </div>
 
-
-                        </div>
-    </div>
-</div>
-
-<!-- FOOTER -->           
-{{>footer}}
-
-    
+            <!-- FOOTER -->
+            {{>footer}}
