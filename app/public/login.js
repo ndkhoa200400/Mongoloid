@@ -23,7 +23,7 @@ export const login = async (email, password) => {
     console.log(err);
     let res = err.response.data;
     console.log(err.response.data);
-		alert(err.response.data.message);
+    alert(err.response.data.message);
   }
 };
 
@@ -47,8 +47,8 @@ export const signup = async (username, email, phone, password, passwordConfirm) 
         location.assign("/"); // back to home page
       }, 1000);
     } else {
-        alert(res.data.error.message);
-        
+      alert(res.data.error.message);
+
     }
   } catch (err) {
     // show alert page here
@@ -67,3 +67,26 @@ export const logout = async () => {
     alert("LOI" + err);
   }
 };
+
+export const changePassword = async (passwordCurrent, password) => {
+  try {
+    const res = await axios({
+      method: "PATCH",
+      url: "http://localhost:8000/api/user/updateMyPassword",
+      data: {
+        passwordCurrent: passwordCurrent,
+        password: password
+      }
+    });
+    if (res.data.status === 'success') {
+      alert("Đổi mật khẩu thành công");
+      window.setTimeout(() => {
+        location.assign("/"); // back to home page
+      }, 1000);
+    } else {
+      
+    }
+  } catch (error) {
+
+  }
+}

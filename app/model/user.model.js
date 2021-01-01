@@ -10,21 +10,21 @@ const userSchema = new mongoose.Schema({
         },
         username:{
             type: String,
-            require: [true, 'Username must be provided'],
+            require: [true, 'Username không được để trống'],
             unique: true,
             lowercase: true,
         },
         email: {
             type: String,
-            required: [true, 'Email must be provided'],
+            required: [true, 'Email không được để trống'],
             unique: true,
             lowercase: true,
-            validate: [validator.isEmail, 'Please provide a valid email']
+            validate: [validator.isEmail, 'Email không hợp lệ']
         },
         phone:{
             type: String,
             unique: true,
-            validate: [validator.isNumeric, 'Please provide a valid phone number']
+            validate: [validator.isNumeric, 'Số điện thoại không hợp lệ']
         },
         address: String,
         role:{
@@ -34,14 +34,14 @@ const userSchema = new mongoose.Schema({
         },
         password:{
             type: String,
-            required: [true, 'Password must be provided'],
-            minlength: 6,
+            required: [true, 'Password không được để trống'],
+            minlength: [6, 'Password phải trên 6 ký tự'],
             select: false   // Remove it from display 
         },
         passwordConfirm: {
             type: String,
             select: false ,
-            required: [true, 'Password must be provided'],
+            required: [true, 'Xác thực password không được để trống'],
             validate: {
                 // This only works on SAVE and CREATE methods
                 validator: function(el)

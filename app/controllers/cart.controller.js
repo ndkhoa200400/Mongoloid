@@ -14,3 +14,13 @@ exports.addToCart = catchAsync(async (req, res, next) => {
         return next(new AppError("Không thêm vào túi được", 400));
     }
 });
+
+exports.deleteItem = catchAsync(async (req, res, next) => {
+
+    try {
+        req.session.cart = req.session.cart.filter(item => item !== req.body.slug);
+        res.redirect('/cart');
+    } catch (error) {
+        console.log(error);
+    }
+})

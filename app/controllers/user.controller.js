@@ -48,9 +48,13 @@ exports.updateMe = catchAsync(async (req, res, next) => {
 
     await user.save();
 
-    res.status(200).json({
-        status: 'success'
-    })
+    res.status(200).send(`
+        <script> 
+            alert("Cập nhật thông tin thành công");
+            window.location.replace("/customer/${user.email}")
+        </script>
+      
+    `)
 });
 
 exports.deleteMe = catchAsync(async (req, res, next) => {

@@ -3,21 +3,20 @@ const slugify = require('slugify');
 const productSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: [true, 'A product must have a name'],
-        trim: true,
-
-        minlength: [5, 'A product name must have more or equal 5 characters'],
+        required: [true, 'Tên không được bỏ trống'],
+        trim: true   
     },
     slug: String,
     price: {
         type: Number,
-        required: [true, 'A product must have a price']
+        required: [true, 'Giá tiền không được để trống'],
+        min: [1, 'Giá tiền không hợp lệ']
     },
     images: [String],
     description: String,
     amount: {
         type: Number,
-        default: 0
+        min: [1, 'Số lượng sản phẩm không hợp lệ']
     },
     rating: {
         type: Number,
@@ -29,9 +28,8 @@ const productSchema = new mongoose.Schema({
     },
     category: {
         type: String,
-        required: [true, 'Please provide category of product'],
-        enum: ['Nón', 'Áo', 'Quần', 'Ba lô', 'none'],
-        default: 'none'
+        required: [true, 'Danh mục không được để trống'],
+        enum: ['Nón', 'Áo', 'Quần', 'Ba lô']
     },
     createdAt:
     {

@@ -8,15 +8,15 @@ $(document).ready(function(){
 
   $('.edit-pass').click(function(e) {
     e.stopPropagation();
-    if ($(".hoso").slice(-2).css('display') === "none"){
-      $(".hoso").slice(-2).css("display", "block");
+    if ($(".hoso").slice(-3).css('display') === "none"){
+      $(".hoso").slice(-3).css("display", "block");
       $(".oldpass-check").attr("required", "true");
       $(".newpass").attr("required", "true");
     }
     else {
       $(".oldpass-check").removeAttr('required').val("");
       $(".newpass").removeAttr('required').val("");
-      $(".hoso").slice(-2).css("display", "none");
+      $(".hoso").slice(-3).css("display", "none");
       
     }
     return false;

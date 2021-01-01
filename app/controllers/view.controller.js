@@ -119,12 +119,7 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     };
   }
 
-  const product = await Product.findOne(
-    { slug: req.params.slug }
-  ).populate({
-    path: "shopID"
-  })
-    .lean();
+  const product = await Product.findOne({ slug: req.params.slug }).populate({path: "shopID" }).lean();
 
   const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("product-page", {
@@ -152,8 +147,6 @@ exports.getCustomerInfo = catchAsync(async (req, res, next) => {
     };
   }
   const getCustomer = await User.findOne({ email: user.email }).lean({ virtuals: true });
-  console.log(getCustomer);
-
   res.status(200).render("customer-page", {
     user: getCustomer,
     csspath: "customer-page",
@@ -199,24 +192,33 @@ exports.getStatisticsAdmin = catchAsync(async (req, res, next) => {
 });
 
 exports.getShopInfo = catchAsync(async (req, res, next) => {
-  const userID = req.user.id;
-
-  const shop = await Shop.findOne({ sellerID: userID }).select("+joinDate").lean();
-
-  if (shop)
-    res.render('shop-infor', {
-      stylecss: 'shop-infor.css',
-      title: 'Thông tin cửa hàng',
-      shopName: shop.name,
-      shopPhone: shop.phoneContact,
-      shopAddress: 'TPHCM',
-      shopEstDay: shop.joinDate,
-      shopDescribe: shop.description,
-      numProduct: '1500',
-      numSaledProduct: '1200',
-      overallRating: '4.5',
-      billCanceledRate: '5%',
-    });
+  try {
+    const userID = req.user.id;
+    const shop = await Shop.findOne({ sellerID: userID }).select("+joinDate").lean();
+    
+    if (shop)
+      res.render('shop-infor', {
+        stylecss: 'shop-infor.css',
+        title: 'Thông tin cửa hàng',
+        shopName: shop.name,
+        shopPhone: shop.phoneContact,
+        shopAddress: 'TPHCM',
+        shopEstDay: shop.joinDate,
+        shopDescribe: shop.description,
+        numProduct: '1500',
+        numSaledProduct: '1200',
+        overallRating: '4.5',
+        billCanceledRate: '5%',
+      });
+      else{
+        res.render("error",{
+          message:"Không tìm thấy shop"        
+        })
+      }
+  } catch (error) {
+    console.log(error);
+  }
+ 
 })
 
 exports.getProductList = catchAsync(async (req, res, next) => {
@@ -265,14 +267,15 @@ exports.getCart = catchAsync(async (req, res, next) => {
       if (numProducts != 0) isEmpty = false;
 
     }
-
+    
     res.status(200).render("cart-page", {
       title: "Cart",
       user: user,
       empty: isEmpty,
       productsInCart: products,
       numProducts: numProducts,
-      totalPrice: totalPrice
+      totalPrice: totalPrice,
+      csspath: "cart-page"
     });
   } catch (error) {
     console.log(error);

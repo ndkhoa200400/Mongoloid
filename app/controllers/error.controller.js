@@ -2,6 +2,7 @@
 const AppError = require("../utils/appError");
 
 const handleCastErrorDB = (err) => {
+  
   const message = `Invalid ${err.path}: ${err.value}`;
   return new AppError(message, 400);
 };
@@ -16,6 +17,7 @@ const handleDuplicateFieldsDB = (err) => {
 };
 
 const handleValidationErrorDB = (err) => {
+
   const errors = Object.values(err.errors).map((el) => el.message);
   const mess = `Lỗi nhập dữ liệu:\n${errors.join("\n")}`;
   return new AppError(mess, 400);
@@ -76,5 +78,8 @@ module.exports = (error, req, res, next) => {
   if (error.name === "ValidationError") error = handleValidationErrorDB(error);
   if (error.name === "JsonWebTokenError") error = handleJWTError(error);
   if (error.name === "TokenExpiredError") error = handleJWTExpiredError(error);
+  
+  console.log(error);
+
   sendErrorPro(error, req, res);
 };

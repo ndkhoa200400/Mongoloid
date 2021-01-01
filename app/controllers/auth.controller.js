@@ -4,6 +4,7 @@ const catchAsync = require("./../utils/catchAsync");
 const appError = require("./../utils/appError");
 const { promisify } = require("util");
 const crypto = require("crypto");
+const { log } = require("console");
 
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
@@ -225,16 +226,17 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
-  const user = await User.findById(req.user.id).select("+password");
-
+  const user = await User.findById(req.user.id).select("+password +passwordConfirm");
+  console.log(user);
   // 2) Check if POSTed current password is correct
   if (!user.correctPassword(req.body.passwordCurrent, user.password)) {
-    return next(new appError("Your current password is wrong", 401));
+    return next(new appError("Password hiện tại không đúng", 401));
   }
 
   // 3) If so, update password
   user.password = req.body.password;
-  user.passwordConfirm = req.body.passwordConfirm;
+  user.passwordConfirm = req.body.password;
+  console.log(user);
   await user.save();
   // findByIDAndUpdate will not work
 

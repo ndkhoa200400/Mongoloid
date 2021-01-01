@@ -19,7 +19,7 @@ router.post('/beSeller', controller.beSeller);
 
 router.patch("/updateMyPassword", authController.updatePassword);
 router.get("/me", controller.getMe, controller.getUser);
-router.patch("/updateMe", controller.updateMe);
+router.post("/updateMe", controller.updateMe);
 router.delete("/deleteMe", controller.deleteMe);
 
 // Only admin can use these routes

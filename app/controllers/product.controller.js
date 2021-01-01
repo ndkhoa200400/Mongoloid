@@ -29,9 +29,9 @@ exports.createProduct = catchAsync(async (req, res, next) => {
     try {
         if (req.body) {
             req.body.amount = +req.body.amount;
-            req.body.price = +req.body.price;
+            req.body.price = +req.body.price;      
             req.body.images = [req.body.image];
-            const shop = await Product.create(req.body);
+            await Product.create(req.body);
             res.send(`
                 <script>
                     alert("Đăng sản phẩm thành công");
@@ -41,11 +41,12 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 
         }
 
-    } catch (error) {
-        console.log(error.message);
+    } catch (error) {  
+        const errors = Object.values(error.errors).map((el) => el.message);
+        const mess = `Lỗi nhập liệu: ${errors.join(", ")}`;
         res.send(`
             <script>
-                alert("${error.message}");
+                alert('${mess}');
                 window.location.replace("/add-product")
             </script>
             
@@ -54,9 +55,6 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 
     }
 
-
-
-    //await Shop.create('')
 })
 
 exports.updateProduct = factory.updateOne(Product);

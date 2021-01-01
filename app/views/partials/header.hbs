@@ -5,13 +5,16 @@
                 <a class="logo" href="/"><img class="header-logo" src="/imgs/logo.png" alt="" />
                 </a>
                 <ul>
-                    <li><a href="#">ĐƠN HÀNG</a></li>
-                    <li><a href="#">THÔNG BÁO</a></li>
-                    {{#if this.user}}
-                    {{#is this.user.role "seller"}}
-                    <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
-                    {{/is}}
 
+                    {{#if this.user}}
+                        <li><a href="#">ĐƠN HÀNG</a></li>
+                        <li><a href="#">THÔNG BÁO</a></li>
+                    {{#is this.user.role "seller"}}
+                        <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
+                    {{/is}}
+                    {{#is this.user.role "customer"}}
+                        <li><a href="/become-seller">TRỞ THÀNH NGƯỜI BÁN</a></li>
+                    {{/is}}
                     {{/if}}
                 </ul>
                 {{#if this.user}}
@@ -19,10 +22,10 @@
                     <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.name}}</a>
                     <div class="dropdown-content">
                         <a href="/customer/{{this.user.email}}">Thông tin</a>
-                       
+
                         <a href="/login" id="logout">Đăng xuất</a>
-                       
-                       
+
+
                     </div>
                 </div>
                 {{else}}
@@ -54,7 +57,7 @@
                 {{#if this.user}}
                 <div>
                     <a href="/cart"><img class="cart" src="/imgs/cart.png" /></a>
-    
+
                 </div>
                 {{/if}}
             </div>
