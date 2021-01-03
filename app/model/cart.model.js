@@ -4,7 +4,7 @@ const validator = require('validator');
 const cartSchema = new mongoose.Schema({
 
     listProduct:{
-	    type: [{product: {type: mongoose.Types.ObjectId,
+	    type: [{proID: {type: mongoose.Types.ObjectId,
             ref:'Product'}, amout: Number}],
         
 	},

@@ -36,22 +36,12 @@
             </tr>
           </thead>
           <tbody id="myTable">
-            <tr>
-              <td><a href="">Doe</a></td>
-              <td>john@example.com</td>
-            </tr>
-            <tr>
-              <td>Mary</td>
-              <td>mary@mail.com</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>july@greatstuff.com</td>
-            </tr>
-            <tr>
-              <td>Anja</td>
-              <td>a_r@test.com</td>
-            </tr>
+            {{#each accounts}}
+              <tr>
+                <td><a href="#confirm"class = "open-Confirm" data-toggle="modal" data-title="Xóa tài khoản: " data-content = "{{this.username}}" data-type = "delAcc">{{this.username}}</a></td>
+                <td>{{this.email}}</td>
+              </tr>
+            {{/each}}
           </tbody>
         </table>
       </div>
@@ -76,26 +66,51 @@
             </tr>
           </thead>
           <tbody id="myTable1">
-            <tr>
-              <td><a href="">Doe</a></td>
-              <td>john@example.com</td>
-            </tr>
-            <tr>
-              <td>Mary</td>
-              <td>mary@mail.com</td>
-            </tr>
-            <tr>
-              <td>July</td>
-              <td>july@greatstuff.com</td>
-            </tr>
-            <tr>
-              <td>Anja</td>
-              <td>a_r@test.com</td>
-            </tr>
+            {{#each shops}}
+              <tr>
+                <td><a href="#confirm"class = "open-Confirm" data-toggle="modal" data-title="Xóa cửa hàng: " data-content = "{{this.name}}" data-type = "delShop">{{this.name}}</a></td>
+                <td>{{email}}</td>
+              </tr>
+            {{/each}}
           </tbody>
         </table>
       </div>
     </div>
   </form>
 </div>
-    
+
+
+
+
+<div class="modal fade" id="confirm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Xác nhận</h3>
+      </div>
+      <div class="modal-body">
+        <p id="content"> ...</p>
+      </div>
+      <div class="modal-footer">
+          
+          <form action="/admin/deleteAccount" method="POST" id = "form">
+              <input type="hidden"  id = "del" name="name" value="">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          <button class="btn btn-primary" type="submit">Xác nhận</a>
+          </form>
+        </div></div></div>
+</div>
+<script>
+$(document).on("click", ".open-Confirm", function () {
+  var title = $(this).data('title');
+     var content = $(this).data('content');
+     $(".modal-body #content").text( title + content );
+     var type = $(this).data('type');
+     if(type === "delShop")
+      $(".modal-footer #form").attr('action', "/admin/deleteShop");
+     $(".modal-footer #del").attr('value', content);
+     // As pointed out in comments, 
+     // it is unnecessary to have to manually call the modal.
+     // $('#addBookDialog').modal('show');
+});
+</script>
