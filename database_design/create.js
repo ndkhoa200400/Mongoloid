@@ -1,123 +1,117 @@
 use shoppingWebsite
 
-db.users.drop()
-db.createCollection('users')
-db.shops.drop()
-db.createCollection('shops')
-db.vouchers.drop()
-db.createCollection('vouchers')
-db.bills.drop()
-db.createCollection('bills')
-db.products.drop()
-db.createCollection('products')
-db.reviews.drop()
-db.createCollection('reviews')
-db.carts.drop()
-db.createCollection('carts')
+db.user.drop()
+db.createCollection('user')
+db.shop.drop()
+db.createCollection('shop')
+db.voucher.drop()
+db.createCollection('voucher')
+db.bill.drop()
+db.createCollection('bill')
+db.product.drop()
+db.createCollection('product')
+db.review.drop()
+db.createCollection('review')
+db.cart.drop()
+db.createCollection('cart')
 //insert
-db.users.insertMany([
+db.user.insertMany([
 	{
-		_id: ObjectId("5ff185d606540000b70006d2"),
+		_id: 1,
 		name: "Lý Duy Nam",
 		username: "lyduynam",
 		email: "lyduynam@gmail.com",
     phone: "123456789",
     address: "HCM",
 		role: 'seller',
-    password: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordConfirm: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordChangedAt: new Date(2020, 10, 1),
+    password: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordConfirm: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordChangedAt: new Date(2020, 1, 1),
     passwordResetToken: "abc",
-    passwordResetExpires: new Date(2020, 10, 1),
-    active:true,
-		openDate: new Date(2020, 10, 1),
+    passwordResetExpires: new Date(2020, 1, 1),
+    active:true
 	},
 	{
-		_id: ObjectId("5ff185d606540000b70006d3"),
+		_id: 2,
 		name: "Nguyễn Đăng Khoa",
 		username: "nguyendangkhoa",
 		email: "nguyendangkhoa@gmail.com",
     phone: "123456789",
     address: "HCM",
 		role: 'seller',
-    password: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordConfirm: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordChangedAt: new Date(2020, 11, 1),
+    password: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordConfirm: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordChangedAt: new Date(2020, 1, 1),
     passwordResetToken: "abc",
-    passwordResetExpires: new Date(2020, 11, 1),
-    active:true,
-		openDate: new Date(2020, 11, 1),
+    passwordResetExpires: new Date(2020, 1, 1),
+    active:true
 	},
 	{
-		_id: ObjectId("5ff185d606540000b70006d4"),
+		_id: 3,
 		name: "Lê Văn Thuận Mỹ",
 		username: "levanthuanmy",
 		email: "levanthuanmy@gmail.com",
     phone: "123456789",
     address: "HCM",
 		role: 'seller',
-    password: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordConfirm: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordChangedAt: new Date(2020, 12, 1),
+    password: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordConfirm: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordChangedAt: new Date(2020, 1, 1),
     passwordResetToken: "abc",
-    passwordResetExpires: new Date(2020, 12, 1),
-    active:true,
-		openDate: new Date(2020, 12, 1),
+    passwordResetExpires: new Date(2020, 1, 1),
+    active:true
 	},
 	{
-		_id: ObjectId("5ff185d606540000b70006d5"),
+		_id: 4,
 		name: "Lê Trần Trúc Vân",
 		username: "letrantrucvan",
 		email: "letrantrucvan@gmail.com",
     phone: "123456789",
     address: "HCM",
 		role: 'custommer',
-    password: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordConfirm: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordChangedAt: new Date(2020, 12, 1),
+    password: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordConfirm: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordChangedAt: new Date(2020, 1, 1),
     passwordResetToken: "abc",
-    passwordResetExpires: new Date(2020, 12, 1),
-    active:true,
-		openDate: new Date(2020, 12, 1),
+    passwordResetExpires: new Date(2020, 1, 1),
+    active:true
 	},
 	{
-		_id: ObjectId("5ff185d606540000b70006d6"),
+		_id: 5,
 		name: "Nguyễn Hoàng Minh",
 		username: "nguyenhoangminh",
 		email: "nguyenhoangminh@gmail.com",
     phone: "123456789",
     address: "HCM",
 		role: 'custommer',
-    password: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordConfirm: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordChangedAt: new Date(2020, 12, 1),
+    password: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordConfirm: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordChangedAt: new Date(2020, 1, 1),
     passwordResetToken: "abc",
-    passwordResetExpires: new Date(2020, 12, 1),
-    active:true,
-		openDate: new Date(2020, 12, 1),
+    passwordResetExpires: new Date(2020, 1, 1),
+    active:true
 	},
 	{
-		_id: ObjectId("5ff185d606540000b70006d7"),
+		_id: 6,
 		name: "Admin",
 		username: "admin",
 		email: "admin@gmail.com",
     phone: "123456789",
     address: "HCM",
 		role: 'admin',
-    password: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
-    passwordConfirm: "$2b$12$pWlLNq797QIJvBDeEGfqRumNPZ/G0dmiSbwNDyAfGXqOvfnI1TK7K",
+    password: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
+    passwordConfirm: "$10$cfmhlg7mycT8bKPgbjk5EetFP3pPpS.Wooh9tZ1IQgrlZscTMqkGO",
     passwordChangedAt: new Date(2020, 1, 1),
     passwordResetToken: "abc",
     passwordResetExpires: new Date(2020, 1, 1),
-    active:true,
-		openDate: new Date(2020, 8, 1),
+    active:true
 	}
 ]
 )
-db.shops.insertMany([
+db.shop.insertMany([
 	{
-		_id: ObjectId("5ff19b7f06540000b7000706"),
-		sellerID: ObjectId("5ff185d606540000b70006d2"),
+		_id: 1,
+		sellerID: 1,
 		name: "Shop này vip nhất",
 		logo: "",
 		rating: 5.0,
@@ -128,8 +122,8 @@ db.shops.insertMany([
 		
 	},
 	{
-		_id: ObjectId("5ff19b7f06540000b7000707"),
-		sellerID: ObjectId("5ff185d606540000b70006d3"),
+		_id: 2,
+		sellerID: 2,
 		name: "Shop cùi",
 		logo: "",
 		rating: 5.0,
@@ -140,8 +134,8 @@ db.shops.insertMany([
 		
 	},
 	{
-		_id: ObjectId("5ff19b7f06540000b7000708"),
-		sellerID: ObjectId("5ff185d606540000b70006d4"),
+		_id: 3,
+		sellerID: 3,
 		name: "Shop bán đồ lót",
 		logo: "",
 		rating: 5.0,
@@ -152,203 +146,225 @@ db.shops.insertMany([
 		
 	}
 ])
-db.vouchers.insertMany([
+db.voucher.insertMany([
 	{
-		_id: ObjectId("5ff19b7f06540000b7000809"),
+		_id: 1,
 		code: "ABCXYZ",
     discount: 0.2,
     openDate: new Date (2020, 1, 1),
     closeDate:new Date (2020, 2, 2),
-    shopID: ObjectId("5ff19b7f06540000b7000706"),
+    shopID: 1,
 	}
 ])
-db.products.insertMany([
+db.product.insertMany([
 	{
-		_id: ObjectId("5ff1896f06540000b70006dc"),
+		_id: 1,
 		name: "Áo phông trắng xinh xắn",
 		price: 500000,
 		images: ["/public/imgs/anh1.jpg", "/public/imgs/anh3.jpg"],
 		description: "Áo để mặc",
 		amount: 10,
 		rating: 3,
-		shopID: ObjectId("5ff19b7f06540000b7000706"),
+		shopID: 1,
 		category: "Áo", 
 		createdAt: new Date (2020, 1, 1),
-		slug: "ao-phong-xinh-xan",
-
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006dd"),
+		_id: 2,
 		name: "Nón pikachu",
 		price: 200000,
-		images: ["/public/imgs/nonvang.jpg"],
+		images: ["/public/imgs/product8.jpg"],
 		description: "Nón bảo hiểm khi tham gia giao thông",
 		amount: 4,
 		rating: 5,
-		shopID: ObjectId("5ff19b7f06540000b7000706"),
+		shopID: 1,
 		category: "Nón", 
 		createdAt: new Date (2020, 1, 1), 
-		slug: "non0vang-pikachu"
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006de"),
+		_id: 3,
 		name: "Áo MC",
 		price: 100000,
 		images: ["/public/imgs/product8.jpg"],
 		description: "Áo để mặc đi đá banh",
 		amount: 0,
 		rating: 3,
-		shopID: ObjectId("5ff19b7f06540000b7000706"),
+		shopID: 1,
 		category: "Áo",
-		createdAt: new Date (2020, 1, 1),
-		slug: "ao-da-banh",
+		createdAt: new Date (2020, 1, 1)
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006df"),
+		_id: 4,
 		name: "Ba lô đen",
 		price: 100000,
 		images: ["/public/imgs/product5.jpg"],
 		description: "Ba lô đi học",
 		amount: 2,
 		rating: 3,
-		shopID:ObjectId("5ff19b7f06540000b7000707"),
+		shopID: 2,
 		category: "Ba lô",
-		createdAt: new Date (2020, 1, 1),
-		slug: "ba-lo-den",
+		createdAt: new Date (2020, 1, 1)
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006e0"),
+		_id: 5,
 		name: "Áo Mickey",
 		price: 100000,
 		images: ["/public/imgs/product3.jpg"],
 		description: "Áo để mặc",
 		amount: 2,
 		rating: 3,
-		shopID: ObjectId("5ff19b7f06540000b7000707"),
+		shopID: 2,
 		category: "Áo",
-		createdAt: new Date (2020, 1, 1),
-		slug:"ao-mickey",
+		createdAt: new Date (2020, 1, 1)
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006e1"),
+		_id: 6,
 		name: "Túi xách",
 		price: 100000,
-		images: ["/public/imgs/product9.jpg"],
+		images: ["/public/imgs/product3.jpg"],
 		description: "Túi xách đi dự tiệc",
 		amount: 2,
 		rating: 3,
-		shopID: ObjectId("5ff19b7f06540000b7000707"),
+		shopID: 2,
 		category: "Áo",
-		createdAt: new Date (2020, 1, 1),
-		slug: "tui-xach-du-tiec"
+		createdAt: new Date (2020, 1, 1)
 	},
-	
 	{
-		_id: ObjectId("5ff1896f06540000b70006e2"),
+		_id: 7,
+		name: "Túi xách",
+		price: 100000,
+		images: ["/public/imgs/product3.jpg"],
+		description: "Túi xách đi dự tiệc",
+		amount: 2,
+		rating: 3,
+		shopID: 2,
+		category: "Áo",
+		createdAt: new Date (2020, 1, 1)
+	},
+	{
+		_id: 8,
 		name: "Quần vải",
 		price: 50000,
 		images: ["/public/imgs/anh2.jpg"],
 		amount: 4,
 		rating: 4,
-		shopID: ObjectId("5ff19b7f06540000b7000708"),
+		shopID: 3,
 		category: "Quần",
-		createdAt: new Date (2020, 1, 1),
-		slug: "quan-vai",
+		createdAt: new Date (2020, 1, 1)
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006e3"),
+		_id: 9,
 		name: "Áo đen nữ",
 		price: 50000,
 		images: ["/public/imgs/swe1.jpg"],
 		amount: 4,
 		rating: 4,
-		shopID: ObjectId("5ff19b7f06540000b7000708"),
+		shopID: 3,
 		category: "Áo",
-		createdAt: new Date (2020, 1, 1),
-		slug: "ao-den-nu",
+		createdAt: new Date (2020, 1, 1)
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006e4"),
+		_id: 10,
 		name: "Áo trắng nữ",
 		price: 50000,
 		images: ["/public/imgs/swe2.jpg"],
 		amount: 4,
 		rating: 4,
-		shopID: ObjectId("5ff19b7f06540000b7000708"),
+		shopID: 3,
 		category: "Áo",
-		createdAt: new Date (2020, 1, 1),
-		slug: "ao-trang-nu"
+		createdAt: new Date (2020, 1, 1)
 	},
 	{
-		_id: ObjectId("5ff1896f06540000b70006e5"),
+		_id: 11,
 		name: "Áo đôi",
 		price: 50000,
 		images: ["/public/imgs/swe3.jpg"],
 		amount: 4,
 		rating: 4,
-		shopID: ObjectId("5ff19b7f06540000b7000708"),
+		shopID: 3,
 		category: "Áo",
-		createdAt: new Date (2020, 1, 1),
-		slug: "ao-doi"
+		createdAt: new Date (2020, 1, 1)
 	}
 ])
-db.bills.insertMany([
+db.bill.insertMany([
 	{
-		listProduct: [{proID: ObjectId("5ff1896f06540000b70006dc"), amount: 1},{proID: ObjectId("5ff1896f06540000b70006dd"), amount: 2}, {proID: ObjectId("5ff1896f06540000b70006e1"), amount: 2}],
+		_id: 1,
+		listProduct: [{proID: 1, amout: 1},{proID: 2, amout: 2}, {proID: 7, amout: 2}],
 		time: new Date(2020, 1, 1),
-		customer: ObjectId("5ff185d606540000b70006d2")
+		customer: 1
 	},
 	{
-		listProduct: [{proID: ObjectId("5ff1896f06540000b70006dc"), amount: 1}],
+		_id: 2,
+		listProduct: [{proID: 1, amout: 1}],
 		time: new Date(2020, 1, 1),
-		customer: ObjectId("5ff185d606540000b70006d5")
+		customer: 3
 	},
 	{
-		listProduct: [{proID: ObjectId("5ff1896f06540000b70006dd"), amount: 1},{proID: ObjectId("5ff1896f06540000b70006e4"), amount: 2}],
+		_id: 3,
+		listProduct: [{proID: 2, amout: 1},{proID: 10, amout: 2}],
 		time: new Date(2020, 1, 1),
-		customer: ObjectId("5ff185d606540000b70006d6")
-	},
-	{
-		listProduct: [{proID: ObjectId("5ff1896f06540000b70006de"), amount: 2},{proID: ObjectId("5ff1896f06540000b70006e4"), amount: 2}],
-		time: new Date(2020, 1, 1),
-		customer: ObjectId("5ff185d606540000b70006d6")
+		customer: 5
 	}
 ]);
-
-db.reviews.insertMany([
+db.cart.insertMany([
 	{
+		_id: 1,
+		listProduct: [{proID: 1, amout: 1},{proID: 2, amout: 2}],
+		time: new Date(2020, 1, 1),
+		customer: 1
+	},
+	{
+		_id: 2,
+		listProduct: [{proID: 5, amout: 1},{proID: 6, amout: 2}],
+		time: new Date(2020, 1, 1),
+		customer: 3
+	},
+	{
+		_id: 3,
+		listProduct: [{proID: 2, amout: 1},{proID: 10, amout: 2}],
+		time: new Date(2020, 1, 1),
+		customer: 5
+	}
+])
+db.review.insertMany([
+	{
+		_id: 1,
 		review: "Sản phẩm này quá tốt",
 		rating: 5,
 		creatAt: new Date(2020, 1, 1),
-		product: ObjectId("5ff1896f06540000b70006dc"),
-		user: ObjectId("5ff185d606540000b70006d6")
+		product: 1,
+		user: 5
 	},
 	{
+		_id: 2,
 		review: "Sản phẩm xấu quá",
 		rating: 1,
 		creatAt: new Date(2020, 1, 1),
-		product: ObjectId("5ff1896f06540000b70006dc"),
-		user: ObjectId("5ff185d606540000b70006d5")
+		product: 1,
+		user: 4
 	},
 	{
+		_id: 3,
 		review: "Đẹp",
 		rating: 5,
 		creatAt: new Date(2020, 1, 1),
-		product: ObjectId("5ff1896f06540000b70006e4"),
-		user: ObjectId("5ff185d606540000b70006d6")
+		product: 10,
+		user: 5
 	},
 	{
+		_id: 4,
 		review: "Sản phẩm này quá tốt",
 		rating: 5,
 		creatAt: new Date(2020, 1, 1),
-		product: ObjectId("5ff1896f06540000b70006df"),
-		user: ObjectId("5ff185d606540000b70006d2")
+		product: 4,
+		user: 5
 	},
 	{
+		_id: 5,
 		review: "Đẹp",
 		rating: 5,
 		creatAt: new Date(2020, 1, 1),
-		product: ObjectId("5ff1896f06540000b70006dc"),
-		user: ObjectId("5ff185d606540000b70006d3")
+		product: 1,
+		user: 1
 	},
 ])

@@ -4,7 +4,7 @@ const validator = require('validator');
 const billSchema = new mongoose.Schema({
 
     listProduct:{
-	    type: [{proID: {type: mongoose.Types.ObjectId,
+	    type: [{product: {type: mongoose.Types.ObjectId,
             ref:'Product'}, amout: Number}],
         
 	},

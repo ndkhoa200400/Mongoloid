@@ -42,8 +42,8 @@ router.get('/customer/:mail', controller.getCustomerInfo);
 router.get('/admin', controller.getAccountAdmin);
 //view statistics
 router.get('/admin/statistics', controller.getStatisticsAdmin);
-router.post('/admin/deleteAccount', controller.deleteAccount);
-router.post('/admin/deleteShop', controller.deleteShop);
+
+
 
 //test shop channel
 //view shop information

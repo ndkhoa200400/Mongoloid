@@ -58,10 +58,6 @@ const userSchema = new mongoose.Schema({
             type: Boolean,
             default: true,
             select: false
-        },
-        openDate:{
-            type: Date,
-            default: Date.now(),
         }
     }
 )

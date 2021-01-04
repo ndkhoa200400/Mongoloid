@@ -10,14 +10,10 @@ const app = express();
 const hbsHelpers = require('handlebars-helpers')();
 const hbs_sections = require('express-handlebars-sections');
 const session = require('express-session');
-const handlebars=require('handlebars')
 app.use(express.static(path.join(__dirname, "./", "/public")));
 app.use('/public', express.static('public'))
 //this required before view engine setup
-handlebars.registerHelper("inc", function(value, options)
-{
-    return parseInt(value) + 1;
-});
+
 app.set('views', path.join(__dirname, 'views'));
 
 app.engine('hbs', exphbs({
