@@ -3,7 +3,7 @@ const Product = require("../model/product.model");
 const catchAsync = require("../utils/catchAsync");
 const axios = require("axios");
 const Shop = require("../model/shop.model");
-
+const pagination = require('./../utils/pagination');
 
 exports.getHome = catchAsync(async (req, res, next) => {
   let user = res.locals.user;
@@ -27,7 +27,19 @@ exports.getHome = catchAsync(async (req, res, next) => {
 
 
 exports.getOverview = catchAsync(async (req, res, next) => {
-  var product = await Product.find().lean();
+  let page = req.query.page || 1;
+  if (page < 1) page = 1;
+  const total = await Product.count()
+  .lean({ virtuals: true });
+
+  const page_numbers = pagination.calcPageNumbers(total, page);
+  const offset = pagination.calcOffset(page);
+  const next_page = pagination.calcNextPage(page, page_numbers);
+  const prev_page = pagination.calcPreviousPage(page, page_numbers);
+
+  const product = await Product.find().limit(pagination.limit).skip(offset)
+    .lean({ virtuals: true });
+
   let user = res.locals.user;
   if (user) {
     if (!user.name) user.name = user.username;
@@ -38,6 +50,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
     };
   }
   const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
+
   res.status(200).render("category", {
     title: "Category",
     category,
@@ -46,13 +59,27 @@ exports.getOverview = catchAsync(async (req, res, next) => {
     csspath: "category-page",
     layout: "default",
     user: user,
+    page_numbers,
+    next_page,
+    prev_page
   });
 });
 
 exports.ProByCat = catchAsync(async (req, res, next) => {
   const catName = req.param('cat');
-  const product = await Product.find({ category: catName })
+  let page = req.query.page || 1;
+  if (page < 1) page = 1;
+  const total = await Product.count({ category: catName })
+  .lean({ virtuals: true });
+
+  const page_numbers = pagination.calcPageNumbers(total, page);
+  const offset = pagination.calcOffset(page);
+  const next_page = pagination.calcNextPage(page, page_numbers);
+  const prev_page = pagination.calcPreviousPage(page, page_numbers);
+  
+  const product = await Product.find({ category: catName }).limit(pagination.limit).skip(offset)
     .lean({ virtuals: true });
+
   let user = res.locals.user;
   if (user) {
     if (!user.name) user.name = user.username;
@@ -71,6 +98,9 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
     empty: product === null,
     csspath: "category-page",
     layout: 'default',
+    page_numbers,
+    next_page,
+    prev_page
   })
 });
 
