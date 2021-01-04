@@ -8483,7 +8483,8 @@ exports.login = login;
 
 var signup = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(username, email, phone, password, passwordConfirm) {
-    var res;
+    var res, _res2;
+
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
       while (1) {
         switch (_context2.prev = _context2.next) {
@@ -8515,16 +8516,16 @@ var signup = /*#__PURE__*/function () {
               alert(res.data.error.message);
             }
 
-            _context2.next = 11;
+            _context2.next = 12;
             break;
 
           case 8:
             _context2.prev = 8;
             _context2.t0 = _context2["catch"](0);
-            // show alert page here
-            console.log(_context2.t0);
+            _res2 = _context2.t0.response.data;
+            alert(_res2.message);
 
-          case 11:
+          case 12:
           case "end":
             return _context2.stop();
         }
@@ -8541,7 +8542,8 @@ exports.signup = signup;
 
 var logout = /*#__PURE__*/function () {
   var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3() {
-    var res;
+    var res, _res3;
+
     return regeneratorRuntime.wrap(function _callee3$(_context3) {
       while (1) {
         switch (_context3.prev = _context3.next) {
@@ -8555,16 +8557,16 @@ var logout = /*#__PURE__*/function () {
 
           case 3:
             res = _context3.sent;
-            _context3.next = 9;
+            _context3.next = 10;
             break;
 
           case 6:
             _context3.prev = 6;
             _context3.t0 = _context3["catch"](0);
-            // show alert page here
-            alert("LOI" + _context3.t0);
+            _res3 = error.response.data;
+            alert(_res3.message);
 
-          case 9:
+          case 10:
           case "end":
             return _context3.stop();
         }
@@ -8581,7 +8583,8 @@ exports.logout = logout;
 
 var changePassword = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee4(passwordCurrent, password) {
-    var res;
+    var res, _res4;
+
     return regeneratorRuntime.wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
@@ -8603,18 +8606,23 @@ var changePassword = /*#__PURE__*/function () {
             if (res.data.status === 'success') {
               alert("Đổi mật khẩu thành công");
               window.setTimeout(function () {
-                location.assign("/"); // back to home page
+                location.reload(); // back to home page
               }, 1000);
-            } else {}
+            } else {
+              console.log(res.data);
+            }
 
-            _context4.next = 9;
+            _context4.next = 12;
             break;
 
           case 7:
             _context4.prev = 7;
             _context4.t0 = _context4["catch"](0);
+            _res4 = _context4.t0.response.data;
+            console.log(_res4);
+            alert(_res4.message);
 
-          case 9:
+          case 12:
           case "end":
             return _context4.stop();
         }
@@ -8961,7 +8969,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56134" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "53634" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

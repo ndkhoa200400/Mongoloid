@@ -51,8 +51,8 @@ export const signup = async (username, email, phone, password, passwordConfirm) 
 
     }
   } catch (err) {
-    // show alert page here
-    console.log(err);
+    let res = err.response.data;
+    alert(res.message)
   }
 };
 export const logout = async () => {
@@ -63,8 +63,9 @@ export const logout = async () => {
     });
 
   } catch (err) {
-    // show alert page here
-    alert("LOI" + err);
+    let res = error.response.data;
+
+    alert(res.message)
   }
 };
 
@@ -81,12 +82,15 @@ export const changePassword = async (passwordCurrent, password) => {
     if (res.data.status === 'success') {
       alert("Đổi mật khẩu thành công");
       window.setTimeout(() => {
-        location.assign("/"); // back to home page
+        location.reload(); // back to home page
       }, 1000);
     } else {
-      
+   
+      console.log(res.data);
     }
   } catch (error) {
-
+    let res = error.response.data;
+    console.log(res);
+    alert(res.message)
   }
 }

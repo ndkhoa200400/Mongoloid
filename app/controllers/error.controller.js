@@ -79,7 +79,7 @@ module.exports = (error, req, res, next) => {
   if (error.name === "JsonWebTokenError") error = handleJWTError(error);
   if (error.name === "TokenExpiredError") error = handleJWTExpiredError(error);
   
-  console.log(error);
+  
 
   sendErrorPro(error, req, res);
 };

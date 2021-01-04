@@ -64,7 +64,7 @@ exports.login = catchAsync(async (req, res, next) => {
   // 1) Check if email or username and password exist
   if ((!email) || !password) {
     return next(
-      new appError("Please provide email or username and password!", 400)
+      new appError("Vui lòng điền đủ thông tin!", 400)
     );
   }
 
@@ -119,7 +119,7 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
   if (!token) {
     return next(
-      new appError("You are not logged in! Please log in to get access", 401)
+      new appError("Vui lòng đăng nhập để truy cập chức năng này!", 401)
     );
   }
   // 2) Verification token
@@ -150,7 +150,7 @@ exports.restrictTo = (...roles) => {
     // roles ['admin', 'seller']
     if (!roles.includes(req.user.role)) {
       return next(
-        new appError("You do not have permission to perform this action", 403)
+        new appError("Bạn không có quyền truy cập chức năng này", 403)
       );
     }
     next();
@@ -227,16 +227,15 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   const user = await User.findById(req.user.id).select("+password +passwordConfirm");
-  console.log(user);
+  console.log(req.body.passwordCurrent);
   // 2) Check if POSTed current password is correct
-  if (!user.correctPassword(req.body.passwordCurrent, user.password)) {
+  if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
     return next(new appError("Password hiện tại không đúng", 401));
   }
 
   // 3) If so, update password
   user.password = req.body.password;
   user.passwordConfirm = req.body.password;
-  console.log(user);
   await user.save();
   // findByIDAndUpdate will not work
 
