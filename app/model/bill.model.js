@@ -5,13 +5,13 @@ const billSchema = new mongoose.Schema({
 
     listProduct:{
 	    type: [{product: {type: mongoose.Types.ObjectId,
-            ref:'Product'}, amout: Number}],
+            ref:'Product'}, amount: Number}],
         
 	},
     time:{
         type: Date,
         default: Date.now(),
-        select: false
+        select: true
     },
     customer:{
         type: mongoose.Types.ObjectId,
