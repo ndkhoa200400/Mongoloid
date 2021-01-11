@@ -10,6 +10,9 @@ const app = express();
 const hbsHelpers = require('handlebars-helpers')();
 const hbs_sections = require('express-handlebars-sections');
 const session = require('express-session');
+const moment = require('moment');
+
+
 app.use(express.static(path.join(__dirname, "./", "/public")));
 app.use('/public', express.static('public'))
 //this required before view engine setup
@@ -25,6 +28,9 @@ app.engine('hbs', exphbs({
       section: hbs_sections(),
       format_number(val) {
         return numeral(val).format('0,0');
+      },
+      format_date(val) {
+        return moment(val).format('L');
       },
       hbsHelpers
     }
