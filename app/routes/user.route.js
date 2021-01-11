@@ -6,6 +6,18 @@ const controller = require("../controllers/user.controller");
 const router = express.Router();
 router.use(express.static('public'));
 router.get("/logout", authController.logout)
+router.post("/signup/otp", authController.otp);
+router.post("/signup/resendOtp", authController.resendOtp);
+router.get('/signup/otp', (req, res) => {
+  console.log(req.session)
+  res.render('otp_page', {
+      title: 'Xin chào',
+      layout: false,
+      message: "",
+     email: req.session.register.body.email,
+
+  })
+});
 router.post("/signup", authController.signup);
 router.post("/login", authController.login);
 

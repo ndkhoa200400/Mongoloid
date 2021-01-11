@@ -68,10 +68,25 @@ exports.logout = (req, res) => {
 };
 
 exports.signup = async (req, res, next) => {
+  console.log("do")
+  const opt = req.session.register.otp;
+  const userOtp = req.body.otp;
+  const body = req.session.register.body
+  console.log(opt + " " + userOtp)
+  if (opt != userOtp){
+    return res.render('otp_page', {
+      title: 'Xin chào',
+      layout: false,
+      message: "Mã xác nhận không đúng",
+      email: body.email,
 
+  })
+  }
+  
   try {
-    const newUser = await User.create(req.body);
+    const newUser = await User.create(body);
     createToken(newUser, 201, res);
+    console.log("dk xog")
     res.redirect('/')
   } catch (e) {
     return res.send(`
@@ -82,7 +97,88 @@ exports.signup = async (req, res, next) => {
     `)
   }
 };
+exports.otp = catchAsync(async(req,res,next)=>{
+  var nodemailer = require("nodemailer"); // gửi otp
+  // gửi OTP
+  function generateOTP() {
+    var digits = "0123456789";
+    let OTP = "";
+    for (let i = 0; i < 6; i++) {
+      OTP += digits[Math.floor(Math.random() * 10)];
+    }
+    return OTP;
+  }
+  
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "mongoloidad@gmail.com", //email ID
+      pass: "Mongoloid@admin", //Password
+    },
+  });
+  function sendMail(email, otp) {
+    var details = {
+      from: "mongoloidad@gmail.com", // sender address same as above
+      to: email, // Receiver's email id
+      subject: "OTP verification", // Subject of the mail.
+      html: otp, // Sending OTP
+    };
 
+    transporter.sendMail(details, function (error, data) {
+      if (error) console.log(error);
+      else console.log(data);
+    });
+  }
+
+  var otp = generateOTP();
+  sendMail(req.body.email, otp);
+
+  req.session.register = {
+    body:req.body,
+    otp,
+  };
+  console.log("ok")
+  res.redirect("/user/signup/otp");
+})
+exports.resendOtp = catchAsync(async(req,res,next)=>{
+  var nodemailer = require("nodemailer"); // gửi otp
+  // gửi OTP
+  function generateOTP() {
+    var digits = "0123456789";
+    let OTP = "";
+    for (let i = 0; i < 6; i++) {
+      OTP += digits[Math.floor(Math.random() * 10)];
+    }
+    return OTP;
+  }
+  
+  var transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: "mongoloidad@gmail.com", //email ID
+      pass: "Mongoloid@admin", //Password
+    },
+  });
+  function sendMail(email, otp) {
+    var details = {
+      from: "mongoloidad@gmail.com", // sender address same as above
+      to: email, // Receiver's email id
+      subject: "OTP verification", // Subject of the mail.
+      html: otp, // Sending OTP
+    };
+
+    transporter.sendMail(details, function (error, data) {
+      if (error) console.log(error);
+      else console.log(data);
+    });
+  }
+
+  var otp = generateOTP();
+  sendMail(req.session.register.body.email, otp);
+
+  req.session.register.otp = otp;
+  res.redirect("/user/signup/otp");
+})
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
   
