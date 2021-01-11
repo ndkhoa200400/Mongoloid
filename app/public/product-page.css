@@ -169,7 +169,7 @@
 }
 
 input[type="text"] {
-    width: 80%;
+    width: 350px;
     padding: 6px 6px;
     font-size: 14px;
     border-radius: 0px;
@@ -313,7 +313,7 @@ input[type="text"] {
 
 .buy-now {
     height: 45px;
-    width: 45%;
+    width: 90%;
     background-color: crimson;
     color: white;
     font-size: 20px;
@@ -325,7 +325,7 @@ input[type="text"] {
 
 .add-cart {
     height: 45px;
-    width: 50%;
+    width: 90%;
     background-color: white;
     color: crimson;
     font-weight: bold;
