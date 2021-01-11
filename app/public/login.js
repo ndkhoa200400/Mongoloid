@@ -3,13 +3,12 @@ export const login = async (email, password) => {
   try {
     const res = await axios({
       method: "POST",
-      url: "http://localhost:8000/api/user/login",
+      url: "http://localhost:8000/user/login",
       data: {
         email,
         password,
       },
-    });
-    console.log("OK");
+    }); 
     if (res.data.status === "success") {
       alert("Đăng nhập thành công");
       window.setTimeout(() => {
@@ -31,7 +30,7 @@ export const signup = async (username, email, phone, password, passwordConfirm) 
   try {
     const res = await axios({
       method: "POST",
-      url: "http://localhost:8000/api/user/signup",
+      url: "http://localhost:8000/user/signup",
       data: {
         username,
         email,
@@ -56,10 +55,11 @@ export const signup = async (username, email, phone, password, passwordConfirm) 
   }
 };
 export const logout = async () => {
+  console.log('ok');
   try {
     const res = await axios({
       method: "GET",
-      url: "http://localhost:8000/api/user/logout",
+      url: "http://localhost:8000/user/logout",
     });
 
   } catch (err) {
@@ -73,7 +73,7 @@ export const changePassword = async (passwordCurrent, password) => {
   try {
     const res = await axios({
       method: "PATCH",
-      url: "http://localhost:8000/api/user/updateMyPassword",
+      url: "http://localhost:8000/user/updateMyPassword",
       data: {
         passwordCurrent: passwordCurrent,
         password: password

@@ -6,70 +6,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mongoloid - {{title}} </title>
     <link rel="stylesheet" type="text/css" href="./login_page.css">
-        <script src="./login_page.js"></script>
-        
+    <script src="./login_page.js"></script>
+
 </head>
 
 <body>
     <div class="container">
         <div id="login" class="container--login">
-            <form class="form--login">
-            <div class="mail" >
-                <input id="email" autocomplete="off" type="text" name="email" required>
-                <label for="user-mail" class="label-mail">
-                    <span class="content-mail">Mail or Username</span>
-                </label>
-            </div>
-            <div class="password">
-                <input  id="password" autocomplete="off" type="password" name="password" required>
-                <label for="password" class="label-password">
-                    <span class="content-password">Password</span>
-                </label>
-            </div>
-            
-            
-            <button type="submit" class="signin-button">SIGN IN</button>
-            
-            
-            <a class="forgot-password" href="#">Forgot your password?</a>
+            <form class="form--login" action='/user/login' method="POST">
+                <div class="mail">
+                    <input id="email" autocomplete="off" type="text" name="email" required>
+                    <label for="user-mail" class="label-mail">
+                        <span class="content-mail">Mail or Username</span>
+                    </label>
+                </div>
+                <div class="password">
+                    <input id="password" autocomplete="off" type="password" name="password" required>
+                    <label for="password" class="label-password">
+                        <span class="content-password">Password</span>
+                    </label>
+                </div>
+
+
+                <button type="submit" class="signin-button">SIGN IN</button>
+
+
+                <a class="forgot-password" href="#">Forgot your password?</a>
             </form>
-        
+
         </div>
         <div id="signup" class="container--signup" hidden>
-            <form  class="form--signup">
-            <div class="username">
-                <input id="s-username" autocomplete="off" type="text" name="username" required>
-                <label for="username" class="label-username">
-                    <span class="content-username">Username</span>
-                </label>
-            </div>
-            <div class="mail">
-                <input id="s-mail" autocomplete="off" type="text" name="email" required>
-                <label for="user-mail" class="label-mail">
-                    <span class="content-mail">Mail</span>
-                </label>
-            </div>    
-              <div class="phone">
-                <input id="s-phone" autocomplete="off" type="text" name="phone" required>
-                <label for="user-phone" class="label-phone">
-                    <span class="content-mail">Phone</span>
-                </label>
-            </div>         
-            <div class="password">
-                <input id="s-password" autocomplete="off" type="password" name="password" required>
-                <label for="password" class="label-password">
-                    <span class="content-password">Password</span>
-                </label>
-            </div>
-            <div class="password">
-                <input id="s-password-confirm" autocomplete="off" type="password" name="password" required>
-                <label for="password-confirm" class="label-password">
-                    <span class="content-password">Password Confirm</span>
-                </label>
-            </div>
+            <form class="form--signup" action='/user/signup' method="POST">
+                <div class="username">
+                    <input id="s-username" autocomplete="off" type="text" name="username" required>
+                    <label for="username" class="label-username">
+                        <span class="content-username">Username</span>
+                    </label>
+                </div>
+                <div class="mail">
+                    <input id="s-mail" autocomplete="off" type="text" name="email" required>
+                    <label for="user-mail" class="label-mail">
+                        <span class="content-mail">Mail</span>
+                    </label>
+                </div>
+                <div class="phone">
+                    <input id="s-phone" autocomplete="off" type="text" name="phone" required>
+                    <label for="user-phone" class="label-phone">
+                        <span class="content-mail">Phone</span>
+                    </label>
+                </div>
+                <div class="password">
+                    <input id="s-password" autocomplete="off" type="password" name="password" required>
+                    <label for="password" class="label-password">
+                        <span class="content-password">Password</span>
+                    </label>
+                </div>
+                <div class="password">
+                    <input id="s-password-confirm" autocomplete="off" type="password" name="passwordConfirm" required>
+                    <label for="password-confirm" class="label-password">
+                        <span class="content-password">Password Confirm</span>
+                    </label>
+                </div>
                 <button type="submit" class="signup-button">SIGN UP</button>
-            
-         </form>   
+
+            </form>
         </div>
         <div id="switching" class="container--switch">
             <div class="container__bg">
@@ -77,15 +77,15 @@
             <div>
                 <button onclick="switchStatus()" type="button" id="switch-button">SIGN UP</button>
             </div>
-            <div class="switch-text-right" id ="switch-text">
+            <div class="switch-text-right" id="switch-text">
                 Welcome!
                 <p>Don't have any account?</p>
             </div>
-            
+
         </div>
-        
+
     </div>
-    
+
 </body>
 
 </html>

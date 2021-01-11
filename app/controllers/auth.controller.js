@@ -4,13 +4,33 @@ const catchAsync = require("./../utils/catchAsync");
 const appError = require("./../utils/appError");
 const { promisify } = require("util");
 const crypto = require("crypto");
-const { log } = require("console");
+const alert = require('alert')
 
 const signToken = (id) => {
   return jwt.sign({ id: id }, process.env.JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 };
+
+const createToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+  const cookieOptions = {
+    // options for cookie
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000
+    ),
+    httpOnly: true, // prevent XSS atack
+  };
+
+  // Khi ở production mới set sercure = true để HTTPS protect cookie
+  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+
+  res.cookie("jwt", token, cookieOptions);
+
+  // Remove the password from the output
+  user.password = undefined;
+};
+
 
 const createSendToken = (user, statusCode, res) => {
   const token = signToken(user._id);
@@ -39,33 +59,43 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 exports.logout = (req, res) => {
+  
   res.cookie("jwt", "loggedout", {
-    expires: new Date(Date.now() + 2*1000),
+    expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
   });
   res.status(200).json({ status: "success" });
 };
 
-exports.signup = catchAsync(async (req, res, next) => {
+exports.signup = async (req, res, next) => {
 
   try {
     const newUser = await User.create(req.body);
-    createSendToken(newUser, 201, res);
+    createToken(newUser, 201, res);
+    res.redirect('/')
   } catch (e) {
-    res.json({
-      status: "fail",
-      error: e
-    });
+    return res.send(`
+      <script>
+        alert("${e.message}");
+        window.location = '/login'
+      </script>
+    `)
   }
-});
+};
 
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
+  
   // 1) Check if email or username and password exist
+  console.log(req.body);
   if ((!email) || !password) {
-    return next(
-      new appError("Vui lòng điền đủ thông tin!", 400)
-    );
+    return res.send(`
+      <script>
+        alert("Vui lòng điền đủ thông tin!");
+        window.location = '/login'
+      </script>
+    `)
+  
   }
 
   // 2) Check if user exists && password is correct
@@ -76,10 +106,17 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   if (!user || !await user.correctPassword(password, user.password)) {
-      return next(new appError('Sai tên tài khoản hoặc mật khẩu!', 401));
+    return res.send(`
+        <script>
+          alert("Sai tên tài khoản hoặc mật khẩu!");
+          window.location = '/login';
+        </script>
+      `)
+    
   }
   // 3) IF everything is ok, send token to client
-  createSendToken(user, 200, res);
+  createToken(user, 200, res);
+  res.redirect('/')
   return true;
 });
 
