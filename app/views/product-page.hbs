@@ -74,11 +74,8 @@
             <div class="old-price" id="oldprice">{{format_number this.product.price}} VNĐ</div>
             <div class="discountvalue1">-20%</div>
             <div class="buy-and-addcart">
-                <form action="/cart/buynow" method="POST" style="width: 100%;">
-                    <input type="hidden" value="{{this.product.slug}}" name="id">
-                    <button class="buy-now" >MUA NGAY</button>
-                </form>
-                <form action="/cart/add" method="POST" style="width: 100%;">
+                <button type="button" class="buy-now" onclick="">MUA NGAY</button>
+                <form action="/cart/add" method="POST">
                     <input type="hidden" value="{{this.product.slug}}" name="id">
                     <button class="add-cart">THÊM VÀO GIỎ HÀNG</button>
                 </form>

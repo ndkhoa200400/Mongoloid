@@ -47,6 +47,7 @@ button.login:hover {
 button.login {
   border: 1px solid #7f007f;
   padding: 8px 10px 8px 10px;
+  width: 100px;
   background: none;
   color: #7f007f;
   outline: none;
