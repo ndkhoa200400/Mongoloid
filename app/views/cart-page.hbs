@@ -1,7 +1,3 @@
-
-{{#section 'css'}}
-  <link rel="stylesheet" type="text/css" href="/{{csspath}}.css">
-{{/section}}
 <body>
   <!-- HEADER -->
   {{>header}}
@@ -36,12 +32,12 @@
             </div>
             <div class="col d-flex flex-column justify-content-center text-sp">
               <div class="btn-group soluong d-flex justify-content-center" role="group" aria-label="Basic example">
-                <button type="button" class="soluong-button bg-transparent" onclick="decrease({{@index}})">-</button>
-                <input type="button" class="valueNumber" id="number{{@index}}" value="1">
-                <button type="button" class="soluong-button bg-transparent" onclick="increase({{@index}})">+</button>
+                <button type="button" class="soluong-button bg-transparent" onclick="decrease()">-</button>
+                <input type="button" id="number" value="1">
+                <button type="button" class="soluong-button bg-transparent" onclick="increase()">+</button>
               </div>
             </div>
-            <div class="col d-flex flex-column justify-content-center valuePrice text-sp" id="newprice{{@index}}">{{format_number this.price}}
+            <div class="col d-flex flex-column justify-content-center newprice text-sp" id="newprice">{{this.price}}
             </div>
           </div>
           {{/each}}
@@ -51,7 +47,7 @@
       <div class="col-3 p-0 mt-5 checkout-side">
         <div class="row mb-1 p-3 bg-white text-dark">
           <div class="col">Tạm tính</div>
-          <div class="col text-right price-cu" id="tamtinh">{{format_number this.totalPrice}} VNĐ</div>
+          <div class="col text-right price-cu">{{this.totalPrice}}</div>
         </div>
         <div class="row mb-1 p-3 bg-white text-dark">
           <div class="col">Mã Giảm Giá </div>
@@ -60,7 +56,7 @@
         <div class="row mb-1 p-3 bg-white text-dark">
           <div class="col thanhtien">Thành Tiền</div>
           <div class="col text-right">
-            <p class=" thanhtien-price" id="thanhtien">{{format_number this.totalPrice}} VNĐ</p>
+            <p class=" thanhtien-price">{{this.totalPrice}}</p>
           </div>
         </div>
         <div class="row mb-1 p-0 ">
@@ -79,7 +75,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
-  <script src="/public/cart-page.js"></script>
+  <script src="../public/cart-page.js"></script>
 </body>
 
 </html>

@@ -15,21 +15,6 @@ exports.addToCart = catchAsync(async (req, res, next) => {
     }
 });
 
-exports.buynowCart = catchAsync(async (req, res, next) => {
-    try {
-        if (req.session.cart) {
-            if (!req.session.cart.includes(req.body.id))
-                req.session.cart.push(req.body.id);
-        }
-        else {
-            req.session.cart = [req.body.id];
-        }
-        res.redirect('/cart');
-    } catch (error) {
-        return next(new AppError("Không thêm vào túi được", 400));
-    }
-});
-
 exports.deleteItem = catchAsync(async (req, res, next) => {
 
     try {

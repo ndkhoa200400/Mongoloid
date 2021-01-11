@@ -1,9 +1,8 @@
 const User = require("../model/user.model");
+const Product = require("../model/product.model");
 const catchAsync = require("../utils/catchAsync");
 const axios = require("axios");
 const Shop = require("../model/shop.model");
-const Bill = require("../model/bill.model");
-const Product = require("../model/product.model");
 const pagination = require('./../utils/pagination');
 
 exports.getHome = catchAsync(async (req, res, next) => {
@@ -177,21 +176,11 @@ exports.getCustomerInfo = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  var arrProduct = [];
   const getCustomer = await User.findOne({ email: user.email }).lean({ virtuals: true });
-  const getCustomerBill = await Bill.find({customer: getCustomer._id}).lean();
-  for (let i = 0; i < getCustomerBill.length; i++) {
-    for (let j = 0; j < getCustomerBill[i].listProduct.length; j++) {
-      var product = await Product.findOne({_id: getCustomerBill[i].listProduct[j].proID});
-      const temp = {name: product.name, amount: getCustomerBill[i].listProduct[j].amount, sumprice: product.price*getCustomerBill[i].listProduct[j].amount, buydate: getCustomerBill[i].time};
-      arrProduct.push(temp);
-    }
-  }
   res.status(200).render("customer-page", {
     user: getCustomer,
     csspath: "customer-page",
     layout: 'customer',
-    arrProduct,
   })
 });
 
@@ -299,9 +288,8 @@ exports.getCart = catchAsync(async (req, res, next) => {
       for(let i = 0; i< cart.length; i++)
       {
         products.push(await Product.findOne({slug: cart[i]}).lean());
-        products[i].images = products[i].images[0];
       }
-      console.log(products);
+
       products.forEach(element => {
         totalPrice += element.price;
       });
@@ -309,16 +297,15 @@ exports.getCart = catchAsync(async (req, res, next) => {
       if (numProducts != 0) isEmpty = false;
 
     }
-    const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
+    
     res.status(200).render("cart-page", {
       title: "Cart",
-      category,
       user: user,
       empty: isEmpty,
       productsInCart: products,
       numProducts: numProducts,
       totalPrice: totalPrice,
-      csspath: "cart-page",
+      csspath: "cart-page"
     });
   } catch (error) {
     console.log(error);

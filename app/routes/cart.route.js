@@ -8,7 +8,6 @@ const router = express.Router();
 router.use(authController.protect);
 router.get('/', viewController.getCart)
 router.post('/add', controller.addToCart);
-router.post('/buynow', controller.buynowCart)
 router.post('/deleteItem', controller.deleteItem);
 
 module.exports=router;
