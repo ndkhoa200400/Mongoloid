@@ -8,7 +8,9 @@
 
   <!-- MAIN -->
   <div class="body-container ">
+
     <div class="container-fluid row p-0 m-0">
+
       <div class="col-9 p-0 ">
         <div class=" p-5 font-weight-bold list-side ">
           <!-- ĐẦU MỤC -->
@@ -19,6 +21,7 @@
             <div class="col muc-san-pham">GIÁ TIỀN</div>
           </div>
           <!-- DANH SÁCH SẢN PHẨM -->
+
           {{#each productsInCart}}
           <div class="row mb-3 product border bg-white text-dark p-2">
             <div class="col img-product">
@@ -27,62 +30,82 @@
 
             <div class="col d-flex flex-column justify-content-center text-sp ">
 
-              <h6>{{this.name}}</h6>
-              <form action="/cart/deleteItem" method="POST">
-                <input type="hidden" value="{{this.slug}}" name="slug">
-                <button class="btn btn-outline-primary">Xóa</button>
-              </form>
+              <h5>{{this.product.name}}</h5>
+
+
+              <a href="/cart/deleteItem/{{this.product.slug}} " class="btn btn-danger btn-sm">Xóa</a>
 
             </div>
             <div class="col d-flex flex-column justify-content-center text-sp">
-              <div class="btn-group soluong d-flex justify-content-center" role="group" aria-label="Basic example">
-                <button type="button" class="soluong-button bg-transparent" onclick="decrease({{@index}})">-</button>
-                <input type="button" class="valueNumber" id="number{{@index}}" value="1">
-                <button type="button" class="soluong-button bg-transparent" onclick="increase({{@index}})">+</button>
-              </div>
+              <form action="/cart/changeAmount/{{this.product.slug}}" method="POST" class="form--change-amount">
+                <div class="btn-group soluong d-flex justify-content-center" role="group" aria-label="Basic example">
+
+                  <button type="submit" class="soluong-button bg-transparent" onclick="decrease({{@index}})">-</button>
+                  <input type="hidden" class="valueNumber" id="number{{@index}}" value="{{this.amount}}"
+                    name="amount" >
+                    <input type="button" class="valueNumber"  value="{{this.amount}}">
+                  <button type="submit" class="soluong-button bg-transparent" onclick="increase({{@index}})">+</button>
+
+                </div>
+              </form>
             </div>
             <div class="col d-flex flex-column justify-content-center valuePrice text-sp" id="newprice{{@index}}">
-              {{format_number this.price}}
+              {{format_number this.product.price}}
             </div>
           </div>
           {{/each}}
 
         </div>
       </div>
+
       <div class="col-3 p-0 mt-5 checkout-side">
-        <div class="row mb-1 p-3 bg-white text-dark">
-          <div class="col">Tạm tính</div>
-          <div class="col text-right price-cu" id="tamtinh">{{format_number this.totalPrice}} VNĐ</div>
-        </div>
-        <div class="row mb-1 p-3 bg-white text-dark">
-          <div class="col">Mã Giảm Giá </div>
-          <div class="col text-right ma-giam-gia">HELLO5</div>
-        </div>
-        <div class="row mb-1 p-3 bg-white text-dark">
-          <div class="col thanhtien">Thành Tiền</div>
-          <div class="col text-right">
-            <p class=" thanhtien-price" id="thanhtien">{{format_number this.totalPrice}} VNĐ</p>
+        <form action="/cart/checkout" method="POST">
+          <div class="row mb-1 p-3 bg-white text-dark">
+            <div class="col">Tạm tính</div>
+            <div class="col text-right price-cu" id="tamtinh">{{format_number this.totalPrice}} VNĐ</div>
           </div>
-        </div>
-        <div class="row mb-1 p-0 ">
-          <form action="/cart/checkout">
+          <div class="row mb-1 p-3 bg-white text-dark">
+            <div class="col">Mã Giảm Giá </div>
+            <div class="col text-right ma-giam-gia">HELLO5</div>
+          </div>
+          <div class="row mb-1 p-3 bg-white text-dark">
+            <div class="col thanhtien">Thành Tiền</div>
+            <div class="col text-right">
+              <input type="hidden" name="totalPrice" value="{{ this.totalPrice}}" id="input--totalPrice">
+              <p class=" thanhtien-price" id="thanhtien" for="input--totalPrice">{{format_number this.totalPrice}} VNĐ
+              </p>
+            </div>
+          </div>
+          <div class="row mb-1 p-0 ">
+
             {{#if empty}}
-              <button type="submit" class="checkout btn btn-sm p-2" disabled>THANH TOÁN</button>
+            <button type="submit" class="checkout btn btn-sm p-2" disabled>THANH TOÁN</button>
             {{else}}
-              <button type="submit" class="checkout btn btn-sm p-2">THANH TOÁN</button>
+            <button type="submit" class="checkout btn btn-sm p-2">THANH TOÁN</button>
             {{/if}}
-          </form>
-        </div>
+
+          </div>
+        </form>
       </div>
+
     </div>
+
   </div>
 
   <!-- FOOTER -->
   {{>footer}}
 
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
   <script src="/public/cart-page.js"></script>
+    <script>
+    $(".form--change-amount").on('click', function(e){
+      e.preventDefault();
+      $(".form--change-amount").submit();
+      console.log($('.valueNumber').val());
+    });
+  </script>
 </body>
 
 </html>

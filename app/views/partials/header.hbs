@@ -7,19 +7,25 @@
                 <ul>
 
                     {{#if this.user}}
-                        <li><a href="#">ĐƠN HÀNG</a></li>
-                        <li><a href="#">THÔNG BÁO</a></li>
+                    <li><a href="#">ĐƠN HÀNG</a></li>
+                    <li><a href="#">THÔNG BÁO</a></li>
                     {{#is this.user.role "seller"}}
-                        <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
+                    <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
                     {{/is}}
                     {{#is this.user.role "customer"}}
-                        <li><a href="/become-seller">TRỞ THÀNH NGƯỜI BÁN</a></li>
+                    <li><a href="/become-seller">TRỞ THÀNH NGƯỜI BÁN</a></li>
                     {{/is}}
                     {{/if}}
                 </ul>
                 {{#if this.user}}
                 <div class="dropdown">
+                    {{#if this.user.name}}
                     <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.name}}</a>
+                    {{else if this.user.username}}
+                    <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.username}}</a>
+                    {{else}}
+                     <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.email}}</a>
+                    {{/if}}
                     <div class="dropdown-content">
                         <a href="/customer/{{this.user.email}}">Thông tin</a>
 

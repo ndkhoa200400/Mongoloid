@@ -3,19 +3,22 @@ const validator = require('validator');
 
 const billSchema = new mongoose.Schema({
 
-    listProduct:{
-	    type: [{product: {type: mongoose.Types.ObjectId,
-            ref:'Product'}, amount: Number}],
-        
-	},
-    time:{
+    listProduct: [{
+        product: {
+            type: mongoose.Types.ObjectId,
+            ref: 'Product'
+        }, amount: Number
+    }],
+    time: {
         type: Date,
-        default: Date.now(),
-        select: true
+        default: Date.now,
     },
-    customer:{
+    customer: {
         type: mongoose.Types.ObjectId,
-        ref:'User' 
+        ref: 'User'
+    },
+    total: {
+        type: Number
     }
 
 })

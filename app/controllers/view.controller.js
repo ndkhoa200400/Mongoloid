@@ -31,7 +31,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   let page = req.query.page || 1;
   if (page < 1) page = 1;
   const total = await Product.count()
-  .lean({ virtuals: true });
+    .lean({ virtuals: true });
 
   const page_numbers = pagination.calcPageNumbers(total, page);
   const offset = pagination.calcOffset(page);
@@ -71,13 +71,13 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
   let page = req.query.page || 1;
   if (page < 1) page = 1;
   const total = await Product.count({ category: catName })
-  .lean({ virtuals: true });
+    .lean({ virtuals: true });
 
   const page_numbers = pagination.calcPageNumbers(total, page);
   const offset = pagination.calcOffset(page);
   const next_page = pagination.calcNextPage(page, page_numbers);
   const prev_page = pagination.calcPreviousPage(page, page_numbers);
-  
+
   const product = await Product.find({ category: catName }).limit(pagination.limit).skip(offset)
     .lean({ virtuals: true });
 
@@ -150,7 +150,7 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     };
   }
 
-  const product = await Product.findOne({ slug: req.params.slug }).populate({path: "shopID" }).lean();
+  const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
 
   const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("product-page", {
@@ -168,31 +168,32 @@ exports.getProduct = catchAsync(async (req, res, next) => {
 
 //CUSTOMER
 exports.getCustomerInfo = catchAsync(async (req, res, next) => {
-  let user = res.locals.user;
-  if (user) {
-    if (!user.name) user.name = user.username;
-    user = {
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    };
-  }
-  var arrProduct = [];
-  const getCustomer = await User.findOne({ email: user.email }).lean({ virtuals: true });
-  const getCustomerBill = await Bill.find({customer: getCustomer._id}).lean();
-  for (let i = 0; i < getCustomerBill.length; i++) {
-    for (let j = 0; j < getCustomerBill[i].listProduct.length; j++) {
-      var product = await Product.findOne({_id: getCustomerBill[i].listProduct[j].proID});
-      const temp = {name: product.name, amount: getCustomerBill[i].listProduct[j].amount, sumprice: product.price*getCustomerBill[i].listProduct[j].amount, buydate: getCustomerBill[i].time};
-      arrProduct.push(temp);
+  try {
+    let user = res.locals.user;
+
+    let arrProduct = [];
+    const getCustomerBill = await Bill.find({ customer: user.id});
+    console.log(getCustomerBill);
+    for (let i = 0; i < getCustomerBill.length; i++) {
+      for (let j = 0; j < getCustomerBill[i].listProduct.length; j++) {
+        let product = await Product.findById(getCustomerBill[i].listProduct[j].product);
+        const temp = { name: product.name, amount: getCustomerBill[i].listProduct[j].amount, sumprice: product.price * getCustomerBill[i].listProduct[j].amount, buydate: getCustomerBill[i].time };
+        arrProduct.push(temp);
+      }
     }
+
+    user = {name: user.name, role: user.role, email: user.email, phone: user.phone, address: user.address};
+    console.log(user);
+    res.status(200).render("customer-page", {
+      user: user,
+      csspath: "customer-page",
+      layout: 'customer',
+      arrProduct,
+    })
+  } catch (error) {
+    console.log(error);
   }
-  res.status(200).render("customer-page", {
-    user: getCustomer,
-    csspath: "customer-page",
-    layout: 'customer',
-    arrProduct,
-  })
+
 });
 
 exports.getSigntobeshop = catchAsync(async (req, res, next) => {
@@ -236,7 +237,7 @@ exports.getShopInfo = catchAsync(async (req, res, next) => {
   try {
     const userID = req.user.id;
     const shop = await Shop.findOne({ sellerID: userID }).select("+joinDate").lean();
-    
+
     if (shop)
       res.render('shop-infor', {
         stylecss: 'shop-infor.css',
@@ -251,15 +252,15 @@ exports.getShopInfo = catchAsync(async (req, res, next) => {
         overallRating: '4.5',
         billCanceledRate: '5%',
       });
-      else{
-        res.render("error",{
-          message:"Không tìm thấy shop"        
-        })
-      }
+    else {
+      res.render("error", {
+        message: "Không tìm thấy shop"
+      })
+    }
   } catch (error) {
     console.log(error);
   }
- 
+
 })
 
 exports.getProductList = catchAsync(async (req, res, next) => {
@@ -289,21 +290,22 @@ exports.getCart = catchAsync(async (req, res, next) => {
   try {
     const cart = req.session.cart;
     let user = res.locals.user;
-
+    
     if (user) user = { name: user.name, email: user.email, role: user.role };
     let totalPrice = 0;
     let isEmpty = true;
     let numProducts = 0;
     let products = [];
+
     if (cart) {
-      for(let i = 0; i< cart.length; i++)
-      {
-        products.push(await Product.findOne({slug: cart[i]}).lean());
-        products[i].images = products[i].images[0];
+      for (let i = 0; i < cart.length; i++) {
+        let product = await Product.findOne({ slug: cart[i].slug }).lean();
+        product.price *= +cart[i].amount;
+        products.push({ product: product, amount: +cart[i].amount });
+        products[i].images = products[i].product.images[0];
       }
-      console.log(products);
       products.forEach(element => {
-        totalPrice += element.price;
+        totalPrice += element.product.price;
       });
       numProducts = products.length;
       if (numProducts != 0) isEmpty = false;

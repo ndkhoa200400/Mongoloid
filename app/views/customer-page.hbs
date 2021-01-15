@@ -8,7 +8,7 @@
 {{/section}}
 
 <div class="main-body-container">
-  <form action="/api/user/updateMe" method="POST">
+  <form action="/user/updateMe" method="POST">
     <!-- HỒ sơ cá nhân -->
     <div class="hosocanhan">
       <p class="title-1">HỒ SƠ CÁ NHÂN</p>
@@ -17,7 +17,7 @@
       <div class="hoso">
         <div class="title">Tên</div>
         <div class="info">
-          <span type="text" class="info1" name="name" readonly required>{{this.user.name}}</span>
+          <input type="text" class="info1" name="name" readonly required value="{{this.user.name}}">
         </div>
       </div>
       <!-- Email -->

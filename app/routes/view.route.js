@@ -35,7 +35,7 @@ router.get('/product/:slug', controller.getProduct);
 
 //customer channel
 //view customer info
-router.get('/customer/:mail', controller.getCustomerInfo);
+router.get('/customer/:mail', authController.protect,controller.getCustomerInfo);
 
 //admin channel
 //view account info
