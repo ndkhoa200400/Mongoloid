@@ -195,9 +195,10 @@ exports.login = catchAsync(async (req, res, next) => {
   }
 
   // 2) Check if user exists && password is correct
+ 
   let user;
   user = await User.findOne({ email: email }).select("+password");
-  console.log(user.active)
+
   if (!user) {
     user = await User.findOne({ username: email }).select("+password");
   }

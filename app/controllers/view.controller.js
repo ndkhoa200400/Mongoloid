@@ -16,7 +16,7 @@ exports.getHome = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
+  const category = await Product.find({active:true}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("home-page", {
     title: "Home",
     csspath: "home-page",
@@ -30,7 +30,7 @@ exports.getHome = catchAsync(async (req, res, next) => {
 exports.getOverview = catchAsync(async (req, res, next) => {
   let page = req.query.page || 1;
   if (page < 1) page = 1;
-  const total = await Product.count()
+  const total = await Product.count({active:true})
     .lean({ virtuals: true });
 
   const page_numbers = pagination.calcPageNumbers(total, page);
@@ -38,7 +38,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
   const next_page = pagination.calcNextPage(page, page_numbers);
   const prev_page = pagination.calcPreviousPage(page, page_numbers);
 
-  const product = await Product.find().limit(pagination.limit).skip(offset)
+  const product = await Product.find({active:true}).limit(pagination.limit).skip(offset)
     .lean({ virtuals: true });
 
   let user = res.locals.user;
@@ -50,7 +50,7 @@ exports.getOverview = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
+  const category = await Product.find({active:true}).distinct("category").populate("category").lean({ virtuals: true });
 
   res.status(200).render("category", {
     title: "Category",
@@ -70,7 +70,7 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
   const catName = req.param('cat');
   let page = req.query.page || 1;
   if (page < 1) page = 1;
-  const total = await Product.count({ category: catName })
+  const total = await Product.count({ category: catName, active:true })
     .lean({ virtuals: true });
 
   const page_numbers = pagination.calcPageNumbers(total, page);
@@ -78,7 +78,7 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
   const next_page = pagination.calcNextPage(page, page_numbers);
   const prev_page = pagination.calcPreviousPage(page, page_numbers);
 
-  const product = await Product.find({ category: catName }).limit(pagination.limit).skip(offset)
+  const product = await Product.find({ category: catName ,active:true}).limit(pagination.limit).skip(offset)
     .lean({ virtuals: true });
 
   let user = res.locals.user;
@@ -90,7 +90,7 @@ exports.ProByCat = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
+  const category = await Product.find({active:true}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("category", {
     title: catName,
     category,
@@ -408,7 +408,7 @@ exports.getShopInfo = catchAsync(async (req, res, next) => {
 
 
     console.log(shop._id);
-    const listProduct = await Product.find({ shopID: shop._id });
+    const listProduct = await Product.find({ shopID: shop._id , active: true});
     const listBill = await Bill.find({});
     let getTotalProductSaled = 0;
     for (let i = 0; i < listBill.length; i++) {
@@ -454,7 +454,7 @@ exports.getProductList = catchAsync(async (req, res, next) => {
     const user = res.locals.user;
     const shop = await Shop.findOne({ sellerID: user.id });
     if (shop) {
-      let products = await Product.find({ shopID: shop.id }).select("+createdAt").lean();
+      let products = await Product.find({ shopID: shop.id , active:true}).select("+createdAt").lean();
 
       for (let i = 0; i < products.length; i++) {
         products[i].images = products[i].images[0];
@@ -556,7 +556,7 @@ exports.deleteProduct = catchAsync(async (req, res, next) => {
   try {
     const id = req.query.id;
     console.log(id);
-    let product = await Product.findByIdAndRemove({ _id: id })
+    await Product.updateOne({_id: id}, { $set: { active: false } });
     res.redirect('/product-list');
   }
   catch (error) {

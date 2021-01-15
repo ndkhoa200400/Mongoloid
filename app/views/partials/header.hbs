@@ -26,13 +26,19 @@
                     {{else}}
                      <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.email}}</a>
                     {{/if}}
-                    <div class="dropdown-content">
-                        <a href="/customer/{{this.user.email}}">Thông tin</a>
+                    
+                    
+                        <div class="dropdown-content">
+                            {{#is this.user.role "admin"}}
+                                 <a href="/admin">Quản lý</a>
+                            {{else}}
+                                <a href="/customer/{{this.user.email}}">Thông tin</a>
+                            {{/is}} 
+                            <a href="/login" id="logout">Đăng xuất</a>
 
-                        <a href="/login" id="logout">Đăng xuất</a>
 
-
-                    </div>
+                        </div>
+                    
                 </div>
                 {{else}}
                 <a class="sign-in" href="/login"><i class="far fa-user"></i>Đăng nhập</a>
