@@ -78,7 +78,7 @@ app.use(function (req, res, next) {
 app.use('/', viewRoute);
 app.use('/cart', cartRoute);
 app.use('/user', userRoute);
-app.use('/api/shop', shopRoute);
+app.use('/shop', shopRoute);
 
 app.use('/api/product', productRoute)
 // app.all('*', (req, res, next)=>{

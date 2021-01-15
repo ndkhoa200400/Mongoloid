@@ -1,7 +1,7 @@
-
 {{#section 'css'}}
-  <link rel="stylesheet" type="text/css" href="/{{csspath}}.css">
+<link rel="stylesheet" type="text/css" href="/{{csspath}}.css">
 {{/section}}
+
 <body>
   <!-- HEADER -->
   {{>header}}
@@ -41,7 +41,8 @@
                 <button type="button" class="soluong-button bg-transparent" onclick="increase({{@index}})">+</button>
               </div>
             </div>
-            <div class="col d-flex flex-column justify-content-center valuePrice text-sp" id="newprice{{@index}}">{{format_number this.price}}
+            <div class="col d-flex flex-column justify-content-center valuePrice text-sp" id="newprice{{@index}}">
+              {{format_number this.price}}
             </div>
           </div>
           {{/each}}
@@ -64,11 +65,13 @@
           </div>
         </div>
         <div class="row mb-1 p-0 ">
-          {{#if empty}}
-          <button type="button" class="checkout btn btn-sm p-2" disabled>THANH TOÁN</button>
-          {{else}}
-          <button type="button" class="checkout btn btn-sm p-2">THANH TOÁN</button>
-          {{/if}}
+          <form action="/cart/checkout">
+            {{#if empty}}
+              <button type="submit" class="checkout btn btn-sm p-2" disabled>THANH TOÁN</button>
+            {{else}}
+              <button type="submit" class="checkout btn btn-sm p-2">THANH TOÁN</button>
+            {{/if}}
+          </form>
         </div>
       </div>
     </div>
