@@ -9,6 +9,7 @@
     {{>nav-shop}}
     <div class="main-body">
       <div class="title-body">
+        
         <div class="text">DOANH THU CỬA HÀNG</div>
       </div>
       <div class="">
@@ -17,6 +18,73 @@
       </div>
     </div>
   </div>
+    
+ 
+  {{#each last7days}}
+      <input type="hidden" id="day{{id}}" data-x="{{x}}" data-y="{{y}}"> 
+    {{/each}}
 </body>
-<script src="/public/sales.js"></script>
-{{!-- https://www.codeply.com/go/3l6UhaQEhq/bootstrap-4-chartjs --}}
+
+{{!--<script src="/public/sales.js"></script> --}}
+<script>
+  window.onload = function () {
+    var dataPoint = [];
+    for(var i = 0; i < 7; i++){
+      const x = $('#day'+i.toString()).data('x')
+      const y = $('#day'+i.toString()).data('y')
+      dataPoint.push({x: new Date(x), y: y})
+    }
+    var chart = new CanvasJS.Chart("chartContainer", {
+        animationEnabled: true,
+        theme: "light2",
+        title: {
+            text: "Doanh thu"
+        },
+        axisX: {
+            valueFormatString: "DD MMM",
+            crosshair: {
+                enabled: true,
+                snapToDataPoint: true
+            }
+        },
+        axisY: {
+            title: "Số tiền",
+            includeZero: true,
+            crosshair: {
+                enabled: true
+            }
+        },
+        toolTip: {
+            shared: true
+        },
+        legend: {
+            cursor: "pointer",
+            verticalAlign: "bottom",
+            horizontalAlign: "left",
+            dockInsidePlotArea: true,
+            itemclick: toogleDataSeries
+        },
+        data: [{
+            type: "line",
+            showInLegend: true,
+            name: "Tổng tiền",
+            markerType: "square",
+            xValueFormatString: "DD MMM, YYYY",
+            color: "#F08080",
+            dataPoints: dataPoint,
+        },
+        ]
+    });
+    chart.render();
+
+    function toogleDataSeries(e) {
+        if (typeof (e.dataSeries.visible) === "undefined" || e.dataSeries.visible) {
+            e.dataSeries.visible = false;
+        } else {
+            e.dataSeries.visible = true;
+        }
+        chart.render();
+    }
+
+}
+</script>

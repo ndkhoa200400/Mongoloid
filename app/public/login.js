@@ -61,6 +61,7 @@ export const logout = async () => {
       method: "GET",
       url: "http://localhost:8000/user/logout",
     });
+    
 
   } catch (err) {
     let res = error.response.data;
