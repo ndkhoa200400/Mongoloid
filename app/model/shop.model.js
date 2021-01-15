@@ -37,11 +37,11 @@ const shopSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
-    active:{
+    active: {
         type: Boolean,
         default: true,
-    } 
-
+    },
+    address: String,
 })
 const Shop = mongoose.model('Shop', shopSchema);
 
