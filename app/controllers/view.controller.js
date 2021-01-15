@@ -262,17 +262,18 @@ exports.getAdminProducts = catchAsync(async (req, res, next) => {
   })
 });
 exports.getStatisticsAdmin = catchAsync(async (req, res, next) => {
- 
+  try {
+  
   const selledProducts = await Bill.find({}).populate({path:"listProduct.product", populate: {
     path: 'shopID',
     model: 'Shop'
   }, model: 'Product'}).lean();
+  
   var products = []
   selledProducts.forEach((e)=>{
     products = products.concat(e.listProduct)
   })
   var result = [];
-  console.log(products)
   products.reduce((total, value)=> {
     if (!total[value.product.shopID._id]) {
       
@@ -363,14 +364,18 @@ exports.getStatisticsAdmin = catchAsync(async (req, res, next) => {
   countUser = await (await User.find({openDate:{$lte: preMonth4 } })).length
   countShop = await (await Shop.find({joinDate:{$lte: preMonth4 } })).length
   countUserShop.push({time: toString(preMonth4),users:countUser, shops:countShop})
-  
+  console.log(countUserShop)
   res.status(200).render("admin-statistics", {
-    csspath: "admin-statistics",
+    csspath: "admin-page",
     layout: 'admin',
     shops,
     customers,
     countUserShop,
   })
+}
+catch (error) {
+  console.log(error);
+}
 });
 exports.deleteProductAdmin = catchAsync(async (req, res, next) => {
   const id = req.body.id;

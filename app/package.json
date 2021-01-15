@@ -32,7 +32,7 @@
     "morgan": "^1.10.0",
     "node-pre-gyp": "^0.17.0",
     "nodemailer": "^6.4.17",
-    "nodemon": "^2.0.6",
+    "nodemon": "^2.0.7",
     "numeral": "^2.0.6",
     "parcel": "^1.12.4",
     "path": "^0.12.7",
