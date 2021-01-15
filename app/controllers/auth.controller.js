@@ -261,9 +261,7 @@ exports.protect = catchAsync(async (req, res, next) => {
     token = req.cookies.jwt;
   }
   if (!token) {
-    return next(
-      new appError("Vui lòng đăng nhập để truy cập chức năng này!", 401)
-    );
+    return res.redirect("/")
   }
   // 2) Verification token
   const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
@@ -292,9 +290,8 @@ exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     // roles ['admin', 'seller']
     if (!roles.includes(req.user.role)) {
-      return next(
-        new appError("Bạn không có quyền truy cập chức năng này", 403)
-      );
+      
+      return res.redirect("/")
     }
     next();
   };
