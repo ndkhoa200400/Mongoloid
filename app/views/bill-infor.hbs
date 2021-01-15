@@ -54,11 +54,10 @@
           {{#each billList}}
           <tr>
             <td>{{this.name}}</td>
-            <td>{{this.date}}</td>
+            <td>{{moment this.date format='HH:mm:ss DD-MM-YYYY'}}</td>
             <td>{{this.price}}</td>
           </tr>
           {{/each}}
-
         </tbody>
       </table>
     </div>

@@ -220,7 +220,7 @@ exports.getSigntobeshop = catchAsync(async (req, res, next) => {
 //ADMIN
 //ADMIN
 exports.getAccountAdmin = catchAsync(async (req, res, next) => {
-  
+
   let user = res.locals.user;
   if (user) {
     if (!user.name) user.name = user.username;
@@ -230,8 +230,8 @@ exports.getAccountAdmin = catchAsync(async (req, res, next) => {
       email: user.email,
       role: user.role,
     };
-  } 
-  const accounts = await User.find({"username": {$ne: user.username}, active: true}).lean();
+  }
+  const accounts = await User.find({ "username": { $ne: user.username }, active: true }).lean();
   const shops = await Shop.find({}).populate("sellerID").lean();
 
   res.status(200).render("admin-page", {
@@ -252,9 +252,9 @@ exports.getAdminProducts = catchAsync(async (req, res, next) => {
       email: user.email,
       role: user.role,
     };
-  } 
-  const products = await Product.find({active: true}).populate("shopID").lean();
- 
+  }
+  const products = await Product.find({ active: true }).populate("shopID").lean();
+
   res.status(200).render("admin-products", {
     csspath: "admin-page",
     layout: 'admin',
@@ -263,137 +263,139 @@ exports.getAdminProducts = catchAsync(async (req, res, next) => {
 });
 exports.getStatisticsAdmin = catchAsync(async (req, res, next) => {
   try {
-  
-  const selledProducts = await Bill.find({}).populate({path:"listProduct.product", populate: {
-    path: 'shopID',
-    model: 'Shop'
-  }, model: 'Product'}).lean();
-  
-  var products = []
-  selledProducts.forEach((e)=>{
-    products = products.concat(e.listProduct)
-  })
-  var result = [];
-  products.reduce((total, value)=> {
-    if (!total[value.product.shopID._id]) {
-      
-      total[value.product.shopID._id] = { shop: value.product.shopID, qty: 0 };
-      result.push(total[value.product.shopID._id])
-    }
-    total[value.product.shopID._id].qty += value.amount;
-    
-    return total;
-  }, {});
-  
-  var shops = [];
-  result.sort(function (a, b) {
-    return b.qty - a.qty;
-  });
-  if (result.length <= 4)
-    shops = result;
-  else
-    shops = result.slice(0, 4);
 
-  //top customer
-  var customers = await Bill.find({}).populate("customer").lean()
-  customers.forEach((e)=>{
-    e.count = e.listProduct.reduce((a, b) => a + b.amount, 0)
-  });
+    const selledProducts = await Bill.find({}).populate({
+      path: "listProduct.product", populate: {
+        path: 'shopID',
+        model: 'Shop'
+      }, model: 'Product'
+    }).lean();
 
-  result = [];
-  customers.reduce((total, value)=> {
-    if (!total[value.customer._id]) {
-      total[value.customer._id] = { customer: value.customer, qty: 0 };
-      result.push(total[value.customer._id])
-    }
-    total[value.customer._id].qty += value.count;
-    return total;
-  }, {});
-  result.sort(function (a, b) {
-    return b.qty - a.qty;
-  });
-  if (result.length <= 4)
-    customers = result;
-  else
-    customers = result.slice(0, 4);
-  var prevMonth = function(dateObj) {
-    var tempDateObj = new Date(dateObj);    
-    if(tempDateObj.getMonth) {
-      tempDateObj.setMonth(tempDateObj.getMonth() - 1);
-    } else {
-      tempDateObj.setYear(tempDateObj.getYear() - 1);
-      tempDateObj.setMonth(12);
-    }
+    var products = []
+    selledProducts.forEach((e) => {
+      products = products.concat(e.listProduct)
+    })
+    var result = [];
+    products.reduce((total, value) => {
+      if (!total[value.product.shopID._id]) {
 
-    return tempDateObj
-  };
-  var toString = (dateObj)=>{
-    var month = dateObj.getMonth();
+        total[value.product.shopID._id] = { shop: value.product.shopID, qty: 0 };
+        result.push(total[value.product.shopID._id])
+      }
+      total[value.product.shopID._id].qty += value.amount;
 
-    var year = dateObj.getFullYear();
-    if (month === 0){
-      month = 12;
-      year--;
+      return total;
+    }, {});
+
+    var shops = [];
+    result.sort(function (a, b) {
+      return b.qty - a.qty;
+    });
+    if (result.length <= 4)
+      shops = result;
+    else
+      shops = result.slice(0, 4);
+
+    //top customer
+    var customers = await Bill.find({}).populate("customer").lean()
+    customers.forEach((e) => {
+      e.count = e.listProduct.reduce((a, b) => a + b.amount, 0)
+    });
+
+    result = [];
+    customers.reduce((total, value) => {
+      if (!total[value.customer._id]) {
+        total[value.customer._id] = { customer: value.customer, qty: 0 };
+        result.push(total[value.customer._id])
+      }
+      total[value.customer._id].qty += value.count;
+      return total;
+    }, {});
+    result.sort(function (a, b) {
+      return b.qty - a.qty;
+    });
+    if (result.length <= 4)
+      customers = result;
+    else
+      customers = result.slice(0, 4);
+    var prevMonth = function (dateObj) {
+      var tempDateObj = new Date(dateObj);
+      if (tempDateObj.getMonth) {
+        tempDateObj.setMonth(tempDateObj.getMonth() - 1);
+      } else {
+        tempDateObj.setYear(tempDateObj.getYear() - 1);
+        tempDateObj.setMonth(12);
+      }
+
+      return tempDateObj
+    };
+    var toString = (dateObj) => {
+      var month = dateObj.getMonth();
+
+      var year = dateObj.getFullYear();
+      if (month === 0) {
+        month = 12;
+        year--;
+      }
+      return "Tháng " + month + ", " + year;
     }
-    return "Tháng " + month + ", " + year;
+    var countUserShop = []
+    var today = new Date();
+    var preMonth1 = prevMonth(today)
+    var preMonth2 = prevMonth(preMonth1)
+    var preMonth3 = prevMonth(preMonth2)
+    var preMonth4 = prevMonth(preMonth3)
+    preMonth1.setDate(32)
+    console.log(preMonth1)
+    preMonth2.setDate(32)
+    preMonth3.setDate(32)
+    preMonth4.setDate(32)
+
+    var countUser = await (await User.find({ openDate: { $lte: preMonth1 } })).length
+    var countShop = await (await Shop.find({ joinDate: { $lte: preMonth1 } })).length
+    countUserShop.push({ time: toString(preMonth1), users: countUser, shops: countShop })
+
+    countUser = await (await User.find({ openDate: { $lte: preMonth2 } })).length
+    countShop = await (await Shop.find({ joinDate: { $lte: preMonth2 } })).length
+    countUserShop.push({ time: toString(preMonth2), users: countUser, shops: countShop })
+
+    countUser = await (await User.find({ openDate: { $lte: preMonth3 } })).length
+    countShop = await (await Shop.find({ joinDate: { $lte: preMonth3 } })).length
+    countUserShop.push({ time: toString(preMonth3), users: countUser, shops: countShop })
+
+    countUser = await (await User.find({ openDate: { $lte: preMonth4 } })).length
+    countShop = await (await Shop.find({ joinDate: { $lte: preMonth4 } })).length
+    countUserShop.push({ time: toString(preMonth4), users: countUser, shops: countShop })
+    console.log(countUserShop)
+    res.status(200).render("admin-statistics", {
+      csspath: "admin-page",
+      layout: 'admin',
+      shops,
+      customers,
+      countUserShop,
+    })
   }
-  var countUserShop = []
-  var today = new Date();
-  var preMonth1 = prevMonth(today)
-  var preMonth2 = prevMonth(preMonth1)
-  var preMonth3 = prevMonth(preMonth2)
-  var preMonth4 = prevMonth(preMonth3)
-  preMonth1.setDate(32)
-  console.log(preMonth1)
-  preMonth2.setDate(32)
-  preMonth3.setDate(32)
-  preMonth4.setDate(32)
-
-  var countUser = await (await User.find({openDate:{$lte: preMonth1 } })).length
-  var countShop = await (await Shop.find({joinDate:{$lte: preMonth1 } })).length
-  countUserShop.push({time: toString(preMonth1),users:countUser, shops:countShop})
-
-  countUser = await (await User.find({openDate:{$lte: preMonth2 } })).length
-  countShop = await (await Shop.find({joinDate:{$lte: preMonth2 } })).length
-  countUserShop.push({time: toString(preMonth2),users:countUser, shops:countShop})
-
-  countUser = await (await User.find({openDate:{$lte: preMonth3 } })).length
-  countShop = await (await Shop.find({joinDate:{$lte: preMonth3 } })).length
-  countUserShop.push({time: toString(preMonth3),users:countUser, shops:countShop})
-
-  countUser = await (await User.find({openDate:{$lte: preMonth4 } })).length
-  countShop = await (await Shop.find({joinDate:{$lte: preMonth4 } })).length
-  countUserShop.push({time: toString(preMonth4),users:countUser, shops:countShop})
-  console.log(countUserShop)
-  res.status(200).render("admin-statistics", {
-    csspath: "admin-page",
-    layout: 'admin',
-    shops,
-    customers,
-    countUserShop,
-  })
-}
-catch (error) {
-  console.log(error);
-}
+  catch (error) {
+    console.log(error);
+  }
 });
 exports.deleteProductAdmin = catchAsync(async (req, res, next) => {
   const id = req.body.id;
   console.log(id)
-  await Product.updateOne({_id: id}, { $set: { active: false } });
+  await Product.updateOne({ _id: id }, { $set: { active: false } });
   const url = req.session.retUrl || '/admin/products';
   res.redirect(url);
 });
 exports.deleteAccount = catchAsync(async (req, res, next) => {
   const id = req.body.id;
   console.log(id)
-  await User.updateOne({_id: id}, { $set: { active: false } });
+  await User.updateOne({ _id: id }, { $set: { active: false } });
   const url = req.session.retUrl || '/admin';
   res.redirect(url);
 });
 exports.deleteShop = catchAsync(async (req, res, next) => {
   const id = req.body.id;
-  await Shop.updateOne({_id: id}, { $set: { active: false } });
+  await Shop.updateOne({ _id: id }, { $set: { active: false } });
   const url = req.session.retUrl || '/admin';
   res.redirect(url);
 });
@@ -406,6 +408,19 @@ exports.getShopInfo = catchAsync(async (req, res, next) => {
 
 
     console.log(shop._id);
+    const listProduct = await Product.find({ shopID: shop._id });
+    const listBill = await Bill.find({});
+    let getTotalProductSaled = 0;
+    for (let i = 0; i < listBill.length; i++) {
+      for (let j = 0; j < listBill[i].listProduct.length; j++) {
+        for (let k = 0; k < listProduct.length; k++) {
+          console.log(listProduct[k]._id + " -- " + listBill[i].listProduct[j].product);
+          if (listProduct[k]._id.toString() === listBill[i].listProduct[j].product.toString()) {
+            getTotalProductSaled += listBill[i].listProduct[j].amount;
+          }
+        }
+      }
+    }
 
     if (shop)
       res.render('shop-infor', {
@@ -419,7 +434,7 @@ exports.getShopInfo = catchAsync(async (req, res, next) => {
         shopDescribe: shop.description,
 
         numProduct: numProduct,
-        numSaledProduct: '0',
+        numSaledProduct: getTotalProductSaled,
         overallRating: '0',
         billCanceledRate: '0',
       });
@@ -512,14 +527,16 @@ exports.getBillList = catchAsync(async (req, res, next) => {
     const listProduct = await Product.find({ shopID: shop._id });
     const listBill = await Bill.find({});
 
-    for (let bill of listBill) {
-      for (let e of bill.listProduct) {
-        for (let p of listProduct) {
-          if (p._id == e._id) {
-            let getPrice = await Product.findById(e._id).price;
-            let totalPrice = getPrice * e.amount;
-            let getCustomer = await User.findById(bill.customer._id).name;
-            billList.push({ 'name': getCustomer, 'date': bill.time, 'price': totalPrice });
+    for (let i = 0; i < listBill.length; i++) {
+      for (let j = 0; j < listBill[i].listProduct.length; j++) {
+        for (let k = 0; k < listProduct.length; k++) {
+          console.log(listProduct[k]._id + " -- " + listBill[i].listProduct[j].product);
+          if (listProduct[k]._id.toString() === listBill[i].listProduct[j].product.toString()) {
+            let getProduct = await Product.findOne({ _id: listBill[i].listProduct[j].product });
+            let getTotalPrice = getProduct.price * listBill[i].listProduct[j].amount;
+            let getCustomer = await User.findById(listBill[i].customer._id);
+            console.log(getProduct.price + " || " + getTotalPrice + " || " + getCustomer.name)
+            billList.push({ 'name': getCustomer.name, 'date': listBill[i].time, 'price': getTotalPrice });
           }
         }
       }
