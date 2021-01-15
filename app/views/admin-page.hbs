@@ -13,7 +13,7 @@
     <div class="danhsachtaikhoan">
       <p class="title-1">DANH SÁCH TÀI KHOẢN</p>
       <h4><a href="#customer">Người dùng</a></h4>
-      <h4><a href="#shop">Shop</a></h4>
+      <h4><a href="#shop">Cửa hàng</a></h4>
 
       <!-- Customer -->
       <div id="customer">
@@ -50,7 +50,6 @@
       <div id="shop">
         <br />
         <h3 id="title3">Cửa hàng</h3>
-        <span>(Ấn vào tên cửa hàng bất kỳ để thực hiện xóa cửa hàng)</span>
         <div class="search">
           <i class="fa fa-search" aria-hidden="true"></i>
           <input
@@ -65,14 +64,16 @@
               <th>Tên cửa hàng</th>
               <th>Email</th>
               <th>Chủ sở hữu</th>
+              <th>Tài khoản</th>
             </tr>
           </thead>
           <tbody id="myTable1">
             {{#each shops}}
               <tr>
-                <td><a href="#confirm"class = "open-Confirm" data-toggle="modal" data-title="Xóa cửa hàng: " data-id = {{_id}} data-content = "{{this.name}}" data-type = "delShop">{{this.name}}</a></td>
+                <td>{{this.name}}</td>
                 <td>{{email}}</td>
                 <td>{{sellerID.name}}</td>
+                <td>{{sellerID.username}}</td>
               </tr>
             {{/each}}
           </tbody>
