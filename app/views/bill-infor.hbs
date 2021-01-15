@@ -39,13 +39,12 @@
               </div>
             </div>
           </div>
-          <div class="col-7">bên này sẽ hiện list bill sau khi tìm D:</div>
+          <div class="col-7"></div>
         </div>
       </div>
       <table class="table table-bordered">
         <thead>
           <tr>
-            <th scope="col">Mã đơn hàng</th>
             <th scope="col">Tên người mua</th>
             <th scope="col">Ngày mua</th>
             <th scope="col">Tổng tiền</th>
@@ -54,10 +53,9 @@
         <tbody>
           {{#each billList}}
           <tr>
-            <th scope="row">{{billID}}</th>
-            <td>{{nameCustomer}}</td>
-            <td>{{buyDay}}</td>
-            <td>{{totalPrice}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.date}}</td>
+            <td>{{this.price}}</td>
           </tr>
           {{/each}}
 

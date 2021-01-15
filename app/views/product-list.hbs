@@ -30,7 +30,7 @@
               </div>
             </div>
           </div>
-          <div class="col-7">bên này sẽ hiện thông tin sản phẩm</div>
+          <div class="col-7"></div>
         </div>
       </div>
       <div class="list-product-container">
@@ -38,7 +38,7 @@
           <a href="/add-product"><button type="button" class="btn btn-outline-success">
               Thêm sản phẩm
             </button></a>
-          <button type="button" class="btn btn-outline-danger">Xoá</button>
+          <button type="submit" class="btn btn-outline-danger">Xoá</button>
           <button type="button" class="btn btn-link" onclick="check()">
             Chọn tất cả
           </button>
@@ -49,9 +49,11 @@
         {{#each productList}}
         <div class="row">
           <div class="col-2">
-            <img src="./imgs/insert-picture-icon.png" alt="..." class="img-thumbnail" />
+
+            <img src="{{images}}" alt="..." class="img-thumbnail" />
+
           </div>
-          <div class="col-9">
+          <div class="col-7">
             <div>
               <span id="name-product">Tên sản phẩm: {{name}}</span>
             </div>
@@ -63,7 +65,11 @@
             </div>
           </div>
           <div class="col">
-            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" />
+            <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" name="{{this._id}}" />
+          </div>
+          <div class="col">
+            <a href="/shop/delete-product?id={{this._id}}" class="btn btn-outline-danger"><span
+                style="color: red;">Xoá</span></a>
           </div>
         </div>
         {{/each}}

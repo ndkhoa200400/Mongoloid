@@ -1,6 +1,9 @@
 {{>head-shop}}
 
 <body>
+  <script>
+
+  </script>
   {{>header-shop}}
   <div class="body-container">
     {{>nav-shop}}
@@ -8,12 +11,9 @@
       <div class="title-body">
         <div class="text">DOANH THU CỬA HÀNG</div>
       </div>
-      <div class="col-md-6 py-1">
-        <div class="card">
-          <div class="card-body">
-            <canvas id="chLine"></canvas>
-          </div>
-        </div>
+      <div class="">
+        <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
       </div>
     </div>
   </div>

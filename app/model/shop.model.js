@@ -35,7 +35,8 @@ const shopSchema = new mongoose.Schema({
     joinDate: {
         type: Date,
         default: Date.now(),
-    }
+    },
+    address: String,
 
 })
 const Shop = mongoose.model('Shop', shopSchema);

@@ -13,7 +13,7 @@ router.use(authController.isLoggedIn);
 router.get('/', controller.getHome);
 router.get('/category', controller.getOverview);
 //router.post('/category', controller.ProByCatAndFilter);
-router.get('/cart',controller.getCart)
+router.get('/cart', controller.getCart)
 
 router.get('/category/:cat', controller.ProByCat);
 
@@ -49,11 +49,7 @@ router.get('/admin/statistics', controller.getStatisticsAdmin);
 //view shop information
 router.get('/shop-infor', authController.protect, authController.restrictTo('seller'), controller.getShopInfo);
 //view shop bills
-router.get('/bill-infor', (req, res) => {
-    res.render('bill-infor', {
-        stylecss: 'bill-infor.css',
-    });
-});
+router.get('/bill-infor', authController.protect, authController.restrictTo('seller'), controller.getBillList);
 //view shop canceled bills
 router.get('/bill-cancel-infor', (req, res) => {
     res.render('bill-cancel-infor', {
@@ -70,8 +66,13 @@ router.get('/add-product', authController.protect, authController.restrictTo('se
 });
 //view shop sales
 router.get('/sales', (req, res) => {
+
     res.render('sales', {
         stylecss: 'sales.css',
+
     });
 });
+router.get('/shop/delete-product', controller.deleteProduct)
+
+
 module.exports = router;

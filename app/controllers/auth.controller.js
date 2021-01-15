@@ -59,7 +59,7 @@ const createSendToken = (user, statusCode, res) => {
   });
 };
 exports.logout = (req, res) => {
-  
+
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 2 * 1000),
     httpOnly: true,
@@ -73,16 +73,16 @@ exports.signup = async (req, res, next) => {
   const userOtp = req.body.otp;
   const body = req.session.register.body
   console.log(opt + " " + userOtp)
-  if (opt != userOtp){
+  if (opt != userOtp) {
     return res.render('otp_page', {
       title: 'Xin chào',
       layout: false,
       message: "Mã xác nhận không đúng",
       email: body.email,
 
-  })
+    })
   }
-  
+
   try {
     const newUser = await User.create(body);
     createToken(newUser, 201, res);
@@ -97,7 +97,7 @@ exports.signup = async (req, res, next) => {
     `)
   }
 };
-exports.otp = catchAsync(async(req,res,next)=>{
+exports.otp = catchAsync(async (req, res, next) => {
   var nodemailer = require("nodemailer"); // gửi otp
   // gửi OTP
   function generateOTP() {
@@ -108,7 +108,7 @@ exports.otp = catchAsync(async(req,res,next)=>{
     }
     return OTP;
   }
-  
+
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -134,13 +134,13 @@ exports.otp = catchAsync(async(req,res,next)=>{
   sendMail(req.body.email, otp);
 
   req.session.register = {
-    body:req.body,
+    body: req.body,
     otp,
   };
   console.log("ok")
   res.redirect("/user/signup/otp");
 })
-exports.resendOtp = catchAsync(async(req,res,next)=>{
+exports.resendOtp = catchAsync(async (req, res, next) => {
   var nodemailer = require("nodemailer"); // gửi otp
   // gửi OTP
   function generateOTP() {
@@ -151,7 +151,7 @@ exports.resendOtp = catchAsync(async(req,res,next)=>{
     }
     return OTP;
   }
-  
+
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -181,7 +181,7 @@ exports.resendOtp = catchAsync(async(req,res,next)=>{
 })
 exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
-  
+
   // 1) Check if email or username and password exist
   console.log(req.body);
   if ((!email) || !password) {
@@ -191,7 +191,7 @@ exports.login = catchAsync(async (req, res, next) => {
         window.location = '/login'
       </script>
     `)
-  
+
   }
 
   // 2) Check if user exists && password is correct
@@ -208,7 +208,15 @@ exports.login = catchAsync(async (req, res, next) => {
           window.location = '/login';
         </script>
       `)
-    
+
+  }
+  if (!user.active) {
+    return res.send(`
+    <script>
+      alert("Tài khoản của bạn đã bị cấm khỏi trang này.");
+      window.location = '/login';
+    </script>
+  `);
   }
   // 3) IF everything is ok, send token to client
   createToken(user, 200, res);

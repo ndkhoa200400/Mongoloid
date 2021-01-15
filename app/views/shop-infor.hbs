@@ -7,49 +7,49 @@
     <div class="main-body-container">
       <p class="title-1">HỒ SƠ CỬA HÀNG</p>
       <div class="hoso">
-        <form class="form-1" id="form-input" hidden>
+        <form action="/shop/edit-shop-infor?id={{id}}" method="POST" class="form-1" id="form-input" hidden>
           <div class="row" id="shop-name">
             <div class="col-25">
-              <label for="name">Tên cửa hàng</label>
+              <label>Tên cửa hàng</label>
             </div>
             <div class="col-60">
-              <input type="text" id="name" value="{{shopName}}" />
+              <input name="name" type="text" id="name" value="{{shopName}}" />
             </div>
           </div>
           <div class="row" id="shop-phone">
             <div class="col-25">
-              <label for="phone">Số điện thoại</label>
+              <label>Số điện thoại</label>
             </div>
             <div class="col-60">
-              <input type="text" id="phone" value="{{shopPhone}}" />
+              <input name="phone" type="text" id="phone" value="{{shopPhone}}" />
             </div>
           </div>
           <div class="row" id="shop-address">
             <div class="col-25">
-              <label for="name">Địa chỉ</label>
+              <label>Địa chỉ</label>
             </div>
             <div class="col-60">
-              <input type="text" id="name" value="{{shopAddress}}" />
+              <input name="address" type="text" id="name" value="{{shopAddress}}" />
             </div>
           </div>
           <div class="row" id="shop-day">
             <div class="col-25">
-              <label for="name">Ngày thành lập</label>
+              <label>Ngày thành lập</label>
             </div>
             <div class="col-60">
-              <input type="text" id="name" value="{{shopEstDay}}" />
+              <input name="day" type="text" id="name" value="{{shopEstDay}}" />
             </div>
           </div>
           <div class="row" id="shop-describe">
             <div class="col-25">
-              <label for="name">Mô tả cửa hàng</label>
+              <label>Mô tả cửa hàng</label>
             </div>
             <div class="col-60">
-              <textarea class="form-control" aria-label="With textarea">{{shopDescribe}}</textarea>
+              <textarea name="describe" class="form-control" aria-label="With textarea">{{shopDescribe}}</textarea>
             </div>
           </div>
           <div class="d-flex justify-content-center">
-            <button onclick="switchingModifyMode()" type="button">Lưu</button>
+            <button onclick="switchingModifyMode()" type="submit">Lưu</button>
           </div>
         </form>
         <form class="form-1" id="form-view">

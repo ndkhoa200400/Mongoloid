@@ -1,7 +1,8 @@
 const express = require('express');
 const controller = require('../controllers/shop.controller')
 const authController = require('./../controllers/auth.controller')
-const voucherController = require('../controllers/voucher.controller')
+const voucherController = require('../controllers/voucher.controller');
+const { route } = require('./view.route');
 const router = express.Router();
 
 router.route('/')
@@ -18,7 +19,9 @@ router.route('/:id')
         authController.restrictTo('seller'),
         controller.updateShop)
     .delete(authController.protect,
-        authController.restrictTo('seller','admin'),
+        authController.restrictTo('seller', 'admin'),
         controller.deleteShop);
+
+router.post('/edit-shop-infor', controller.editShop);
 
 module.exports = router;

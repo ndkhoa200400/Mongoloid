@@ -172,7 +172,7 @@ exports.getCustomerInfo = catchAsync(async (req, res, next) => {
     let user = res.locals.user;
 
     let arrProduct = [];
-    const getCustomerBill = await Bill.find({ customer: user.id});
+    const getCustomerBill = await Bill.find({ customer: user.id });
     console.log(getCustomerBill);
     for (let i = 0; i < getCustomerBill.length; i++) {
       for (let j = 0; j < getCustomerBill[i].listProduct.length; j++) {
@@ -182,7 +182,7 @@ exports.getCustomerInfo = catchAsync(async (req, res, next) => {
       }
     }
 
-    user = {name: user.name, role: user.role, email: user.email, phone: user.phone, address: user.address};
+    user = { name: user.name, role: user.role, email: user.email, phone: user.phone, address: user.address };
     console.log(user);
     res.status(200).render("customer-page", {
       user: user,
@@ -237,20 +237,26 @@ exports.getShopInfo = catchAsync(async (req, res, next) => {
   try {
     const userID = req.user.id;
     const shop = await Shop.findOne({ sellerID: userID }).select("+joinDate").lean();
+    const numProduct = await Product.find({ shopID: shop._id }).count();
+
+
+    console.log(shop._id);
 
     if (shop)
       res.render('shop-infor', {
+        id: shop._id,
         stylecss: 'shop-infor.css',
         title: 'Thông tin cửa hàng',
         shopName: shop.name,
         shopPhone: shop.phoneContact,
-        shopAddress: 'TPHCM',
+        shopAddress: shop.address,
         shopEstDay: shop.joinDate,
         shopDescribe: shop.description,
-        numProduct: '1500',
-        numSaledProduct: '1200',
-        overallRating: '4.5',
-        billCanceledRate: '5%',
+
+        numProduct: numProduct,
+        numSaledProduct: '0',
+        overallRating: '0',
+        billCanceledRate: '0',
       });
     else {
       res.render("error", {
@@ -268,7 +274,12 @@ exports.getProductList = catchAsync(async (req, res, next) => {
     const user = res.locals.user;
     const shop = await Shop.findOne({ sellerID: user.id });
     if (shop) {
-      const products = await Product.find({ shopID: shop.id }).select("+createdAt").lean();
+      let products = await Product.find({ shopID: shop.id }).select("+createdAt").lean();
+
+      for (let i = 0; i < products.length; i++) {
+        products[i].images = products[i].images[0];
+      }
+
       res.status(200).render("product-list", {
         title: "Trang sản phẩm",
         productList: products,
@@ -290,7 +301,7 @@ exports.getCart = catchAsync(async (req, res, next) => {
   try {
     const cart = req.session.cart;
     let user = res.locals.user;
-    
+
     if (user) user = { name: user.name, email: user.email, role: user.role };
     let totalPrice = 0;
     let isEmpty = true;
@@ -326,4 +337,47 @@ exports.getCart = catchAsync(async (req, res, next) => {
     console.log(error);
   }
 
+});
+exports.getBillList = catchAsync(async (req, res, next) => {
+
+  try {
+    const userID = req.user.id;
+    const shop = await Shop.findOne({ sellerID: userID }).select("+joinDate").lean();
+    let billList = [];
+    const listProduct = await Product.find({ shopID: shop._id });
+    const listBill = await Bill.find({});
+
+    for (bill of listBill) {
+      for (e of bill.listProduct) {
+        for (p of listProduct) {
+          if (p._id == e._id) {
+            let getPrice = await Product.findById(e._id).price;
+            let totalPrice = getPrice * e.amount;
+            let getCustomer = await User.findById(bill.customer._id).name;
+            billList.push({ 'name': getCustomer, 'date': bill.time, 'price': totalPrice });
+          }
+        }
+      }
+    }
+
+    res.render('bill-infor', {
+      stylecss: 'bill-infor.css',
+      billList: billList,
+    });
+  } catch (error) {
+    console.log(error);
+  }
+
+});
+
+exports.deleteProduct = catchAsync(async (req, res, next) => {
+  try {
+    const id = req.query.id;
+    console.log(id);
+    let product = await Product.findByIdAndRemove({ _id: id })
+    res.redirect('/product-list');
+  }
+  catch (error) {
+    console.log(error);
+  }
 });
