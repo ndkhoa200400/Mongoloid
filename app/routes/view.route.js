@@ -42,7 +42,12 @@ router.get('/customer/:mail', authController.protect,controller.getCustomerInfo)
 router.get('/admin', controller.getAccountAdmin);
 //view statistics
 router.get('/admin/statistics', controller.getStatisticsAdmin);
+//view products
+router.get('/admin/products', controller.getAdminProducts);
 
+router.post('/admin/deleteAccount', controller.deleteAccount);
+router.post('/admin/deleteShop', controller.deleteShop);
+router.post('/admin/deleteProduct', controller.deleteProductAdmin);
 
 
 //test shop channel

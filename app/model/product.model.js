@@ -35,7 +35,11 @@ const productSchema = new mongoose.Schema({
     {
         type: Date,
         default: Date.now(),
-    }
+    },
+    active:{
+        type: Boolean,
+        default: true,
+    } 
 })
 // runs before .save() and .create(), not affect .insertMany() and .findAndUpdate()
 productSchema.pre('save', function (next) {

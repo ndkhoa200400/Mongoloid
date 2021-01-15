@@ -5,7 +5,8 @@ const shopSchema = new mongoose.Schema({
     sellerID: {
         type: mongoose.Types.ObjectId,
         required: [true, 'Thông tin người dùng không hợp lệ'],
-        unique: true
+        unique: true,
+        ref: 'User'
     },
     name: {
         type: String,
@@ -36,7 +37,10 @@ const shopSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
-    address: String,
+    active:{
+        type: Boolean,
+        default: true,
+    } 
 
 })
 const Shop = mongoose.model('Shop', shopSchema);

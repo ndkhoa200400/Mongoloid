@@ -1,0 +1,91 @@
+{{#section 'css'}}
+
+
+{{/section}}
+
+{{#section 'js'}}
+  <script src="/admin-page.js"></script>
+{{/section}}
+
+<div class="main-body-container">
+  <form>
+    <!-- DANH SÁCH TÀI KHOẢN -->
+    <div class="danhsachtaikhoan">
+      <p class="title-1">DANH SÁCH SẢN PHẨM</p>
+      <h4><a href="#product">Danh sách sản phẩm</a></h4>
+
+      <!-- Customer -->
+      <div id="product">
+        <br />
+        <h3 id="title3">Sản phẩm</h3>
+        <span>(Ấn vào tên cửa hàng bất kỳ để thực hiện xóa cửa hàng)</span>
+        <div class="search">
+          <i class="fa fa-search" aria-hidden="true"></i>
+          <input
+            id="myInput"
+            type="text"
+            placeholder="Tìm kiếm sản phẩm..."
+          />
+        </div>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Tên</th>
+              <th>Giá</th>
+              <th>Cửa hàng</th>
+              <th>Danh mục</th>
+              <th>Đánh giá</th>
+            </tr>
+          </thead>
+          <tbody id="myTable">
+            {{#each products}}
+              <tr>
+                <td><a href="#confirm"class = "open-Confirm" data-toggle="modal" data-title="Xóa sản phẩm: " data-id="{{_id}}" data-content = "{{this.name}}" data-type = "delProduct">{{this.name}}</a></td>
+                <td>{{this.price}}</td>
+                <td>{{this.shopID.name}}</td>
+                <td>{{this.category}}</td>
+                <td>{{this.rating}}</td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+     
+    </div>
+  </form>
+</div>
+
+
+
+
+<div class="modal fade" id="confirm">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Xác nhận</h3>
+      </div>
+      <div class="modal-body">
+        <p id="content"> ...</p>
+      </div>
+      <div class="modal-footer">
+          
+          <form action="/admin/deleteProduct" method="POST" id = "form">
+              <input type="hidden"  id = "del" name="id" value="">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+          <button class="btn btn-primary" type="submit">Xác nhận</a>
+          </form>
+        </div></div></div>
+</div>
+<script>
+$(document).on("click", ".open-Confirm", function () {
+  var title = $(this).data('title');
+     var content = $(this).data('content');
+     var id = $(this).data('id');
+     $(".modal-body #content").text( title + content );
+     var type = $(this).data('type');
+     if(type === "delShop")
+      $(".modal-footer #form").attr('action', "/admin/deleteShop");
+     $(".modal-footer #del").attr('value', id);
+});
+</script>
