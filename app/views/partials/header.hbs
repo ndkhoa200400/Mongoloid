@@ -7,9 +7,9 @@
                 <ul>
 
                     {{#if this.user}}
-                    <li><a href="#">ĐƠN HÀNG</a></li>
-                    <li><a href="#">THÔNG BÁO</a></li>
+                    
                     {{#is this.user.role "seller"}}
+                    <li><a href="/customer/{{this.user.email}}">ĐƠN HÀNG</a></li>
                     <li><a href="/shop-infor">KÊNH NGƯỜI BÁN</a></li>
                     {{/is}}
                     {{#is this.user.role "customer"}}
@@ -24,21 +24,21 @@
                     {{else if this.user.username}}
                     <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.username}}</a>
                     {{else}}
-                     <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.email}}</a>
+                    <a class="sign-in" href="#"><i class="far fa-user"></i>{{this.user.email}}</a>
                     {{/if}}
-                    
-                    
-                        <div class="dropdown-content">
-                            {{#is this.user.role "admin"}}
-                                 <a href="/admin">Quản lý</a>
-                            {{else}}
-                                <a href="/customer/{{this.user.email}}">Thông tin</a>
-                            {{/is}} 
-                            <a href="/login" id="logout">Đăng xuất</a>
 
 
-                        </div>
-                    
+                    <div class="dropdown-content">
+                        {{#is this.user.role "admin"}}
+                        <a href="/admin">Quản lý</a>
+                        {{else}}
+                        <a href="/customer/{{this.user.email}}">Thông tin</a>
+                        {{/is}}
+                        <a href="/login" id="logout">Đăng xuất</a>
+
+
+                    </div>
+
                 </div>
                 {{else}}
                 <a class="sign-in" href="/login"><i class="far fa-user"></i>Đăng nhập</a>

@@ -151,7 +151,9 @@ exports.getProduct = catchAsync(async (req, res, next) => {
   }
 
   const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
-
+  let similarityProducts = await Product.find({category: product.category, active: true}).lean();
+  similarityProducts = similarityProducts.filter(value => value.slug !== product.slug);
+  similarityProducts = similarityProducts.slice(0, 4);
   const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("product-page", {
     title: "Sản phẩm",
@@ -163,6 +165,7 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     csspath: "product-page",
     jspath: "product-page",
     layout: "default",
+    similarityProducts
   });
 });
 

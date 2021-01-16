@@ -103,6 +103,9 @@ exports.checkout = async (req, res, next) =>{
 
 exports.changeAmount = async (req, res) =>{
     try {     
+        console.log(req.session.cart);
+        console.log(req.params);
+        console.log(req.body);
         for(let i =0; i < req.session.cart.length; i++)
         {
             if (req.session.cart[i].slug===req.params.slug)
@@ -111,7 +114,7 @@ exports.changeAmount = async (req, res) =>{
                 break;
             }
         }
-
+        console.log(req.session.cart);
         res.redirect('/cart');
     } catch (error) {
         console.log(error.message);

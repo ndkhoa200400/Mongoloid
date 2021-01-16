@@ -37,7 +37,7 @@
 
             </div>
             <div class="col d-flex flex-column justify-content-center text-sp">
-              <form action="/cart/changeAmount/{{this.product.slug}}" method="POST" class="form--change-amount">
+              <form action="/cart/changeAmount/{{this.product.slug}}" method="POST" class="form--change-amount" id="form--amount--{{this.product.slug}}">
                 <div class="btn-group soluong d-flex justify-content-center" role="group" aria-label="Basic example">
 
                   <button type="submit" class="soluong-button bg-transparent" onclick="decrease({{@index}})">-</button>

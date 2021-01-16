@@ -65,10 +65,9 @@
                 </div>
             </div>
             <div class="new-price" id="newprice">{{format_number this.product.price}} VNĐ</div>
-            <div class="old-price" id="oldprice">{{format_number this.product.price}} VNĐ</div>
-            <div class="discountvalue1">-20%</div>
+            
             <div class="btn-group soluong" role="group" aria-label="Basic example">
-                <div>Số lượng: </div>
+                <div>Số lượng:</div>
                 <button type="button" class="soluong-button bg-transparent" onclick="decrease()">-</button>
                 <input type="button" id="number" value="1">
                 <button type="button" class="soluong-button bg-transparent" onclick="increase()">+</button>
@@ -81,7 +80,7 @@
                     <button class="buy-now">MUA NGAY</button>
                 </form>
                 <form action="/cart/add" method="POST" style="width: 100%;">
-                    <input type="hidden" value="{{this.product.slug}}" name="slug">      
+                    <input type="hidden" value="{{this.product.slug}}" name="slug">
                     <input type="hidden" value="1" class="input--soluong" name="amount">
                     <button class="add-cart">THÊM VÀO GIỎ HÀNG</button>
                 </form>
@@ -126,116 +125,38 @@
         <h3>Sản phẩm tương tự</h3>
 
         <div class="similar-product">
+            {{#each this.similarityProducts}}
+            <div class="grid-item">
+                <div class="grid-item-image">
+                    <img src="{{this.images.[0]}}" />
+                </div>
+                <div class="grid-item-content">
+                    <a href='/product/{{this.slug}}' class="tenhang">{{this.name}}</a>
+                    <div class="sub-info">
+                        <div class="chuabiet sub-info-flex_item">
+                            <span><i class="fas fa-star"></i></span>
+                            <span id="">{{this.ratingsAverage}}</span><span class="format">Đánh giá</span>
+                        </div>
+                        <div class=" daban sub-info-flex_item">
+                            <span><i class="fas fa-shopping-bag"></i></span>
 
-                    <div class="grid-item">
-                        <div class="grid-item-image">
-                            <img src="./imgs/product3.jpg" />
-                        </div>
-                        <div class="grid-item-content">
-                            <div class="tenhang">Son Hera Sensual Powder Matte</div>
-                            <div class="sub-info">
-                                <div class="chuabiet sub-info-flex_item">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span id="">72 </span><span class="format">Đánh giá</span>
-                                </div>
-                                <div class=" daban sub-info-flex_item">
-                                    <span><i class="fas fa-shopping-bag"></i></span>
-                                    <span id="">7k1 </span><span class="format">Đã bán</span>
-                                </div>
-                            </div>
-                            <div class=" tien">
-                                <div class="tien-icon">
-                                    <i class="fas fa-money-bill"></i>
-                                </div>
-                                <div class="tien-giatien">
-                                    <div class="tien-giamoi">200.000 VNĐ<span class="discountvalue">-20%</span>
-                                    </div>
-                                    <div class="tien-giacu">199.000</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
-                    <div class="grid-item">
-                        <div class="grid-item-image">
-                            <img src="./imgs/product3.jpg" />
+                    <div class=" tien">
+                        <div class="tien-icon">
+                            <i class="fas fa-money-bill"></i>
                         </div>
-                        <div class="grid-item-content">
-                            <div class="tenhang">Son Hera Sensual Powder Matte</div>
-                            <div class="sub-info">
-                                <div class="chuabiet sub-info-flex_item">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span id="">72 </span><span class="format">Đánh giá</span>
-                                </div>
-                                <div class=" daban sub-info-flex_item">
-                                    <span><i class="fas fa-shopping-bag"></i></span>
-                                    <span id="">7k1 </span><span class="format">Đã bán</span>
-                                </div>
+                        <div class="tien-giatien">
+                            <div class="tien-giamoi">{{format_number this.price}} VND
                             </div>
-                            <div class=" tien">
-                                <div class="tien-icon">
-                                    <i class="fas fa-money-bill"></i>
-                                </div>
-                                <div class="tien-giatien">
-                                    <div class="tien-giamoi">200.000 VNĐ</div>
-                                    <div class="tien-giacu">199.000</div>
-                                </div>
-                            </div>
+
                         </div>
                     </div>
-                    <div class="grid-item">
-                        <div class="grid-item-image">
-                            <img src="./imgs/product3.jpg" />
-                        </div>
-                        <div class="grid-item-content">
-                            <div class="tenhang">Son Hera Sensual Powder Matte</div>
-                            <div class="sub-info">
-                                <div class="chuabiet sub-info-flex_item">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span id="">72 </span><span class="format">Đánh giá</span>
-                                </div>
-                                <div class=" daban sub-info-flex_item">
-                                    <span><i class="fas fa-shopping-bag"></i></span>
-                                    <span id="">7k1 </span><span class="format">Đã bán</span>
-                                </div>
-                            </div>
-                            <div class=" tien">
-                                <div class="tien-icon">
-                                    <i class="fas fa-money-bill"></i>
-                                </div>
-                                <div class="tien-giatien">
-                                    <div class="tien-giamoi">200.000 VNĐ</div>
-                                    <div class="tien-giacu">199.000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-item">
-                        <div class="grid-item-image">
-                            <img src="./imgs/product3.jpg" />
-                        </div>
-                        <div class="grid-item-content">
-                            <div class="tenhang">Son Hera Sensual Powder Matte</div>
-                            <div class="sub-info">
-                                <div class="chuabiet sub-info-flex_item">
-                                    <span><i class="fas fa-star"></i></span>
-                                    <span id="">72 </span><span class="format">Đánh giá</span>
-                                </div>
-                                <div class=" daban sub-info-flex_item">
-                                    <span><i class="fas fa-shopping-bag"></i></span>
-                                    <span id="">7k1 </span><span class="format">Đã bán</span>
-                                </div>
-                            </div>
-                            <div class=" tien">
-                                <div class="tien-icon">
-                                    <i class="fas fa-money-bill"></i>
-                                </div>
-                                <div class="tien-giatien">
-                                    <div class="tien-giamoi">200.000 VNĐ</div>
-                                    <div class="tien-giacu">199.000</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                </div>
+            </div>
+
+            {{/each}}
+
         </div>
     </div>
 

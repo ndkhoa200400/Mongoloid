@@ -68,11 +68,10 @@ exports.logout = (req, res) => {
 };
 
 exports.signup = async (req, res, next) => {
-  console.log("do")
   const opt = req.session.register.otp;
   const userOtp = req.body.otp;
   const body = req.session.register.body
-  console.log(opt + " " + userOtp)
+
   if (opt != userOtp) {
     return res.render('otp_page', {
       title: 'Xin chào',
@@ -86,7 +85,6 @@ exports.signup = async (req, res, next) => {
   try {
     const newUser = await User.create(body);
     createToken(newUser, 201, res);
-    console.log("dk xog")
     res.redirect('/')
   } catch (e) {
     return res.send(`
@@ -137,7 +135,7 @@ exports.otp = catchAsync(async (req, res, next) => {
     body: req.body,
     otp,
   };
-  console.log("ok")
+
   res.redirect("/user/signup/otp");
 })
 exports.resendOtp = catchAsync(async (req, res, next) => {
@@ -183,7 +181,7 @@ exports.login = catchAsync(async (req, res, next) => {
   const { email, password } = req.body;
 
   // 1) Check if email or username and password exist
-  console.log(req.body);
+
   if ((!email) || !password) {
     return res.send(`
       <script>
@@ -367,7 +365,6 @@ exports.resetPassword = catchAsync(async (req, res, next) => {
 exports.updatePassword = catchAsync(async (req, res, next) => {
   // 1) Get user from collection
   const user = await User.findById(req.user.id).select("+password +passwordConfirm");
-  console.log(req.body.passwordCurrent);
   // 2) Check if POSTed current password is correct
   if (!(await user.correctPassword(req.body.passwordCurrent, user.password))) {
     return next(new appError("Password hiện tại không đúng", 401));
