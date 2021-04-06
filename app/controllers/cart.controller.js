@@ -103,18 +103,27 @@ exports.checkout = async (req, res, next) =>{
 
 exports.changeAmount = async (req, res) =>{
     try {     
-        console.log(req.session.cart);
-        console.log(req.params);
-        console.log(req.body);
+
         for(let i =0; i < req.session.cart.length; i++)
         {
             if (req.session.cart[i].slug===req.params.slug)
             {
-                req.session.cart[i].amount = req.body.amount;
+                newAmount = +req.body.amount;
+                if (req.body.button === "decrease")
+                {
+                    if (newAmount> 1)
+                    {
+                        newAmount --;
+                    }
+                }
+                else{
+                 newAmount++;
+                }
+                req.session.cart[i].amount = newAmount;
                 break;
             }
         }
-        console.log(req.session.cart);
+     
         res.redirect('/cart');
     } catch (error) {
         console.log(error.message);

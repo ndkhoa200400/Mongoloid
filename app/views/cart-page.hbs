@@ -40,11 +40,12 @@
               <form action="/cart/changeAmount/{{this.product.slug}}" method="POST" class="form--change-amount" id="form--amount--{{this.product.slug}}">
                 <div class="btn-group soluong d-flex justify-content-center" role="group" aria-label="Basic example">
 
-                  <button type="submit" class="soluong-button bg-transparent" onclick="decrease({{@index}})">-</button>
-                  <input type="hidden" class="valueNumber" id="number{{@index}}" value="{{this.amount}}"
+                  <button type="submit" class="soluong-button bg-transparent" value="decrease" name="button">-</button>
+                  <input type="hidden" value="{{this.amount}}"
                     name="amount" >
+                
                     <input type="button" class="valueNumber"  value="{{this.amount}}">
-                  <button type="submit" class="soluong-button bg-transparent" onclick="increase({{@index}})">+</button>
+                  <button type="submit" class="soluong-button bg-transparent" value="increase" name="button">+</button>
 
                 </div>
               </form>
@@ -99,13 +100,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"></script>
   <script src="https://kit.fontawesome.com/cabc320003.js" crossorigin="anonymous"></script>
   <script src="/public/cart-page.js"></script>
-    <script>
-    $(".form--change-amount").on('click', function(e){
-      e.preventDefault();
-      $(".form--change-amount").submit();
-      console.log($('.valueNumber').val());
-    });
-  </script>
+ 
 </body>
 
 </html>
