@@ -57,15 +57,34 @@
             <div class="product-sub-info">
                 <div class="daban subinfo">
                     <div><i class="fas fa-shopping-bag space"></i></div>
-                    <div id="">7k1 Đã bán</div>
+                    <div id="">{{numSold }} Đã bán</div>
                 </div>
                 <div class="danhgia subinfo ">
                     <div> <i class="fas fa-star space"></i></div>
-                    <div id="">72 Đánh giá</div>
+                    <div id="">{{numRating}} Đánh giá</div>
                 </div>
             </div>
+
+            <form action="/api/product/rating/{{this.product._id}}" method="POST" id="rating">
+                <input type="submit" id="star5" name="rating" value="5" />
+                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+
+                <input type="submit" id="star4" name="rating" value="4" />
+                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+
+                <input type="submit" id="star3" name="rating" value="3" />
+                <label class="full" for="star3" title="Meh - 3 stars"></label>
+
+                <input type="submit" id="star2" name="rating" value="2" />
+                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+
+                <input type="submit" id="star1" name="rating" value="1" />
+                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+
+
+            </form>
             <div class="new-price" id="newprice">{{format_number this.product.price}} VNĐ</div>
-            
+
             <div class="btn-group soluong" role="group" aria-label="Basic example">
                 <div>Số lượng:</div>
                 <button type="button" class="soluong-button bg-transparent" onclick="decrease()">-</button>

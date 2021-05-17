@@ -4,7 +4,7 @@ const productSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Tên không được bỏ trống'],
-        trim: true   
+        trim: true
     },
     slug: String,
     price: {
@@ -18,10 +18,16 @@ const productSchema = new mongoose.Schema({
         type: Number,
         min: [1, 'Số lượng sản phẩm không hợp lệ']
     },
-    rating: {
-        type: Number,
-        default: 0
-    },
+    rating: [{
+        stars: {
+            type: Number,
+            default: 3
+        },
+        user: {
+            type: mongoose.Types.ObjectId,
+            ref: 'User'
+        }
+    }],
     shopID: {
         type: mongoose.Types.ObjectId,
         ref: 'Shop'
@@ -36,10 +42,10 @@ const productSchema = new mongoose.Schema({
         type: Date,
         default: Date.now(),
     },
-    active:{
+    active: {
         type: Boolean,
         default: true,
-    } 
+    }
 })
 // runs before .save() and .create(), not affect .insertMany() and .findAndUpdate()
 productSchema.pre('save', function (next) {

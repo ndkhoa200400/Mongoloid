@@ -12,14 +12,13 @@ const hbs_sections = require('express-handlebars-sections');
 const session = require('express-session');
 const moment = require('moment');
 
-const handlebars=require('handlebars')
+const handlebars = require('handlebars')
 
 app.use(express.static(path.join(__dirname, "./", "/public")));
 app.use('/public', express.static('public'))
 //this required before view engine setup
-handlebars.registerHelper("inc", function(value, options)
-{
-    return parseInt(value) + 1;
+handlebars.registerHelper("inc", function (value, options) {
+  return parseInt(value) + 1;
 });
 app.use('/public', express.static('public'))
 //this required before view engine setup
@@ -27,21 +26,21 @@ app.use('/public', express.static('public'))
 app.set('views', path.join(__dirname, 'views'));
 
 app.engine('hbs', exphbs({
-    extname: 'hbs',
-    layoutsDir: path.join(__dirname, 'views', 'layouts'),
-    partialsDir: path.join(__dirname, 'views', 'partials'),
-    defaultLayout: 'default',
-    helpers: {
-      section: hbs_sections(),
-      format_number(val) {
-        return numeral(val).format('0,0');
-      },
-      format_date(val) {
-        return moment(val).format('L');
-      },
-      hbsHelpers
-    }
-  })
+  extname: 'hbs',
+  layoutsDir: path.join(__dirname, 'views', 'layouts'),
+  partialsDir: path.join(__dirname, 'views', 'partials'),
+  defaultLayout: 'default',
+  helpers: {
+    section: hbs_sections(),
+    format_number(val) {
+      return numeral(val).format('0,0');
+    },
+    format_date(val) {
+      return moment(val).format('L');
+    },
+    hbsHelpers
+  }
+})
 );
 app.set('view engine', 'hbs');
 app.use(express.urlencoded({

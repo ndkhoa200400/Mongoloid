@@ -4,7 +4,7 @@ const authController = require('./../controllers/auth.controller')
 const reviewRouter = require('./review.route');
 const router = express.Router();
 
-
+router.post('/rating/:id', authController.protect, controller.ratingProduct);
 router.route('/')
     .get(controller.getAllProducts)
     .post(authController.protect,

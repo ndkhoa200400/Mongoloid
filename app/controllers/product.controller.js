@@ -5,9 +5,26 @@ const APIFeatures = require('../utils/apiFeature');
 const factory = require('./handlerFactory')
 const Shop = require('./../model/shop.model');
 
+exports.ratingProduct = async (req, res, next) => {
+    console.log(req.params);
+    const product = await Product.findById(req.params.id);
+    const user = res.locals.user;
+    console.log(product);
+    console.log(user);
+    for (let i = 0; i < product.rating.length; i++) {
+        if (product.rating[i].user.equals(user._id)) {
+            product.rating[i].stars = +req.body.rating;
+            await product.update({ rating: product.rating });
+            return res.redirect(`/product/${product.slug}`);
+        }
+    }
+
+    product.rating.push({ stars: +req.body.rating, user: user._id })
+    await product.update({ rating: product.rating });
+    res.redirect(`/product/${product.slug}`);
+}
 exports.setShop = catchAsync(async (req, res, next) => {
     const sellerID = req.user.id;
-    console.log(sellerID);
     const shop = await Shop.findOne({ sellerID: sellerID });
 
     if (!shop) {
@@ -29,7 +46,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
     try {
         if (req.body) {
             req.body.amount = +req.body.amount;
-            req.body.price = +req.body.price;      
+            req.body.price = +req.body.price;
             req.body.images = [req.body.image];
             await Product.create(req.body);
             res.send(`
@@ -41,7 +58,7 @@ exports.createProduct = catchAsync(async (req, res, next) => {
 
         }
 
-    } catch (error) {  
+    } catch (error) {
         const errors = Object.values(error.errors).map((el) => el.message);
         const mess = `Lỗi nhập liệu: ${errors.join(", ")}`;
         res.send(`
