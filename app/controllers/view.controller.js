@@ -139,57 +139,64 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
   }
 });
 
-exports.getProduct = catchAsync(async (req, res, next) => {
-  let user = res.locals.user;
-  if (user) {
-    if (!user.name) user.name = user.username;
-    user = {
-      name: user.name,
-      email: user.email,
-      role: user.role,
-    };
+exports.getProduct = (async (req, res, next) => {
+  try {
+    let user = res.locals.user;
+    if (user) {
+      if (!user.name) user.name = user.username;
+      user = {
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      };
+    }
+
+    const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
+
+    let similarityProducts = await Product.find({ category: product.category, active: true }).lean();
+    // Số lượng bán ra
+    let numSold = 0;
+    const bills = await Bill.find();
+    bills.forEach(bill => {
+      bill.listProduct.forEach(item => {
+
+        if (item.product.equals(product._id)) {
+
+          numSold++;
+        }
+      });
+    })
+    let rating = 0;
+    console.log(product.rating.length);
+    if (product.rating.length)
+      product.rating.forEach(rate => {
+        rating += rate.stars
+      })
+    const numRating = product.rating.length ? product.rating.length : 0;
+    product.rating = product.rating.length ? rating / product.rating.length : 0;
+
+    similarityProducts = similarityProducts.filter(value => value.slug !== product.slug);
+    similarityProducts = similarityProducts.slice(0, 4);
+    const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
+    res.status(200).render("product-page", {
+      title: "Sản phẩm",
+      category,
+      empty: product === null,
+      product: product,
+      // /activeImg: product.toArray().images,
+      user: user,
+      csspath: "product-page",
+      jspath: "product-page",
+      layout: "default",
+      similarityProducts,
+      numSold,
+      numRating
+    });
+  } catch (error) {
+    console.log(error);
+    res.redict(req.session.retUrl ? req.session.retUrl : '/')
   }
 
-  const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
-
-  let similarityProducts = await Product.find({ category: product.category, active: true }).lean();
-  // Số lượng bán ra
-  let numSold = 0;
-  const bills = await Bill.find();
-  bills.forEach(bill => {
-    bill.listProduct.forEach(item => {
-
-      if (item.product.equals(product._id)) {
-
-        numSold++;
-      }
-    });
-  })
-  let rating = 0;
-
-  product.rating.forEach(rate => {
-    rating += rate.stars
-  })
-  const numRating = product.rating.length ? product.rating.length : 0;
-  product.rating = product.rating.length ? rating / product.rating.length : 0;
-
-  similarityProducts = similarityProducts.filter(value => value.slug !== product.slug);
-  similarityProducts = similarityProducts.slice(0, 4);
-  const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
-  res.status(200).render("product-page", {
-    title: "Sản phẩm",
-    category,
-    empty: product === null,
-    product: product,
-    // /activeImg: product.toArray().images,
-    user: user,
-    csspath: "product-page",
-    jspath: "product-page",
-    layout: "default",
-    similarityProducts,
-    numSold,
-    numRating
-  });
 });
 
 //CUSTOMER
