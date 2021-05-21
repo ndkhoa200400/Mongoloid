@@ -139,7 +139,6 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
   }
 });
 
-<<<<<<< HEAD
 exports.getProduct = catchAsync(async (req, res, next) => {
   let user = res.locals.user;
   const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
@@ -159,21 +158,6 @@ exports.getProduct = catchAsync(async (req, res, next) => {
   }
 
 
-=======
-exports.getProduct = (async (req, res, next) => {
-  try {
-    let user = res.locals.user;
-    if (user) {
-      if (!user.name) user.name = user.username;
-      user = {
-        name: user.name,
-        email: user.email,
-        role: user.role,
-      };
-    }
-
-    const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
->>>>>>> 46a62012bec31ddab1d5f0bb5155a348d8ac99ad
 
   let similarityProducts = await Product.find({ category: product.category, active: true }).lean();
   // Số lượng bán ra
@@ -212,46 +196,11 @@ exports.getProduct = (async (req, res, next) => {
     layout: "default",
     similarityProducts,
     numSold,
-    numRating
+    numRating,
+    isSeller
   });
 })
-let rating = 0;
-if (product.rating) {
-  product.rating.forEach(rate => {
-    rating += rate.stars
-  })
-}
-const numRating = product.rating ? product.rating.length : 0;
-if (product.rating) {
-  if (product.rating.length > 0) {
-    product.rating = rating / product.rating.length;
-  }
-  else {
-    product.rating = 0;
-  }
-}
 
-similarityProducts = similarityProducts.filter(value => value.slug !== product.slug);
-similarityProducts = similarityProducts.slice(0, 4);
-
-
-const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
-res.status(200).render("product-page", {
-  title: "Sản phẩm",
-  category,
-  empty: product === null,
-  product: product,
-  // /activeImg: product.toArray().images,
-  user: user,
-  csspath: "product-page",
-  jspath: "product-page",
-  layout: "default",
-  similarityProducts,
-  numSold,
-  numRating,
-  isSeller
-});
-});
 
 //CUSTOMER
 exports.getCustomerInfo = catchAsync(async (req, res, next) => {
