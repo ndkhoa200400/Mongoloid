@@ -141,6 +141,13 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
 
 exports.getProduct = catchAsync(async (req, res, next) => {
   let user = res.locals.user;
+  const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
+  let isSeller = false; // Kiểm tra mặt hàng này của seller hay không, nếu phải thì không cho mua
+  const shop = await Shop.findById(product.shopID);
+  if (shop) {
+    if (shop.sellerID.equals(user._id))
+      isSeller = true;
+  }
   if (user) {
     if (!user.name) user.name = user.username;
     user = {
@@ -150,7 +157,7 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     };
   }
 
-  const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
+
 
   let similarityProducts = await Product.find({ category: product.category, active: true }).lean();
   // Số lượng bán ra
@@ -166,15 +173,25 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     });
   })
   let rating = 0;
-
-  product.rating.forEach(rate => {
-    rating += rate.stars
-  })
-  const numRating = product.rating.length ? product.rating.length : 0;
-  product.rating = product.rating.length ? rating / product.rating.length : 0;
+  if (product.rating) {
+    product.rating.forEach(rate => {
+      rating += rate.stars
+    })
+  }
+  const numRating = product.rating ? product.rating.length : 0;
+  if (product.rating) {
+    if (product.rating.length > 0) {
+      product.rating = rating / product.rating.length;
+    }
+    else {
+      product.rating = 0;
+    }
+  }
 
   similarityProducts = similarityProducts.filter(value => value.slug !== product.slug);
   similarityProducts = similarityProducts.slice(0, 4);
+
+
   const category = await Product.find({}).distinct("category").populate("category").lean({ virtuals: true });
   res.status(200).render("product-page", {
     title: "Sản phẩm",
@@ -188,7 +205,8 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     layout: "default",
     similarityProducts,
     numSold,
-    numRating
+    numRating,
+    isSeller
   });
 });
 
@@ -199,7 +217,6 @@ exports.getCustomerInfo = catchAsync(async (req, res, next) => {
 
     let arrProduct = [];
     const getCustomerBill = await Bill.find({ customer: user.id });
-    console.log(getCustomerBill);
     for (let i = 0; i < getCustomerBill.length; i++) {
       for (let j = 0; j < getCustomerBill[i].listProduct.length; j++) {
         let product = await Product.findById(getCustomerBill[i].listProduct[j].product);

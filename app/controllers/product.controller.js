@@ -1,16 +1,13 @@
 const Product = require('./../model/product.model');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('../utils/appError');
-const APIFeatures = require('../utils/apiFeature');
+const cloudinary = require("cloudinary");
 const factory = require('./handlerFactory')
 const Shop = require('./../model/shop.model');
 
 exports.ratingProduct = async (req, res, next) => {
-    console.log(req.params);
     const product = await Product.findById(req.params.id);
     const user = res.locals.user;
-    console.log(product);
-    console.log(user);
     for (let i = 0; i < product.rating.length; i++) {
         if (product.rating[i].user.equals(user._id)) {
             product.rating[i].stars = +req.body.rating;
@@ -44,10 +41,21 @@ exports.getProduct = factory.getOne(Product, {
 
 exports.createProduct = catchAsync(async (req, res, next) => {
     try {
+        console.log(req.body);
+        if (req.files) {
+            const urls = [];
+            for (let i = 0; i < req.files.length; i++) {
+                const urlImage = await cloudinary.v2.uploader.upload(req.files[i].path, {
+                    resource_type: "image",
+                });
+                urls.push(urlImage.url);
+            }
+            req.body.images = urls;
+        }
+        console.log(req.body);
         if (req.body) {
             req.body.amount = +req.body.amount;
             req.body.price = +req.body.price;
-            req.body.images = [req.body.image];
             await Product.create(req.body);
             res.send(`
                 <script>

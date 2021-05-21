@@ -3,11 +3,12 @@ const controller = require('../controllers/product.controller')
 const authController = require('./../controllers/auth.controller')
 const reviewRouter = require('./review.route');
 const router = express.Router();
-
+const upload = require("../utils/multer")
 router.post('/rating/:id', authController.protect, controller.ratingProduct);
 router.route('/')
     .get(controller.getAllProducts)
     .post(authController.protect,
+        upload.array('images'),
         authController.restrictTo('seller'),
         controller.setShop,
         controller.createProduct);

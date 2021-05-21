@@ -8,6 +8,19 @@
   })
 
 </script>
+<script src="https://cdn.tiny.cloud/1/ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6/tinymce/5/tinymce.min.js"
+  referrerpolicy="origin"></script>
+<script>
+  tinymce.init({
+    selector: '#description',
+    plugins: 'paste image link autolink lists table media',
+    menubar: false,
+    toolbar: [
+      'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
+    ],
+  });
+
+</script>
 {{/section}}
 
 <body>
@@ -22,7 +35,8 @@
 
       <!-- FORM -->
       <div class="form-container">
-        <form action="/api/product" method="POST" class="needs-validation" id="form--post-product" novalidate>
+        <form action="/api/product" method="POST" class="needs-validation" id="form--post-product" novalidate
+          enctype="multipart/form-data">
 
           <!-- Mấy cái nút -->
           <div class="buttons">
@@ -52,7 +66,8 @@
           <!-- Giá sản phẩm -->
           <label for="validationCustom03">Giá tiền</label>
           <div class="input-group">
-            <input type="number" class="form-control" id="validationCustom03" name="price" placeholder="Nhập giá sản phẩm" required>
+            <input type="number" class="form-control" id="validationCustom03" name="price"
+              placeholder="Nhập giá sản phẩm" required>
             <div class="input-group-append">
               <span class="input-group-text">VNĐ</span>
             </div>
@@ -64,25 +79,27 @@
             placeholder="Nhập số lượng sản phẩm" required>
           <br>
           <!-- Mô tả sản phẩm -->
-          <label for="validationCustom06">Mô tả sản phẩm</label>
+          {{!-- <label for="validationCustom06">Mô tả sản phẩm</label>
           <textarea class="form-control" aria-label="With textarea" id="validationCustom06" name="description"
             placeholder="Nhập mô tả sản phẩm" required></textarea>
+          <br> --}}
+          <div class="textarea_dt">
+            <div class="ui form swdh339">
+              <div class="field">
+                <textarea class="form-control" rows="5" name="description" placeholder="Nhập mô tả sản phẩm"
+                  id="description"></textarea>
+              </div>
+            </div>
+          </div>
           <br>
           <!-- Đăng hình ảnh sản phẩm -->
-          {{!-- <label class="btn btn-light upload-label image" for="validationCustom07">Tải lên ảnh sản phẩm</label>
-          --}}
-          <div class="dropzone">
-            <div class="info"></div>
-          </div>
-          <div class="custom-file">
-            <input onchange="loadFile(event)"
-              class="custom-file-input" name="image" id="img-link" multiple required>
-            <div class="invalid-feedback">
-              *Chưa đăng tải hình ảnh sản phẩm
-            </div>
-            <div id="image-container"></div>
-          </div>
 
+
+          <input type="file" name="images" accept="image/png, image/jpeg" id="images" multiple
+            data-browse-on-zone-click="true">
+          <div class="invalid-feedback">
+            *Chưa đăng tải hình ảnh sản phẩm
+          </div>
         </form>
       </div>
 
