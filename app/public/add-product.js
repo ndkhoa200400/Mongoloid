@@ -5,18 +5,26 @@
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
     var forms = document.getElementsByClassName('needs-validation');
     // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function (form) {
-      form.addEventListener('submit', function (event) {
+
+    $('.postProduct').on('click', function (e) {
+      e.preventDefault()
+      let isValid = true;
+      var validation = Array.prototype.filter.call(forms, function (form) {
+
         if (form.checkValidity() === false) {
           var x = document.getElementById('alert');
           x.innerHTML = "*Chưa nhập đủ thông tin";
-          event.preventDefault();
-          event.stopPropagation();
 
+          isValid = false;
         }
         form.classList.add('was-validated');
-      }, false);
-    });
+        if (isValid) {
+          form.submit()
+          document.querySelector('.postProduct').innerHTML = (`<i class="fa fa-spinner fa-spin"></i> Đăng sản phẩm`)
+        }
+      });
+
+    })
   }, false);
 })();
 

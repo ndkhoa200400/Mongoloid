@@ -1,13 +1,7 @@
 {{>head-shop}}
 {{#section 'js'}}
-<script>
-  $('.postProduct').on('click', function (e) {
-    e.preventDefault();
-    $("#form--post-product").submit();
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-  })
-
-</script>
 <script src="https://cdn.tiny.cloud/1/ezd73nxbzc7bu6e86g2l82jbbffke0mwevwrnyvc5q8h89j6/tinymce/5/tinymce.min.js"
   referrerpolicy="origin"></script>
 <script>
@@ -19,6 +13,9 @@
       'undo redo | bold italic underline strikethrough | numlist bullist | alignleft aligncenter alignright | forecolor backcolor | table link image media',
     ],
   });
+
+</script>
+<script>
 
 </script>
 {{/section}}
@@ -35,7 +32,7 @@
 
       <!-- FORM -->
       <div class="form-container">
-        <form action="/api/product" method="POST" class="needs-validation" id="form--post-product" novalidate
+        <form action="/api/product" method="POST" class="needs-validation" id="form--post-product"
           enctype="multipart/form-data">
 
           <!-- Mấy cái nút -->
@@ -44,6 +41,7 @@
               lại</button>
             <div class="submit-btn">
               <div id="alert"></div>
+              <div class="loader"></div>
               <button class="btn btn-primary postProduct" type="submit">Đăng sản phẩm</button>
             </div>
           </div>
@@ -97,13 +95,11 @@
 
           <input type="file" name="images" accept="image/png, image/jpeg" id="images" multiple
             data-browse-on-zone-click="true">
-          <div class="invalid-feedback">
-            *Chưa đăng tải hình ảnh sản phẩm
-          </div>
+
         </form>
       </div>
 
     </div>
   </div>
+  <script src="./add-product.js"></script>
 </body>
-<script src="./add-product.js"></script>
