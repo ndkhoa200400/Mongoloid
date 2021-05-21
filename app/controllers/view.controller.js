@@ -306,7 +306,26 @@ exports.getAdminProducts = catchAsync(async (req, res, next) => {
       role: user.role,
     };
   }
-  const products = await Product.find({ active: true }).populate("shopID").lean();
+  const products = await Product.find().populate("shopID").lean();
+  for (let i = 0; i < products.length; i++) {
+    let rating = 0;
+    const product = products[i];
+    if (product.rating) {
+      if (product.rating.length > 0) {
+
+        product.rating.forEach((rate) => {
+          rating += rate.stars;
+        })
+
+        product.rating = rating / product.rating.length;
+
+      }
+      else { product.rating = 0; }
+    }
+    else {
+      product.rating = 0;
+    }
+  }
 
   res.status(200).render("admin-products", {
     csspath: "admin-page",
@@ -314,7 +333,7 @@ exports.getAdminProducts = catchAsync(async (req, res, next) => {
     products,
   })
 });
-exports.getStatisticsAdmin = catchAsync(async (req, res, next) => {
+exports.getStatisticsAdmin = catchAsync(async (req, res) => {
   try {
 
     const selledProducts = await Bill.find({}).populate({
