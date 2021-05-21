@@ -41,7 +41,6 @@ exports.getProduct = factory.getOne(Product, {
 
 exports.createProduct = catchAsync(async (req, res, next) => {
     try {
-        console.log(req.body);
         if (req.files) {
             const urls = [];
             for (let i = 0; i < req.files.length; i++) {
@@ -52,7 +51,6 @@ exports.createProduct = catchAsync(async (req, res, next) => {
             }
             req.body.images = urls;
         }
-        console.log(req.body);
         if (req.body) {
             req.body.amount = +req.body.amount;
             req.body.price = +req.body.price;

@@ -10,6 +10,10 @@
         element.classList.add("active");
     }
     loadActive();
+
+    $('input[type=radio]').on('change', function () {
+        $(this).closest("form").submit();
+    });
 </script>
 <script src="/product-page.js"></script>
 {{/section}}
@@ -23,7 +27,8 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent">
             <li class="breadcrumb-item"><a class="text-dark" href="/">Trang chủ</a></li>
-            <li class="breadcrumb-item"><a class="text-dark" href="#">{{this.product.category}}</a></li>
+            <li class="breadcrumb-item"><a class="text-dark"
+                    href="/category/{{this.product.category}}">{{this.product.category}}</a></li>
             <li class="breadcrumb-item active" aria-current="page">{{this.product.name}}</li>
         </ol>
     </nav>
@@ -66,20 +71,41 @@
             </div>
 
             <form action="/api/product/rating/{{this.product._id}}" method="POST" id="rating">
-                <input type="submit" id="star5" name="rating" value="5" />
-                <label class="full" for="star5" title="Awesome - 5 stars"></label>
+                {{#is rated 5}}
+                <input type="radio" id="star5" name="rating" value="5" checked />
+                {{else}}
+                <input type="radio" id="star5" name="rating" value="5" />
+                {{/is}}
 
-                <input type="submit" id="star4" name="rating" value="4" />
-                <label class="full" for="star4" title="Pretty good - 4 stars"></label>
+                <label class="full" for="star5" title="Tuyệt zời - 5 sao"></label>
 
-                <input type="submit" id="star3" name="rating" value="3" />
-                <label class="full" for="star3" title="Meh - 3 stars"></label>
+                {{#is rated 4}}
+                <input type="radio" id="star4" name="rating" value="4" checked />
+                {{else}}
+                <input type="radio" id="star4" name="rating" value="4" />
+                {{/is}}
+                <label class="full" for="star4" title="Ổn phết - 4 sao"></label>
 
-                <input type="submit" id="star2" name="rating" value="2" />
-                <label class="full" for="star2" title="Kinda bad - 2 stars"></label>
+                {{#is rated 3}}
+                <input type="radio" id="star3" name="rating" value="3" checked />
+                {{else}}
+                <input type="radio" id="star3" name="rating" value="3" />
+                {{/is}}
+                <label class="full" for="star3" title="Tạm được thui - 3 sao"></label>
 
-                <input type="submit" id="star1" name="rating" value="1" />
-                <label class="full" for="star1" title="Sucks big time - 1 star"></label>
+                {{#is rated 2}}
+                <input type="radio" id="star2" name="rating" value="2" checked />
+                {{else}}
+                <input type="radio" id="star2" name="rating" value="2" />
+                {{/is}}
+                <label class="full" for="star2" title="Hơi tệ - 2 sao"></label>
+
+                {{#is rated 1}}
+                <input type="radio" id="star1" name="rating" value="1" checked />
+                {{else}}
+                <input type="radio" id="star1" name="rating" value="1" />
+                {{/is }}
+                <label class="full" for="star1" title="Sản phẩm vậy cũng bán? - 1 sao"></label>
 
 
             </form>

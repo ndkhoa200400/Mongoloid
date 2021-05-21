@@ -142,20 +142,27 @@ exports.getFitleredProduct = catchAsync(async (req, res, next) => {
 exports.getProduct = catchAsync(async (req, res, next) => {
   let user = res.locals.user;
   const product = await Product.findOne({ slug: req.params.slug }).populate({ path: "shopID" }).lean();
-  let isSeller = false; // Kiểm tra mặt hàng này của seller hay không, nếu phải thì không cho mua
+
+  // Kiểm tra mặt hàng này của seller hay không, nếu phải thì không cho mua
+  let isSeller = false;
   const shop = await Shop.findById(product.shopID);
   if (shop) {
     if (shop.sellerID.equals(user._id))
       isSeller = true;
   }
+
+
+
   if (user) {
     if (!user.name) user.name = user.username;
     user = {
+      id: user.id.toString(),
       name: user.name,
       email: user.email,
       role: user.role,
     };
   }
+
 
 
 
@@ -173,13 +180,23 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     });
   })
   let rating = 0;
-  console.log(product.rating.length);
-  if (product.rating.length)
-    product.rating.forEach(rate => {
+  let numRating = 0;
+  console.log(product.rating);
+  // Kiểm tra xem người dùng đã rating sản phẩm hay chưa
+  let rated = -1;
+  if (product.rating) {
+
+    product.rating.forEach((rate) => {
+      if (rate.user.equals(user.id)) {
+
+        rated = rate.stars;
+      }
       rating += rate.stars
     })
-  const numRating = product.rating.length ? product.rating.length : 0;
-  product.rating = product.rating.length ? rating / product.rating.length : 0;
+    numRating = product.rating.length ? product.rating.length : 0;
+    product.rating = product.rating.length > 0 ? rating / product.rating.length : 0;
+
+  }
 
   similarityProducts = similarityProducts.filter(value => value.slug !== product.slug);
   similarityProducts = similarityProducts.slice(0, 4);
@@ -197,7 +214,8 @@ exports.getProduct = catchAsync(async (req, res, next) => {
     similarityProducts,
     numSold,
     numRating,
-    isSeller
+    isSeller,
+    rated
   });
 })
 

@@ -66,4 +66,3 @@ function formatStringtoNumber(x) {
         x = x.replace(pattern, "$1,$2");
     return x.replace(/,/g, ",");
 }
-
